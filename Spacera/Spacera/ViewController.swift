@@ -8,13 +8,24 @@
 import UIKit
 
 final class ViewController: UIViewController {
-    private lazy var mainImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: "main")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    // MARK: - UI Elements
+    private let mainImage: UIImageView = {
+        $0.contentMode = .scaleAspectFill
+        $0.image = UIImage(named: "main")
+        return $0
+    }(UIImageView())
+    private let scrollView: UIScrollView = {
+        $0.bounces = false
+        $0.contentInsetAdjustmentBehavior = .never
+        $0.showsVerticalScrollIndicator = false
+        $0.showsHorizontalScrollIndicator = false
+        return $0
+    }(UIScrollView())
+    
+    private var test: [Rocket] = []
+    private var test2: [Launch] = []
+    private var rocketsID: [String] = []
+    private var rocketsFromLaunch: [String] = []
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +39,27 @@ final class ViewController: UIViewController {
     // MARK: - SetupUI
     private func setupUI() {
         view.backgroundColor = .black
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        mainImage.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mainImage)
+        view.addSubview(scrollView)
     }
     // MARK: - Constraints
     private func setupLayout() {
-        mainImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        mainImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        mainImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        mainImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        let scrollViewConstraints = [
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ]
+        
+        let mainImageConstraints = [
+            mainImage.topAnchor.constraint(equalTo: view.topAnchor),
+            mainImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            mainImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mainImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ]
+        NSLayoutConstraint.activate(scrollViewConstraints)
+        NSLayoutConstraint.activate(mainImageConstraints)
     }
 }

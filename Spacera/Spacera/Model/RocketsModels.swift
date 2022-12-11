@@ -7,7 +7,7 @@
 
 import Foundation
 // MARK: - RocketModel
-struct Rocket {
+struct Rocket: Decodable {
     let height, diameter: Diameter?
     let mass: Mass?
     let firstStage: FirstStage?
@@ -26,14 +26,14 @@ struct Rocket {
 
 extension Rocket {
     // MARK: - Diameter
-    struct Diameter {
+    struct Diameter: Decodable {
         let meters, feet: Double?
     }
 }
 
 extension Rocket {
     // MARK: - Engines
-    struct Engines {
+    struct Engines: Decodable {
         let isp: ISP?
         let thrustSeaLevel, thrustVacuum: Thrust?
         let number: Int?
@@ -47,21 +47,21 @@ extension Rocket {
 
 extension Rocket.Engines {
     // MARK: - ISP
-    struct ISP {
+    struct ISP: Decodable {
         let seaLevel, vacuum: Int?
     }
 }
 
 extension Rocket.Engines {
     // MARK: - Thrust
-    struct Thrust {
+    struct Thrust: Decodable {
         let kN, lbf: Int?
     }
 }
 
 extension Rocket {
     // MARK: - FirstStage
-    struct FirstStage {
+    struct FirstStage: Decodable {
         let thrustSeaLevel, thrustVacuum: Rocket.Engines.Thrust?
         let reusable: Bool?
         let engines: Int?
@@ -72,7 +72,7 @@ extension Rocket {
 
 extension Rocket {
     // MARK: - LandingLegs
-    struct LandingLegs {
+    struct LandingLegs: Decodable {
         let number: Int?
         let material: String?
     }
@@ -80,14 +80,14 @@ extension Rocket {
 
 extension Rocket {
     // MARK: - Mass
-    struct Mass {
+    struct Mass: Decodable {
         let kg, lb: Int?
     }
 }
 
 extension Rocket {
     // MARK: - PayloadWeight
-    struct PayloadWeight {
+    struct PayloadWeight: Decodable {
         let id, name: String?
         let kg, lb: Int?
     }
@@ -95,7 +95,7 @@ extension Rocket {
 
 extension Rocket {
     // MARK: - SecondStage
-    struct SecondStage {
+    struct SecondStage: Decodable {
         let thrust: Rocket.Engines.Thrust?
         let payloads: Payloads?
         let reusable: Bool?
@@ -107,7 +107,7 @@ extension Rocket {
 
 extension Rocket {
     // MARK: - Payloads
-    struct Payloads {
+    struct Payloads: Decodable {
         let compositeFairing: CompositeFairing?
         let option1: String?
     }
@@ -115,7 +115,7 @@ extension Rocket {
 
 extension Rocket.Payloads {
     // MARK: - CompositeFairing
-    struct CompositeFairing {
+    struct CompositeFairing: Decodable {
         let height, diameter: Rocket.Diameter?
     }
 }
