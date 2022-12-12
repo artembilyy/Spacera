@@ -32,7 +32,6 @@ final class CellNumberOne: UICollectionViewCell {
 //    }
     // MARK: - Configure cell
     private func configureView() {
-        contentView.backgroundColor = .black
         contentView.addSubview(container)
         container.layer.backgroundColor = UIColor(red: 0.129, green: 0.129, blue: 0.129, alpha: 1).cgColor
         container.layer.cornerRadius = 32
@@ -79,5 +78,9 @@ final class CellNumberOne: UICollectionViewCell {
     }
     // MARK: - Data usage
     func bindWithMedia(data: Rocket) {
+        if let height = data.height?.meters {
+            unitValue.text = String(height)
+        }
+        unit.text = "Height"
     }
 }
