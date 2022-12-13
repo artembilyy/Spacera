@@ -7,13 +7,13 @@
 
 import UIKit
 
-final class CellNumberOne: UICollectionViewCell {
+final class RocketInfoCell: UICollectionViewCell {
     // MARK: identifier
     static let identifier = "cellIdentifier"
     // MARK: - UI Elements
     private let container = UIView()
     private let unitValue = UILabel()
-    private let unit = UILabel()
+    private let unitLabel = UILabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,9 +27,10 @@ final class CellNumberOne: UICollectionViewCell {
         super.layoutSubviews()
         setupConstraints()
     }
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//    }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        unitLabel.text = ""
+    }
     // MARK: - Configure cell
     private func configureView() {
         contentView.addSubview(container)
@@ -45,10 +46,10 @@ final class CellNumberOne: UICollectionViewCell {
 //        var paragraphStyle = NSMutableParagraphStyle()
 //        paragraphStyle.lineHeightMultiple = 1.25
 //        unitValue.attributedText = NSMutableAttributedString(string: "229.6", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
-        unit.textColor = UIColor(red: 0.557, green: 0.557, blue: 0.561, alpha: 1)
-        unit.textAlignment = .center
-        unit.translatesAutoresizingMaskIntoConstraints = false
-        container.addSubview(unit)
+        unitLabel.textColor = UIColor(red: 0.557, green: 0.557, blue: 0.561, alpha: 1)
+        unitLabel.textAlignment = .center
+        unitLabel.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(unitLabel)
 //        unit.font = UIFont(name: "LabGrotesque-Regular", size: 14)
 //        var paragraphStyle = NSMutableParagraphStyle()
 //        paragraphStyle.lineHeightMultiple = 1.19
@@ -68,19 +69,20 @@ final class CellNumberOne: UICollectionViewCell {
             unitValue.trailingAnchor.constraint(equalTo: container.trailingAnchor)
         ]
         let unitConstraints = [
-            unit.topAnchor.constraint(equalTo: unitValue.bottomAnchor, constant: 4),
-            unit.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            unit.trailingAnchor.constraint(equalTo: container.trailingAnchor)
+            unitLabel.topAnchor.constraint(equalTo: unitValue.bottomAnchor, constant: 4),
+            unitLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            unitLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor)
         ]
         NSLayoutConstraint.activate(contrainerConstraints)
         NSLayoutConstraint.activate(unitValueConstraints)
         NSLayoutConstraint.activate(unitConstraints)
     }
     // MARK: - Data usage
-    func bindWithMedia(data: Rocket) {
-        if let height = data.height?.meters {
-            unitValue.text = String(height)
-        }
-        unit.text = "Height"
+    func bindWithMedia(valueForUnit: String, nameForUnitLabel: String) {
+        unitValue.text = valueForUnit
+        unitLabel.text = nameForUnitLabel
+//        UnitTypes.allCases.forEach { unit in
+//            self.unitLabel.text = unit.rawValue
+//        }
     }
 }

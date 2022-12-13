@@ -9,10 +9,9 @@ import UIKit
 
 class CollectionViewTest: UIViewController {
     private lazy var viewModel = RocketsViewModel()
-    private lazy var settingsViewController = SettingsViewController()
     private let rocketName: UILabel = {
         $0.backgroundColor = .clear
-        $0.text = "Test Rocket"
+        $0.text = ""
         $0.textAlignment = .left
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
         $0.textColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1)
@@ -35,6 +34,7 @@ class CollectionViewTest: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
+    var rocketIndexPath: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +54,7 @@ class CollectionViewTest: UIViewController {
         collectionView.dataSource = self
         viewModel.delegate = self
         collectionView.register(Header.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Header.identifier)
-        collectionView.register(CellNumberOne.self, forCellWithReuseIdentifier: CellNumberOne.identifier)
+        collectionView.register(RocketInfoCell.self, forCellWithReuseIdentifier: RocketInfoCell.identifier)
         view.backgroundColor = .black
         view.addSubview(rocketName)
         view.addSubview(settingsButton)
@@ -67,7 +67,7 @@ class CollectionViewTest: UIViewController {
             rocketName.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
             rocketName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             rocketName.widthAnchor.constraint(equalToConstant: 146),
-            rocketName.heightAnchor.constraint(equalToConstant: 32)
+            rocketName.heightAnchor.constraint(equalToConstant: 36)
         ]
         let settingsButtonConstraints = [
             settingsButton.heightAnchor.constraint(equalToConstant: 32),
@@ -87,7 +87,9 @@ class CollectionViewTest: UIViewController {
         NSLayoutConstraint.activate(collectionViewConstraints)
     }
     @objc func settingsPressed() {
-        self.present(settingsViewController, animated: true)
+        let settingsViewController = SettingsViewController()
+        let navController = UINavigationController(rootViewController: settingsViewController)
+        self.present(navController, animated: true)
     }
     private func firstSectionLayout() -> NSCollectionLayoutSection {
         let spacing: CGFloat = 6
@@ -99,13 +101,14 @@ class CollectionViewTest: UIViewController {
         let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(116), heightDimension: .absolute(116))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                heightDimension: .estimated(60.0))
-        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                 elementKind: UICollectionView.elementKindSectionHeader,
-                                                                 alignment: .top)
+        section.contentInsets.top = 32
+//        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+//                                                heightDimension: .estimated(60.0))
+//        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+//                                                                 elementKind: UICollectionView.elementKindSectionHeader,
+//                                                                 alignment: .top)
         section.orthogonalScrollingBehavior = .continuous
-        section.boundarySupplementaryItems = [header]
+//        section.boundarySupplementaryItems = [header]
         return section
     }
     
@@ -154,13 +157,17 @@ class CollectionViewTest: UIViewController {
 
 extension CollectionViewTest: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellNumberOne.identifier, for: indexPath) as? CellNumberOne else { return UICollectionViewCell() }
-        cell.bindWithMedia(data: viewModel.rockets[indexPath.row])
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RocketInfoCell.identifier, for: indexPath) as? RocketInfoCell else { return UICollectionViewCell() }
+        var titlesArray: [String] = []
+        UnitTypes.allCases.forEach { title in
+            titlesArray.append(title.rawValue)
+        }
+        cell.bindWithMedia(valueForUnit: "Hello", nameForUnitLabel: titlesArray[indexPath.item])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.rockets.count
+        4
     }
     
     
@@ -189,6 +196,9 @@ extension CollectionViewTest: ViewModelProtocol {
     func updateView() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.rocketName.text = self.viewModel.rocketName[self.rocketIndexPath]
         }
     }
 }
+
+let data = [String: [[String: [String]]]]()

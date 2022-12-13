@@ -7,14 +7,14 @@
 
 import UIKit
 
-enum UnitTypes: Int, CaseIterable {
-    case height = 0, diameter = 1, weight = 2, payload = 3
-    var description: String {
+enum UnitTypes: String, CaseIterable {
+    case height, diameter, weight, payload
+    var description: [String] {
         switch self {
-        case .height:   return "height"
-        case .diameter: return "diameter"
-        case .weight:   return "weight"
-        case .payload:  return "payload"
+        case .height:   return ["m", "ft"]
+        case .diameter: return ["m", "ft"]
+        case .weight:   return ["kg", "lb"]
+        case .payload:  return ["kg", "lb"]
         }
     }
 }
@@ -25,7 +25,7 @@ class SettingsViewController: UIViewController {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: segmentedArray)
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = 24
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -42,18 +42,30 @@ class SettingsViewController: UIViewController {
         view.backgroundColor = .black
         UnitTypes.allCases.forEach {
             let settingView = SettingsItemView()
-            settingView.titleLabel.text = $0.description.capitalized
-            settingView.unitSegmentedControl.insertSegment(withTitle: $0.description.capitalized, at: settingView.unitSegmentedControl.numberOfSegments, animated: false)
+            settingView.unitSegmentedControl.setTitle($0.description[0], forSegmentAt: 0)
+            settingView.unitSegmentedControl.setTitle($0.description[1], forSegmentAt: 1)
+            settingView.titleLabel.text = $0.rawValue.capitalized
             segmentedArray.append(settingView)
         }
         view.addSubview(stackView)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(closeAction))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        title = "Settings"
+    }
+    @objc
+    private func closeAction() {
+        self.dismiss(animated: true)
     }
     private func setupLayout() {
         let stackViewConstraitns = [
-            stackView.topAnchor.constraint(equalTo: view.topAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: 400),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 56),
+            stackView.heightAnchor.constraint(equalToConstant: 200),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28)
         ]
         NSLayoutConstraint.activate(stackViewConstraitns)
     }

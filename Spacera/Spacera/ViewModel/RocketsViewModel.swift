@@ -12,13 +12,87 @@ final class RocketsViewModel {
         return NetworkService()
     }()
     private(set) var rockets: [Rocket] = []
+    private(set) var rockesData: [String: [String: [String]]] = [:]
+    private(set) var rocketProperties: [String: [String]] = [:]
+    private(set) var rocketName: [String] = []
     weak var delegate: ViewModelProtocol?
     func getRockets() {
         delegate?.showLoading()
         networkManager.getRocketsInfo { result in
             self.rockets = result
             self.delegate?.hideLoading()
+            for rocket in self.rockets {
+                guard let rocketName = rocket.name else { return }
+                print(rocketName)
+                // section 1
+                if let heightMeters = rocket.height?.meters,
+                   let heightFeet = rocket.height?.feet,
+                   let diameterMeters = rocket.diameter?.meters,
+                   let diameterFeet = rocket.diameter?.feet,
+                   let massKg = rocket.mass?.kg,
+                   let massLb = rocket.mass?.lb,
+                   let payloadKg = rocket.payload_weights?[0].kg,
+                   let payloadLb = rocket.payload_weights?[0].lb {
+                    self.rocketProperties.updateValue([String(heightMeters), String(heightFeet)],
+                                               forKey: Rockets.height.rawValue)
+                    self.rocketProperties.updateValue([String(diameterMeters), String(diameterFeet)],
+                                               forKey: Rockets.diameter.rawValue)
+                    self.rocketProperties.updateValue([String(massKg), String(massLb)],
+                                               forKey: Rockets.weight.rawValue)
+                    self.rocketProperties.updateValue([String(payloadKg), String(payloadLb)],
+                                               forKey: Rockets.payload.rawValue)
+                }
+                // section 2
+                if let firstFlight = rocket.first_flight,
+                   let country = rocket.country,
+                   let costPerLaunch = rocket.cost_per_launch {
+                    self.rocketProperties.updateValue([String(firstFlight)],
+                                               forKey: Rockets.firstFlight.rawValue)
+                    self.rocketProperties.updateValue([String(country)],
+                                               forKey: Rockets.country.rawValue)
+                    self.rocketProperties.updateValue([String(costPerLaunch)],
+                                               forKey: Rockets.costPerLaunch.rawValue)
+                }
+                // section 3
+                if let firstStageEngines = rocket.first_stage?.engines,
+                   let firstStageFuel = rocket.first_stage?.fuel_amount_tons,
+                   let firstStageBurn = rocket.first_stage?.burn_time_sec {
+                    self.rocketProperties.updateValue([String(firstStageEngines)],
+                                                forKey: Rockets.firstStageEngines.rawValue)
+                    self.rocketProperties.updateValue([String(firstStageFuel)],
+                                                forKey: Rockets.firstStageFuelAmountTons.rawValue)
+                    self.rocketProperties.updateValue([String(firstStageBurn)],
+                                                forKey: Rockets.firstStageBurnTimeSEC.rawValue)
+                }
+                // section 4
+                if let secondStageEngines = rocket.second_stage?.engines,
+                   let secondStageFuel = rocket.second_stage?.fuel_amount_tons,
+                    let secondStageBurn = rocket.second_stage?.burn_time_sec {
+                    self.rocketProperties.updateValue([String(secondStageEngines)],
+                                               forKey: Rockets.secondStageEngines.rawValue)
+                    self.rocketProperties.updateValue([String(secondStageFuel)],
+                                               forKey: Rockets.secondStageFuelAmountTons.rawValue)
+                    self.rocketProperties.updateValue([String(secondStageBurn)],
+                                               forKey: Rockets.secondStageBurnTimeSEC.rawValue)
+                }
+                self.rockesData[rocketName] = self.rocketProperties
+                self.rocketName.append(rocketName)
+            }
             self.delegate?.updateView()
+        }
+    }
+        enum Rockets: String {
+            case height, diameter, weight, payload, firstFlight, country, costPerLaunch, firstStageEngines, firstStageFuelAmountTons, firstStageBurnTimeSEC, secondStageEngines, secondStageFuelAmountTons, secondStageBurnTimeSEC
+        }
+    enum UnitTypes: String, CaseIterable {
+        case height, diameter, weight, payload
+        var description: [String] {
+            switch self {
+            case .height:   return ["m", "ft"]
+            case .diameter: return ["m", "ft"]
+            case .weight:   return ["kg", "lb"]
+            case .payload:  return ["kg", "lb"]
+            }
         }
     }
 }

@@ -19,16 +19,16 @@ final class SettingsItemView: UIView {
         let segmentedControl = UISegmentedControl(items: ["", ""])
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(nil, action: #selector(segmetntedControlChanged), for: .valueChanged)
-        segmentedControl.backgroundColor = UIColor(red: 33, green: 33, blue: 33, alpha: 1)
+        segmentedControl.backgroundColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1)
         segmentedControl.selectedSegmentTintColor = UIColor.white
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(red: 142, green: 142, blue: 143, alpha: 1)], for: .normal)
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(red: 18, green: 18, blue: 18, alpha: 1)], for: .selected)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(red: 142/255, green: 142/255, blue: 143/255, alpha: 1)], for: .normal)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(red: 18/255, green: 18/255, blue: 18/255, alpha: 1)], for: .selected)
         return segmentedControl
     }()
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, unitSegmentedControl])
         stackView.axis = .horizontal
-        stackView.spacing = 2
+        stackView.spacing = 28
         stackView.distribution = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -50,9 +50,8 @@ final class SettingsItemView: UIView {
     }
     private func setupConstraints() {
         let segmentedConstraints = [
-            unitSegmentedControl.widthAnchor.constraint(equalToConstant: 200),
+            unitSegmentedControl.widthAnchor.constraint(equalToConstant: 115),
         ]
-        
         let stackViewConstraints = [
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                constant: 16),
@@ -61,7 +60,6 @@ final class SettingsItemView: UIView {
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ]
-        
         NSLayoutConstraint.activate(segmentedConstraints)
         NSLayoutConstraint.activate(stackViewConstraints)
     }
