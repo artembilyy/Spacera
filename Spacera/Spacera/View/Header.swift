@@ -48,7 +48,8 @@ final class Header: UICollectionViewCell {
             contrainer.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: contrainer.trailingAnchor, constant: 8),
+            label.topAnchor.constraint(equalTo: contrainer.topAnchor),
+            label.leadingAnchor.constraint(equalTo: contrainer.leadingAnchor, constant: 32),
             label.centerYAnchor.constraint(equalTo: contrainer.centerYAnchor)
         ])
     }

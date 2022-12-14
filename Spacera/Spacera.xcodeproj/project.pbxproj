@@ -16,7 +16,7 @@
 		ED189C7E29467E00008722EE /* RocketsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C7D29467E00008722EE /* RocketsViewModel.swift */; };
 		ED189C8029467F42008722EE /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C7F29467F42008722EE /* ViewModelProtocol.swift */; };
 		ED189C8229467FB3008722EE /* CollectionViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8129467FB3008722EE /* CollectionViewTest.swift */; };
-		ED189C8429468176008722EE /* RocketInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8329468176008722EE /* RocketInfoCell.swift */; };
+		ED189C8429468176008722EE /* RocketMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8329468176008722EE /* RocketMainCell.swift */; };
 		ED189C8629468B39008722EE /* LaunchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8529468B39008722EE /* LaunchesViewModel.swift */; };
 		ED5CDF5F294746F900DCE078 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5CDF5E294746F900DCE078 /* Header.swift */; };
 		ED5CDF65294766E000DCE078 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5CDF64294766E000DCE078 /* SettingsViewController.swift */; };
@@ -25,6 +25,8 @@
 		ED6888F02943DBEF00E20D21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6888EF2943DBEF00E20D21 /* ViewController.swift */; };
 		ED6888F52943DBF100E20D21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED6888F42943DBF100E20D21 /* Assets.xcassets */; };
 		ED6888F82943DBF100E20D21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED6888F62943DBF100E20D21 /* LaunchScreen.storyboard */; };
+		ED9456DF29494BBA00CF6911 /* RocketInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456DE29494BBA00CF6911 /* RocketInfoCell.swift */; };
+		ED9456E3294A6FD100CF6911 /* DetailButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456E2294A6FD100CF6911 /* DetailButtonCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +38,7 @@
 		ED189C7D29467E00008722EE /* RocketsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsViewModel.swift; sourceTree = "<group>"; };
 		ED189C7F29467F42008722EE /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		ED189C8129467FB3008722EE /* CollectionViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTest.swift; sourceTree = "<group>"; };
-		ED189C8329468176008722EE /* RocketInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketInfoCell.swift; sourceTree = "<group>"; };
+		ED189C8329468176008722EE /* RocketMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketMainCell.swift; sourceTree = "<group>"; };
 		ED189C8529468B39008722EE /* LaunchesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewModel.swift; sourceTree = "<group>"; };
 		ED5CDF5E294746F900DCE078 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		ED5CDF64294766E000DCE078 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +49,8 @@
 		ED6888F42943DBF100E20D21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED6888F72943DBF100E20D21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED6888F92943DBF100E20D21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED9456DE29494BBA00CF6911 /* RocketInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketInfoCell.swift; sourceTree = "<group>"; };
+		ED9456E2294A6FD100CF6911 /* DetailButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +103,10 @@
 		ED189C7B29467DE3008722EE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				ED189C8329468176008722EE /* RocketInfoCell.swift */,
+				ED189C8329468176008722EE /* RocketMainCell.swift */,
+				ED9456DE29494BBA00CF6911 /* RocketInfoCell.swift */,
 				ED5CDF5E294746F900DCE078 /* Header.swift */,
+				ED9456E2294A6FD100CF6911 /* DetailButtonCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -266,6 +272,7 @@
 				ED189C7E29467E00008722EE /* RocketsViewModel.swift in Sources */,
 				ED5CDF5F294746F900DCE078 /* Header.swift in Sources */,
 				ED6888F02943DBEF00E20D21 /* ViewController.swift in Sources */,
+				ED9456DF29494BBA00CF6911 /* RocketInfoCell.swift in Sources */,
 				ED189C7929466A51008722EE /* MainView.swift in Sources */,
 				ED6888EC2943DBEF00E20D21 /* AppDelegate.swift in Sources */,
 				ED189C6E2943EE44008722EE /* LaunchesModels.swift in Sources */,
@@ -273,10 +280,11 @@
 				ED5CDF65294766E000DCE078 /* SettingsViewController.swift in Sources */,
 				ED5CDF672947CCE200DCE078 /* SettingsView.swift in Sources */,
 				ED189C8229467FB3008722EE /* CollectionViewTest.swift in Sources */,
+				ED9456E3294A6FD100CF6911 /* DetailButtonCell.swift in Sources */,
 				ED189C772944BA79008722EE /* NetworkService.swift in Sources */,
 				ED189C6C2943EB4C008722EE /* RocketsModels.swift in Sources */,
 				ED189C8629468B39008722EE /* LaunchesViewModel.swift in Sources */,
-				ED189C8429468176008722EE /* RocketInfoCell.swift in Sources */,
+				ED189C8429468176008722EE /* RocketMainCell.swift in Sources */,
 				ED189C8029467F42008722EE /* ViewModelProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
