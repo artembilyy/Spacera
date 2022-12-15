@@ -27,6 +27,8 @@
 		ED6888F82943DBF100E20D21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED6888F62943DBF100E20D21 /* LaunchScreen.storyboard */; };
 		ED9456DF29494BBA00CF6911 /* RocketInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456DE29494BBA00CF6911 /* RocketInfoCell.swift */; };
 		ED9456E3294A6FD100CF6911 /* DetailButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456E2294A6FD100CF6911 /* DetailButtonCell.swift */; };
+		ED9456E5294B62BE00CF6911 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456E4294B62BD00CF6911 /* DetailsViewController.swift */; };
+		ED9456E7294B637600CF6911 /* LaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456E6294B637600CF6911 /* LaunchCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		ED6888F92943DBF100E20D21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED9456DE29494BBA00CF6911 /* RocketInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketInfoCell.swift; sourceTree = "<group>"; };
 		ED9456E2294A6FD100CF6911 /* DetailButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonCell.swift; sourceTree = "<group>"; };
+		ED9456E4294B62BD00CF6911 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		ED9456E6294B637600CF6911 /* LaunchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 				ED9456DE29494BBA00CF6911 /* RocketInfoCell.swift */,
 				ED5CDF5E294746F900DCE078 /* Header.swift */,
 				ED9456E2294A6FD100CF6911 /* DetailButtonCell.swift */,
+				ED9456E6294B637600CF6911 /* LaunchCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 				ED189C8129467FB3008722EE /* CollectionViewTest.swift */,
 				ED5CDF64294766E000DCE078 /* SettingsViewController.swift */,
 				ED5CDF662947CCE200DCE078 /* SettingsView.swift */,
+				ED9456E4294B62BD00CF6911 /* DetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -277,9 +283,11 @@
 				ED6888EC2943DBEF00E20D21 /* AppDelegate.swift in Sources */,
 				ED189C6E2943EE44008722EE /* LaunchesModels.swift in Sources */,
 				ED189C712943F884008722EE /* Global.swift in Sources */,
+				ED9456E7294B637600CF6911 /* LaunchCell.swift in Sources */,
 				ED5CDF65294766E000DCE078 /* SettingsViewController.swift in Sources */,
 				ED5CDF672947CCE200DCE078 /* SettingsView.swift in Sources */,
 				ED189C8229467FB3008722EE /* CollectionViewTest.swift in Sources */,
+				ED9456E5294B62BE00CF6911 /* DetailsViewController.swift in Sources */,
 				ED9456E3294A6FD100CF6911 /* DetailButtonCell.swift in Sources */,
 				ED189C772944BA79008722EE /* NetworkService.swift in Sources */,
 				ED189C6C2943EB4C008722EE /* RocketsModels.swift in Sources */,

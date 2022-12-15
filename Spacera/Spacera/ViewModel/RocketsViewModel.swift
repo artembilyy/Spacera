@@ -7,28 +7,31 @@
 
 import Foundation
 
+enum Rockets: String {
+    case height, diameter, weight, payload, firstFlight, country, costPerLaunch, firstStageEngines, firstStageFuelAmountTons, firstStageBurnTimeSEC, secondStageEngines, secondStageFuelAmountTons, secondStageBurnTimeSEC, id
+}
+
 final class RocketsViewModel {
     private lazy var networkManager: NetworkService = {
         return NetworkService()
     }()
-//    private(set) var titlesFirstSection: [String] = []
     private(set) var rockets: [Rocket] = []
     private(set) var rocketsData: [String: [String: [String]]] = [:]
     private(set) var rocketProperties: [String: [String]] = [:]
     private(set) var rocketName: [String] = []
-    private(set) var firstSection: [String: [String]] = [:]
     weak var delegate: ViewModelProtocol?
     func getRockets() {
         delegate?.showLoading()
-//        UnitTypes.allCases.forEach { unit in
-//            titlesFirstSection.append(unit.rawValue.capitalized)
-//        }
         networkManager.getRocketsInfo { result in
             self.rockets = result
             self.delegate?.hideLoading()
             for rocket in self.rockets {
                 guard let rocketName = rocket.name else { return }
-                print(rocketName)
+                // id
+                if let identifier = rocket.id {
+                    self.rocketProperties.updateValue([identifier], forKey: Rockets.id.rawValue)
+//                    print(identifier)
+                }
                 // section 1
                 if let heightMeters = rocket.height?.meters,
                    let heightFeet = rocket.height?.feet,
@@ -82,13 +85,8 @@ final class RocketsViewModel {
                 }
                 self.rocketsData[rocketName] = self.rocketProperties
                 self.rocketName.append(rocketName)
-                print(self.rocketsData[rocketName]![Rockets.payload.rawValue]!)
             }
             self.delegate?.updateView()
         }
     }
-}
-
-enum Rockets: String {
-    case height, diameter, weight, payload, firstFlight, country, costPerLaunch, firstStageEngines, firstStageFuelAmountTons, firstStageBurnTimeSEC, secondStageEngines, secondStageFuelAmountTons, secondStageBurnTimeSEC
 }

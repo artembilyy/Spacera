@@ -13,7 +13,8 @@ final class ButtonCell: UICollectionViewCell {
     // MARK: - UI Elements
     private let container = UIView()
     private let button = UIButton(type: .system)
-    weak var viewController: UIViewController?
+    var key: String?
+    weak var viewController: CollectionViewTest?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -64,9 +65,9 @@ final class ButtonCell: UICollectionViewCell {
     }
     @objc
     private func buttonAction() {
-        let settingsViewController = SettingsViewController()
-        let navController = UINavigationController(rootViewController: settingsViewController)
-        viewController?.present(navController, animated: true)
+        let detailsViewController = DetailtsViewController(keyForDict: key!)
+        print(key!)
+        viewController?.navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }
 

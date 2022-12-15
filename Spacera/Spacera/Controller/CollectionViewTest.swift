@@ -89,7 +89,8 @@ class CollectionViewTest: UIViewController {
         NSLayoutConstraint.activate(settingsButtonConstraints)
         NSLayoutConstraint.activate(collectionViewConstraints)
     }
-    @objc func settingsPressed() {
+    @objc
+    private func settingsPressed() {
         let settingsViewController = SettingsViewController()
         let navController = UINavigationController(rootViewController: settingsViewController)
         self.present(navController, animated: true)
@@ -194,6 +195,8 @@ extension CollectionViewTest: UICollectionViewDataSource {
             secondCell.configureCell(dict: viewModel.rocketsData, mainKey: rocketName.text ?? "", indexPath: indexPath)
             return secondCell
         case 4:
+            var key = viewModel.rocketName[self.rocketIndexPath]
+            buttonCell.key = viewModel.rocketsData[key]?[Rockets.id.rawValue]?[0] ?? ""
             buttonCell.viewController = self
             return buttonCell
         default:
@@ -209,9 +212,9 @@ extension CollectionViewTest: UICollectionViewDataSource {
                 return UICollectionReusableView()
             }
             if indexPath.section == 2 {
-                sectionHeader.label.text = SectionHeaderText.firstStage.rawValue
+                sectionHeader.label.text = RocketViewText.firstStage.rawValue
             } else if indexPath.section == 3 {
-                sectionHeader.label.text = SectionHeaderText.secondStage.rawValue
+                sectionHeader.label.text = RocketViewText.secondStage.rawValue
             }
             return sectionHeader
         }

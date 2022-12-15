@@ -7,16 +7,13 @@
 
 import UIKit
 
-enum CellText: String {
+enum RocketViewText: String {
     case firstFlight    = "First flight"
     case country        = "Country"
     case costPerLaunch  = "Cost per launch"
     case engines        = "Engines count"
     case fuelAmountTons = "Fuel amount"
     case burnTimeSec    = "Burn time"
-}
-
-enum SectionHeaderText: String {
     case firstStage     = "FIRST STAGE"
     case secondStage    = "SECOND STAGE"
 }
@@ -96,13 +93,13 @@ final class RocketInfoCell: UICollectionViewCell {
         case 1:
             switch indexPath.item {
             case 0:
-                leftLabel.text = CellText.firstFlight.rawValue
+                leftLabel.text = RocketViewText.firstFlight.rawValue
                 rightlabel.text = dict[mainKey]?[Rockets.firstFlight.rawValue]?.first
             case 1:
-                leftLabel.text = CellText.country.rawValue
+                leftLabel.text = RocketViewText.country.rawValue
                 rightlabel.text = dict[mainKey]?[Rockets.country.rawValue]?.first
             case 2:
-                leftLabel.text = CellText.costPerLaunch.rawValue
+                leftLabel.text = RocketViewText.costPerLaunch.rawValue
                 rightlabel.text = dict[mainKey]?[Rockets.costPerLaunch.rawValue]?.first
             default:
                 return
@@ -110,13 +107,13 @@ final class RocketInfoCell: UICollectionViewCell {
         case 2:
             switch indexPath.item {
             case 0:
-                leftLabel.text = CellText.engines.rawValue
+                leftLabel.text = RocketViewText.engines.rawValue
                 rightlabel.text = dict[mainKey]?[Rockets.firstStageEngines.rawValue]?.first
             case 1:
-                leftLabel.text = CellText.fuelAmountTons.rawValue
+                leftLabel.text = RocketViewText.fuelAmountTons.rawValue
                 rightlabel.text = dict[mainKey]?[Rockets.firstStageFuelAmountTons.rawValue]?.first
             case 2:
-                leftLabel.text = CellText.burnTimeSec.rawValue
+                leftLabel.text = RocketViewText.burnTimeSec.rawValue
                 rightlabel.text = dict[mainKey]?[Rockets.firstStageBurnTimeSEC.rawValue]?.first
             default:
                 return
@@ -124,13 +121,13 @@ final class RocketInfoCell: UICollectionViewCell {
         case 3:
             switch indexPath.item {
             case 0:
-                leftLabel.text = CellText.engines.rawValue
+                leftLabel.text = RocketViewText.engines.rawValue
                 rightlabel.text = dict[mainKey]?[Rockets.secondStageEngines.rawValue]?.first
             case 1:
-                leftLabel.text = CellText.fuelAmountTons.rawValue
+                leftLabel.text = RocketViewText.fuelAmountTons.rawValue
                 rightlabel.text = dict[mainKey]?[Rockets.secondStageFuelAmountTons.rawValue]?.first
             case 2:
-                leftLabel.text = CellText.burnTimeSec.rawValue
+                leftLabel.text = RocketViewText.burnTimeSec.rawValue
                 rightlabel.text = dict[mainKey]?[Rockets.secondStageBurnTimeSEC.rawValue]?.first
             default:
                 return
