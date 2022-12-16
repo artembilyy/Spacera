@@ -20,7 +20,6 @@ enum UnitTypes: String, CaseIterable {
 }
 
 class SettingsViewController: UIViewController {
-    
     private var segmentedArray: [UIView] = []
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: segmentedArray)
@@ -70,4 +69,3 @@ class SettingsViewController: UIViewController {
         NSLayoutConstraint.activate(stackViewConstraitns)
     }
 }
-

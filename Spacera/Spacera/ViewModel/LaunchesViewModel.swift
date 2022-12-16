@@ -21,8 +21,7 @@ final class LaunchesViewModel {
     private(set) var datesArray: [String] = []
     private(set) var successArray: [Bool] = []
     weak var delegate: ViewModelProtocol?
-    
-    func getLaunches(mainKey: String, indexPath: IndexPath) {
+    func getLaunches(mainKey: String) {
         namesArray.removeAll()
         datesArray.removeAll()
         successArray.removeAll()
@@ -47,6 +46,9 @@ final class LaunchesViewModel {
 //                    self.smallDict[Launches.date.rawValue]!.append(date)
                 }
             }
+            self.namesArray.reverse()
+            self.datesArray.reverse()
+            self.successArray.reverse()
             self.delegate?.hideLoading()
             self.delegate?.updateView()
         }

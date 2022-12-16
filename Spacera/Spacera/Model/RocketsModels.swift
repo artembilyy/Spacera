@@ -15,7 +15,7 @@ struct Rocket: Decodable {
     let engines: Engines?
     let landingLegs: LandingLegs?
     let payload_weights: [PayloadWeight]?
-    let flickrImages: [String]?
+    let flickr_images: [String]?
     let name, type: String?
     let active: Bool?
     let stages, boosters, cost_per_launch, successRatePct: Int?

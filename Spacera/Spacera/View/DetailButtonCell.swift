@@ -14,8 +14,7 @@ final class ButtonCell: UICollectionViewCell {
     private let container = UIView()
     private let button = UIButton(type: .system)
     var key: String?
-    weak var viewController: CollectionViewTest?
-    
+    weak var viewController: RocketViewController?
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -70,4 +69,3 @@ final class ButtonCell: UICollectionViewCell {
         viewController?.navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }
-

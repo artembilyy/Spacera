@@ -77,8 +77,11 @@ final class RocketMainCell: UICollectionViewCell {
         NSLayoutConstraint.activate(unitConstraints)
     }
     // MARK: - Data usage
-    func configureCell(dictionary: [String:[String:[String]]], mainKey: String, switchUnit: Int, indexPath: IndexPath) {
-        if indexPath.section == 0 {
+    func configureCell(dictionary: [String: [String: [String]]],
+                       mainKey: String,
+                       switchUnit: Int,
+                       indexPath: IndexPath) {
+        if indexPath.section == 1 {
             if indexPath.item == 0 {
                 unitValue.text = dictionary[mainKey]?[Rockets.height.rawValue]?[switchUnit]
                 unitLabel.text = Rockets.height.rawValue.capitalized

@@ -10,7 +10,6 @@ import UIKit
 class DetailtsViewController: UIViewController {
     private lazy var viewModel = LaunchesViewModel()
     let mainKey: String
-    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.backgroundColor = .black
@@ -18,67 +17,52 @@ class DetailtsViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
-    
     init(keyForDict: String) {
         self.mainKey = keyForDict
         super.init(nibName: nil, bundle: nil)
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.getLaunches(mainKey: mainKey)
+        viewModel.delegate = self
         view.backgroundColor = .systemRed
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.register(LaunchCell.self, forCellWithReuseIdentifier: LaunchCell.identifier)
         view.addSubview(collectionView)
         collectionView.frame = view.bounds
     }
-    private func firstSectionLayout() -> NSCollectionLayoutSection {
-        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                          heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: size)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0,
-                                                     leading: 4,
-                                                     bottom: 8,
-                                                     trailing: 4)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(120),
-                                               heightDimension: .absolute(130))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                       subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 8,
-                                                      leading: 4,
-                                                      bottom: 8,
-                                                      trailing: 0)
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-        return section
-    }
     private func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { (sectionNumber, enviroment) -> NSCollectionLayoutSection? in
-            return self.firstSectionLayout()
+        return UICollectionViewCompositionalLayout { (_, _) -> NSCollectionLayoutSection? in
+            return self.collectionView.laucnhSectionLayout()
         }
     }
 }
 
 extension DetailtsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.namesArray.count
+        1
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LaunchCell.identifier,
-                                                            for: indexPath) as? LaunchCell else { return UICollectionViewCell() }
-        cell.configureCell(name: viewModel.namesArray[indexPath.item], date: viewModel.datesArray[indexPath.row], success: viewModel.successArray[indexPath.item])
+                                                            for: indexPath) as? LaunchCell else {
+            return UICollectionViewCell()
+        }
+        cell.configureCell(name: viewModel.namesArray[indexPath.section],
+                           date: viewModel.datesArray[indexPath.section],
+                           success: viewModel.successArray[indexPath.section])
         return cell
     }
-    
-    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        viewModel.namesArray.count
+    }
 }
 
 extension DetailtsViewController: UICollectionViewDelegate {
-    
 }
 
 extension DetailtsViewController: ViewModelProtocol {

@@ -12,23 +12,25 @@
 		ED189C712943F884008722EE /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C702943F884008722EE /* Global.swift */; };
 		ED189C752944BA09008722EE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = ED189C742944BA09008722EE /* Alamofire */; };
 		ED189C772944BA79008722EE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C762944BA79008722EE /* NetworkService.swift */; };
-		ED189C7929466A51008722EE /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C7829466A51008722EE /* MainView.swift */; };
-		ED189C7E29467E00008722EE /* RocketsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C7D29467E00008722EE /* RocketsViewModel.swift */; };
+		ED189C7E29467E00008722EE /* RocketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C7D29467E00008722EE /* RocketViewModel.swift */; };
 		ED189C8029467F42008722EE /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C7F29467F42008722EE /* ViewModelProtocol.swift */; };
-		ED189C8229467FB3008722EE /* CollectionViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8129467FB3008722EE /* CollectionViewTest.swift */; };
+		ED189C8229467FB3008722EE /* RocketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8129467FB3008722EE /* RocketViewController.swift */; };
 		ED189C8429468176008722EE /* RocketMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8329468176008722EE /* RocketMainCell.swift */; };
 		ED189C8629468B39008722EE /* LaunchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8529468B39008722EE /* LaunchesViewModel.swift */; };
 		ED5CDF5F294746F900DCE078 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5CDF5E294746F900DCE078 /* Header.swift */; };
 		ED5CDF65294766E000DCE078 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5CDF64294766E000DCE078 /* SettingsViewController.swift */; };
 		ED5CDF672947CCE200DCE078 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5CDF662947CCE200DCE078 /* SettingsView.swift */; };
 		ED6888EC2943DBEF00E20D21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6888EB2943DBEF00E20D21 /* AppDelegate.swift */; };
-		ED6888F02943DBEF00E20D21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6888EF2943DBEF00E20D21 /* ViewController.swift */; };
 		ED6888F52943DBF100E20D21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED6888F42943DBF100E20D21 /* Assets.xcassets */; };
 		ED6888F82943DBF100E20D21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED6888F62943DBF100E20D21 /* LaunchScreen.storyboard */; };
 		ED9456DF29494BBA00CF6911 /* RocketInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456DE29494BBA00CF6911 /* RocketInfoCell.swift */; };
 		ED9456E3294A6FD100CF6911 /* DetailButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456E2294A6FD100CF6911 /* DetailButtonCell.swift */; };
 		ED9456E5294B62BE00CF6911 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456E4294B62BD00CF6911 /* DetailsViewController.swift */; };
 		ED9456E7294B637600CF6911 /* LaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456E6294B637600CF6911 /* LaunchCell.swift */; };
+		ED9456E9294C7B9100CF6911 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456E8294C7B9100CF6911 /* TitleCell.swift */; };
+		ED9456EB294C96E800CF6911 /* ViewControllersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456EA294C96E800CF6911 /* ViewControllersContainer.swift */; };
+		ED9456ED294D19C200CF6911 /* CompostionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456EC294D19C200CF6911 /* CompostionalLayout.swift */; };
+		ED9456F0294D1FC000CF6911 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = ED9456EF294D1FC000CF6911 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,10 +38,9 @@
 		ED189C6D2943EE44008722EE /* LaunchesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesModels.swift; sourceTree = "<group>"; };
 		ED189C702943F884008722EE /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		ED189C762944BA79008722EE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		ED189C7829466A51008722EE /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		ED189C7D29467E00008722EE /* RocketsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsViewModel.swift; sourceTree = "<group>"; };
+		ED189C7D29467E00008722EE /* RocketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewModel.swift; sourceTree = "<group>"; };
 		ED189C7F29467F42008722EE /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
-		ED189C8129467FB3008722EE /* CollectionViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTest.swift; sourceTree = "<group>"; };
+		ED189C8129467FB3008722EE /* RocketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewController.swift; sourceTree = "<group>"; };
 		ED189C8329468176008722EE /* RocketMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketMainCell.swift; sourceTree = "<group>"; };
 		ED189C8529468B39008722EE /* LaunchesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewModel.swift; sourceTree = "<group>"; };
 		ED5CDF5E294746F900DCE078 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
@@ -47,7 +48,6 @@
 		ED5CDF662947CCE200DCE078 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		ED6888E82943DBEF00E20D21 /* Spacera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spacera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED6888EB2943DBEF00E20D21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ED6888EF2943DBEF00E20D21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		ED6888F42943DBF100E20D21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED6888F72943DBF100E20D21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED6888F92943DBF100E20D21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +55,9 @@
 		ED9456E2294A6FD100CF6911 /* DetailButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonCell.swift; sourceTree = "<group>"; };
 		ED9456E4294B62BD00CF6911 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		ED9456E6294B637600CF6911 /* LaunchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCell.swift; sourceTree = "<group>"; };
+		ED9456E8294C7B9100CF6911 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
+		ED9456EA294C96E800CF6911 /* ViewControllersContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllersContainer.swift; sourceTree = "<group>"; };
+		ED9456EC294D19C200CF6911 /* CompostionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompostionalLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED9456F0294D1FC000CF6911 /* Kingfisher in Frameworks */,
 				ED189C752944BA09008722EE /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,6 +87,7 @@
 			children = (
 				ED189C702943F884008722EE /* Global.swift */,
 				ED189C7F29467F42008722EE /* ViewModelProtocol.swift */,
+				ED9456EC294D19C200CF6911 /* CompostionalLayout.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -98,7 +103,7 @@
 		ED189C7A29467DD1008722EE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				ED189C7D29467E00008722EE /* RocketsViewModel.swift */,
+				ED189C7D29467E00008722EE /* RocketViewModel.swift */,
 				ED189C8529468B39008722EE /* LaunchesViewModel.swift */,
 			);
 			path = ViewModel;
@@ -107,6 +112,7 @@
 		ED189C7B29467DE3008722EE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ED9456E8294C7B9100CF6911 /* TitleCell.swift */,
 				ED189C8329468176008722EE /* RocketMainCell.swift */,
 				ED9456DE29494BBA00CF6911 /* RocketInfoCell.swift */,
 				ED5CDF5E294746F900DCE078 /* Header.swift */,
@@ -119,10 +125,11 @@
 		ED189C8729468B90008722EE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				ED189C8129467FB3008722EE /* CollectionViewTest.swift */,
+				ED189C8129467FB3008722EE /* RocketViewController.swift */,
 				ED5CDF64294766E000DCE078 /* SettingsViewController.swift */,
 				ED5CDF662947CCE200DCE078 /* SettingsView.swift */,
 				ED9456E4294B62BD00CF6911 /* DetailsViewController.swift */,
+				ED9456EA294C96E800CF6911 /* ViewControllersContainer.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -154,8 +161,6 @@
 				ED189C6F2943F871008722EE /* Helpers */,
 				ED6888FF2943DEBE00E20D21 /* Application */,
 				ED6889002943DEC600E20D21 /* Resources */,
-				ED6888EF2943DBEF00E20D21 /* ViewController.swift */,
-				ED189C7829466A51008722EE /* MainView.swift */,
 			);
 			path = Spacera;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 			name = Spacera;
 			packageProductDependencies = (
 				ED189C742944BA09008722EE /* Alamofire */,
+				ED9456EF294D1FC000CF6911 /* Kingfisher */,
 			);
 			productName = Spacera;
 			productReference = ED6888E82943DBEF00E20D21 /* Spacera.app */;
@@ -228,6 +234,7 @@
 			mainGroup = ED6888DF2943DBEF00E20D21;
 			packageReferences = (
 				ED189C732944BA09008722EE /* XCRemoteSwiftPackageReference "Alamofire" */,
+				ED9456EE294D1FC000CF6911 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = ED6888E92943DBEF00E20D21 /* Products */;
 			projectDirPath = "";
@@ -266,7 +273,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+			shellScript = "# export PATH=\"$PATH:/opt/homebrew/bin\"\n# if which swiftlint > /dev/null; then\n#  swiftlint\n# else\n#  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n# fi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -275,22 +282,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED189C7E29467E00008722EE /* RocketsViewModel.swift in Sources */,
+				ED189C7E29467E00008722EE /* RocketViewModel.swift in Sources */,
 				ED5CDF5F294746F900DCE078 /* Header.swift in Sources */,
-				ED6888F02943DBEF00E20D21 /* ViewController.swift in Sources */,
 				ED9456DF29494BBA00CF6911 /* RocketInfoCell.swift in Sources */,
-				ED189C7929466A51008722EE /* MainView.swift in Sources */,
 				ED6888EC2943DBEF00E20D21 /* AppDelegate.swift in Sources */,
 				ED189C6E2943EE44008722EE /* LaunchesModels.swift in Sources */,
 				ED189C712943F884008722EE /* Global.swift in Sources */,
 				ED9456E7294B637600CF6911 /* LaunchCell.swift in Sources */,
 				ED5CDF65294766E000DCE078 /* SettingsViewController.swift in Sources */,
 				ED5CDF672947CCE200DCE078 /* SettingsView.swift in Sources */,
-				ED189C8229467FB3008722EE /* CollectionViewTest.swift in Sources */,
+				ED189C8229467FB3008722EE /* RocketViewController.swift in Sources */,
+				ED9456E9294C7B9100CF6911 /* TitleCell.swift in Sources */,
 				ED9456E5294B62BE00CF6911 /* DetailsViewController.swift in Sources */,
 				ED9456E3294A6FD100CF6911 /* DetailButtonCell.swift in Sources */,
+				ED9456ED294D19C200CF6911 /* CompostionalLayout.swift in Sources */,
 				ED189C772944BA79008722EE /* NetworkService.swift in Sources */,
 				ED189C6C2943EB4C008722EE /* RocketsModels.swift in Sources */,
+				ED9456EB294C96E800CF6911 /* ViewControllersContainer.swift in Sources */,
 				ED189C8629468B39008722EE /* LaunchesViewModel.swift in Sources */,
 				ED189C8429468176008722EE /* RocketMainCell.swift in Sources */,
 				ED189C8029467F42008722EE /* ViewModelProtocol.swift in Sources */,
@@ -511,6 +519,14 @@
 				minimumVersion = 5.6.1;
 			};
 		};
+		ED9456EE294D1FC000CF6911 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -518,6 +534,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ED189C732944BA09008722EE /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		ED9456EF294D1FC000CF6911 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED9456EE294D1FC000CF6911 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

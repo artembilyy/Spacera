@@ -25,7 +25,6 @@ final class RocketInfoCell: UICollectionViewCell {
     private let container = UIView()
     private let leftLabel = UILabel()
     private let rightlabel = UILabel()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -51,7 +50,6 @@ final class RocketInfoCell: UICollectionViewCell {
         leftLabel.textAlignment = .left
         leftLabel.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(leftLabel)
-        
         //        unitValue.font = UIFont(name: "LabGrotesque-Bold", size: 16)
         //        var paragraphStyle = NSMutableParagraphStyle()
         //        paragraphStyle.lineHeightMultiple = 1.25
@@ -88,9 +86,11 @@ final class RocketInfoCell: UICollectionViewCell {
         NSLayoutConstraint.activate(unitConstraints)
     }
     // MARK: - Data usage
-    func configureCell(dict: [String: [String: [String]]], mainKey: String, indexPath: IndexPath) {
+    func configureCell(dict: [String: [String: [String]]],
+                       mainKey: String,
+                       indexPath: IndexPath) {
         switch indexPath.section {
-        case 1:
+        case 2:
             switch indexPath.item {
             case 0:
                 leftLabel.text = RocketViewText.firstFlight.rawValue
@@ -104,7 +104,7 @@ final class RocketInfoCell: UICollectionViewCell {
             default:
                 return
             }
-        case 2:
+        case 3:
             switch indexPath.item {
             case 0:
                 leftLabel.text = RocketViewText.engines.rawValue
@@ -118,7 +118,7 @@ final class RocketInfoCell: UICollectionViewCell {
             default:
                 return
             }
-        case 3:
+        case 4:
             switch indexPath.item {
             case 0:
                 leftLabel.text = RocketViewText.engines.rawValue
@@ -137,4 +137,3 @@ final class RocketInfoCell: UICollectionViewCell {
         }
     }
 }
-

@@ -15,7 +15,6 @@ final class LaunchCell: UICollectionViewCell {
     private let rocketSuccessImage = UIImageView()
     private let titleLabel = UILabel()
     private let dateLabel = UILabel()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -37,15 +36,20 @@ final class LaunchCell: UICollectionViewCell {
         contentView.backgroundColor = .black
         contentView.addSubview(container)
         container.backgroundColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1)
+        container.layer.cornerRadius = 24
         container.translatesAutoresizingMaskIntoConstraints = false
         //
         titleLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         titleLabel.textAlignment = .left
+        titleLabel.textColor = .white
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(titleLabel)
         //
         dateLabel.textColor = UIColor(red: 0.557, green: 0.557, blue: 0.561, alpha: 1)
         dateLabel.textAlignment = .right
+        dateLabel.textColor = UIColor(red: 0.557, green: 0.557, blue: 0.561, alpha: 1)
+        dateLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(dateLabel)
         //
@@ -62,19 +66,19 @@ final class LaunchCell: UICollectionViewCell {
             container.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ]
         let titleLabelConstraints = [
-            titleLabel.topAnchor.constraint(equalTo: container.topAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: -14),
+            titleLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: -8),
             titleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 32)
         ]
         let dateLabelConstraints = [
-            dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
+            dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             dateLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 32)
         ]
         let rocketImageConstraints = [
             rocketSuccessImage.widthAnchor.constraint(equalToConstant: 32),
             rocketSuccessImage.heightAnchor.constraint(equalToConstant: 32),
             rocketSuccessImage.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -32),
-            rocketSuccessImage.topAnchor.constraint(equalTo: container.topAnchor, constant: -34)
+            rocketSuccessImage.centerYAnchor.constraint(equalTo: container.centerYAnchor)
+//            rocketSuccessImage.topAnchor.constraint(equalTo: container.topAnchor, constant: 34)
         ]
         NSLayoutConstraint.activate(contrainerConstraints)
         NSLayoutConstraint.activate(titleLabelConstraints)
@@ -95,5 +99,3 @@ final class LaunchCell: UICollectionViewCell {
         }
     }
 }
-
-

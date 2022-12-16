@@ -8,14 +8,17 @@
 import Foundation
 
 enum Rockets: String {
-    case height, diameter, weight, payload, firstFlight, country, costPerLaunch, firstStageEngines, firstStageFuelAmountTons, firstStageBurnTimeSEC, secondStageEngines, secondStageFuelAmountTons, secondStageBurnTimeSEC, id
+    case height, diameter, weight, payload,
+         firstFlight, country, costPerLaunch,
+         firstStageEngines, firstStageFuelAmountTons, firstStageBurnTimeSEC,
+         secondStageEngines, secondStageFuelAmountTons, secondStageBurnTimeSEC,
+         id, images
 }
 
-final class RocketsViewModel {
+final class RocketViewModel {
     private lazy var networkManager: NetworkService = {
         return NetworkService()
     }()
-    private(set) var rockets: [Rocket] = []
     private(set) var rocketsData: [String: [String: [String]]] = [:]
     private(set) var rocketProperties: [String: [String]] = [:]
     private(set) var rocketName: [String] = []
@@ -23,11 +26,13 @@ final class RocketsViewModel {
     func getRockets() {
         delegate?.showLoading()
         networkManager.getRocketsInfo { result in
-            self.rockets = result
             self.delegate?.hideLoading()
-            for rocket in self.rockets {
+            for rocket in result {
                 guard let rocketName = rocket.name else { return }
-                // id
+                for url in rocket.flickr_images ?? [] {
+                    self.rocketProperties.updateValue([url],
+                                                      forKey: Rockets.images.rawValue)
+                }
                 if let identifier = rocket.id {
                     self.rocketProperties.updateValue([identifier], forKey: Rockets.id.rawValue)
 //                    print(identifier)
