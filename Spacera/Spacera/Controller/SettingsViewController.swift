@@ -7,18 +7,6 @@
 
 import UIKit
 
-enum UnitTypes: String, CaseIterable {
-    case height, diameter, weight, payload
-    var description: [String] {
-        switch self {
-        case .height:   return ["m", "ft"]
-        case .diameter: return ["m", "ft"]
-        case .weight:   return ["kg", "lb"]
-        case .payload:  return ["kg", "lb"]
-        }
-    }
-}
-
 class SettingsViewController: UIViewController {
     private var segmentedArray: [UIView] = []
     private lazy var stackView: UIStackView = {
@@ -38,7 +26,8 @@ class SettingsViewController: UIViewController {
         setupLayout()
     }
     private func setupUI() {
-        view.backgroundColor = .black
+        //rgb(18 18 18)
+        view.backgroundColor = UIColor(red: 18/255, green: 18/255, blue: 18/255, alpha: 1)
         UnitTypes.allCases.forEach {
             let settingView = SettingsItemView()
             settingView.unitSegmentedControl.setTitle($0.description[0], forSegmentAt: 0)

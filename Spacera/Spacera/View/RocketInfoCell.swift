@@ -7,17 +7,6 @@
 
 import UIKit
 
-enum RocketViewText: String {
-    case firstFlight    = "First flight"
-    case country        = "Country"
-    case costPerLaunch  = "Cost per launch"
-    case engines        = "Engines count"
-    case fuelAmountTons = "Fuel amount"
-    case burnTimeSec    = "Burn time"
-    case firstStage     = "FIRST STAGE"
-    case secondStage    = "SECOND STAGE"
-}
-
 final class RocketInfoCell: UICollectionViewCell {
     // MARK: identifier
     static let identifier = "rocketInfoCell"
@@ -46,22 +35,22 @@ final class RocketInfoCell: UICollectionViewCell {
         container.backgroundColor = .black
         container.translatesAutoresizingMaskIntoConstraints = false
         //
-        leftLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        leftLabel.textAlignment = .left
+        leftLabel.textColor = UIColor(red: 0.557, green: 0.557, blue: 0.561, alpha: 1)
         leftLabel.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(leftLabel)
-        //        unitValue.font = UIFont(name: "LabGrotesque-Bold", size: 16)
-        //        var paragraphStyle = NSMutableParagraphStyle()
-        //        paragraphStyle.lineHeightMultiple = 1.25
-        //        unitValue.attributedText = NSMutableAttributedString(string: "229.6", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
-        rightlabel.textColor = UIColor(red: 0.557, green: 0.557, blue: 0.561, alpha: 1)
-        rightlabel.textAlignment = .right
+        guard let regulardFont = UIFont(name: LabGrotesque.regular.rawValue, size: 16) else {
+            fatalError("Failed to load the LabGrotesque-Bold font.")
+        }
+        leftLabel.font = UIFontMetrics.default.scaledFont(for: regulardFont)
+        leftLabel.adjustsFontForContentSizeCategory = true
+        rightlabel.textColor = .white
         rightlabel.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(rightlabel)
-        //        unit.font = UIFont(name: "LabGrotesque-Regular", size: 14)
-        //        var paragraphStyle = NSMutableParagraphStyle()
-        //        paragraphStyle.lineHeightMultiple = 1.19
-        //        view.attributedText = NSMutableAttributedString(string: "Высота, ft", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        guard let boldFont = UIFont(name: LabGrotesque.bold.rawValue, size: 16) else {
+            fatalError("Failed to load the LabGrotesque-Bold font.")
+        }
+        rightlabel.font = UIFontMetrics.default.scaledFont(for: boldFont)
+        rightlabel.adjustsFontForContentSizeCategory = true
     }
     // MARK: - Cell contraints
     private func setupConstraints() {
@@ -89,46 +78,63 @@ final class RocketInfoCell: UICollectionViewCell {
     func configureCell(dict: [String: [String: [String]]],
                        mainKey: String,
                        indexPath: IndexPath) {
+        let leftStyle = NSMutableParagraphStyle()
+        leftStyle.lineHeightMultiple = 1.25
+        leftStyle.alignment = .center
+        let rightStyle = NSMutableParagraphStyle()
+        rightStyle.lineHeightMultiple = 1.19
+        rightStyle.alignment = .center
         switch indexPath.section {
-        case 2:
-            switch indexPath.item {
-            case 0:
-                leftLabel.text = RocketViewText.firstFlight.rawValue
-                rightlabel.text = dict[mainKey]?[Rockets.firstFlight.rawValue]?.first
-            case 1:
-                leftLabel.text = RocketViewText.country.rawValue
-                rightlabel.text = dict[mainKey]?[Rockets.country.rawValue]?.first
-            case 2:
-                leftLabel.text = RocketViewText.costPerLaunch.rawValue
-                rightlabel.text = dict[mainKey]?[Rockets.costPerLaunch.rawValue]?.first
-            default:
-                return
-            }
         case 3:
             switch indexPath.item {
             case 0:
-                leftLabel.text = RocketViewText.engines.rawValue
-                rightlabel.text = dict[mainKey]?[Rockets.firstStageEngines.rawValue]?.first
+                leftLabel.attributedText = NSMutableAttributedString(string: RocketViewText.firstFlight.rawValue, attributes: [NSAttributedString.Key.paragraphStyle: leftStyle])
+                rightlabel.attributedText = NSMutableAttributedString(string: dict[mainKey]?[Rockets.firstFlight.rawValue]?.first ?? "", attributes: [NSAttributedString.Key.paragraphStyle: rightStyle])
             case 1:
-                leftLabel.text = RocketViewText.fuelAmountTons.rawValue
-                rightlabel.text = dict[mainKey]?[Rockets.firstStageFuelAmountTons.rawValue]?.first
+                leftLabel.attributedText = NSMutableAttributedString(string: RocketViewText.country.rawValue, attributes: [NSAttributedString.Key.paragraphStyle: leftStyle])
+                rightlabel.attributedText = NSMutableAttributedString(string: dict[mainKey]?[Rockets.country.rawValue]?.first ?? "", attributes: [NSAttributedString.Key.paragraphStyle: rightStyle])
             case 2:
-                leftLabel.text = RocketViewText.burnTimeSec.rawValue
-                rightlabel.text = dict[mainKey]?[Rockets.firstStageBurnTimeSEC.rawValue]?.first
+                leftLabel.attributedText = NSMutableAttributedString(string: RocketViewText.costPerLaunch.rawValue, attributes: [NSAttributedString.Key.paragraphStyle: leftStyle])
+                rightlabel.attributedText = NSMutableAttributedString(string: dict[mainKey]?[Rockets.costPerLaunch.rawValue]?.first ?? "", attributes: [NSAttributedString.Key.paragraphStyle: rightStyle])
             default:
                 return
             }
         case 4:
             switch indexPath.item {
             case 0:
-                leftLabel.text = RocketViewText.engines.rawValue
-                rightlabel.text = dict[mainKey]?[Rockets.secondStageEngines.rawValue]?.first
+                leftLabel.attributedText = NSMutableAttributedString(string: RocketViewText.engines.rawValue, attributes: [NSAttributedString.Key.paragraphStyle: leftStyle])
+                rightlabel.attributedText = NSMutableAttributedString(string: dict[mainKey]?[Rockets.firstStageEngines.rawValue]?.first ?? "", attributes: [NSAttributedString.Key.paragraphStyle: rightStyle])
             case 1:
-                leftLabel.text = RocketViewText.fuelAmountTons.rawValue
-                rightlabel.text = dict[mainKey]?[Rockets.secondStageFuelAmountTons.rawValue]?.first
+                leftLabel.attributedText = NSMutableAttributedString(string: RocketViewText.fuelAmountTons.rawValue, attributes: [NSAttributedString.Key.paragraphStyle: leftStyle])
+                rightlabel.attributedText = NSMutableAttributedString(string: dict[mainKey]?[Rockets.firstStageFuelAmountTons.rawValue]?.first ?? "", attributes: [NSAttributedString.Key.paragraphStyle: rightStyle])
             case 2:
-                leftLabel.text = RocketViewText.burnTimeSec.rawValue
-                rightlabel.text = dict[mainKey]?[Rockets.secondStageBurnTimeSEC.rawValue]?.first
+                leftLabel.attributedText = NSMutableAttributedString(string: RocketViewText.burnTimeSec.rawValue, attributes: [NSAttributedString.Key.paragraphStyle: leftStyle])
+                rightlabel.attributedText = NSMutableAttributedString(string: dict[mainKey]?[Rockets.firstStageBurnTimeSEC.rawValue]?.first ?? "", attributes: [NSAttributedString.Key.paragraphStyle: rightStyle])
+            default:
+                return
+            }
+        case 5:
+            switch indexPath.item {
+            case 0:
+                leftLabel.attributedText = NSMutableAttributedString(string: RocketViewText.engines.rawValue, attributes: [NSAttributedString.Key.paragraphStyle: leftStyle])
+                rightlabel.attributedText = NSMutableAttributedString(string: dict[mainKey]?[Rockets.secondStageEngines.rawValue]?.first ?? "", attributes: [NSAttributedString.Key.paragraphStyle: rightStyle])
+            case 1:
+                leftLabel.attributedText = NSMutableAttributedString(string: RocketViewText.fuelAmountTons.rawValue, attributes: [NSAttributedString.Key.paragraphStyle: leftStyle])
+                rightlabel.attributedText = NSMutableAttributedString(string: dict[mainKey]?[Rockets.secondStageFuelAmountTons.rawValue]?.first ?? "", attributes: [NSAttributedString.Key.paragraphStyle: rightStyle])
+            case 2:
+                let attributedText = NSMutableAttributedString()
+                guard let boldFont = UIFont(name: LabGrotesque.bold.rawValue, size: 16) else {
+                    fatalError("Failed to load the LabGrotesque-Bold font.")
+                }
+                let valueStyle = [NSAttributedString.Key.paragraphStyle: leftStyle]
+                let color = UIColor(red: 0.557, green: 0.557, blue: 0.561, alpha: 1)
+                let unitTypeStyle = [NSAttributedString.Key.font: UIFontMetrics.default.scaledFont(for: boldFont),
+                                     NSAttributedString.Key.foregroundColor: color]
+                attributedText.append(NSAttributedString(string: "\( dict[mainKey]?[Rockets.secondStageBurnTimeSEC.rawValue]?.first ?? "")", attributes: valueStyle))
+                attributedText.append(NSAttributedString(string: " "))
+                attributedText.append(NSAttributedString(string: UnitType.sec.rawValue, attributes: unitTypeStyle))
+                leftLabel.attributedText = NSMutableAttributedString(string: RocketViewText.burnTimeSec.rawValue, attributes: [NSAttributedString.Key.paragraphStyle: leftStyle])
+                rightlabel.attributedText = attributedText
             default:
                 return
             }

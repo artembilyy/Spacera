@@ -37,10 +37,18 @@ final class ButtonCell: UICollectionViewCell {
         container.translatesAutoresizingMaskIntoConstraints = false
         //
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("See launches", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
+        guard let customFont = UIFont(name: LabGrotesque.bold.rawValue, size: 16) else {
+            fatalError("Failed to load the LabGrotesque-Bold font.")
+        }
+        button.titleLabel?.font = UIFontMetrics.default.scaledFont(for: customFont)
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.25
+        let myAttributedTitle = NSAttributedString(string: "See launches",
+                                                   attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        button.setAttributedTitle(myAttributedTitle, for: .normal)
         button.layer.cornerRadius = 12
         button.layer.backgroundColor = UIColor(red: 0.129, green: 0.129, blue: 0.129, alpha: 1).cgColor
         container.addSubview(button)

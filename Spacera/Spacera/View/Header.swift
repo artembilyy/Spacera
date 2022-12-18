@@ -30,12 +30,16 @@ final class Header: UICollectionViewCell {
         contrainer.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
-        label.textAlignment = .left
+        guard let customFont = UIFont(name: LabGrotesque.bold.rawValue, size: 16) else {
+            fatalError("Failed to load the LabGrotesque-Bold font.")
+        }
+        label.font = UIFontMetrics.default.scaledFont(for: customFont)
         label.adjustsFontForContentSizeCategory = true
-        label.minimumContentSizeCategory = .accessibilityMedium
-        label.font = UIFont.preferredFont(forTextStyle: .headline)
         label.textColor = .white
-
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.25
+        label.attributedText = NSMutableAttributedString(string: "", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        
     }
     // MARK: - Constraints
     private func setupConstraint() {

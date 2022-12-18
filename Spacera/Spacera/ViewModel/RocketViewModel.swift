@@ -22,6 +22,7 @@ final class RocketViewModel {
     private(set) var rocketsData: [String: [String: [String]]] = [:]
     private(set) var rocketProperties: [String: [String]] = [:]
     private(set) var rocketName: [String] = []
+    private(set) var images: [String] = []
     weak var delegate: ViewModelProtocol?
     func getRockets() {
         delegate?.showLoading()
@@ -29,13 +30,15 @@ final class RocketViewModel {
             self.delegate?.hideLoading()
             for rocket in result {
                 guard let rocketName = rocket.name else { return }
+                self.images = []
                 for url in rocket.flickr_images ?? [] {
-                    self.rocketProperties.updateValue([url],
-                                                      forKey: Rockets.images.rawValue)
+                    // add another logic
+                    self.images.append(url)
                 }
+                self.rocketProperties.updateValue(self.images,
+                                                  forKey: Rockets.images.rawValue)
                 if let identifier = rocket.id {
                     self.rocketProperties.updateValue([identifier], forKey: Rockets.id.rawValue)
-//                    print(identifier)
                 }
                 // section 1
                 if let heightMeters = rocket.height?.meters,

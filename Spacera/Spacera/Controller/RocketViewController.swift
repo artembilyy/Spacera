@@ -6,15 +6,9 @@
 //
 
 import UIKit
-import Kingfisher
 
 class RocketViewController: UIViewController {
     private lazy var viewModel = RocketViewModel()
-    lazy var backgroundImage: UIImageView = {
-        $0.contentMode = .scaleToFill
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        return $0
-    }(UIImageView())
     private var index: Int = 0
     private var rocketNames: [String] = []
     init(index: Int) {
@@ -40,14 +34,30 @@ class RocketViewController: UIViewController {
         super.viewWillLayoutSubviews()
         setupLayout()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        setNeedsStatusBarAppearanceUpdate()
+    }
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        ignoreSafeAre()
+    }
     private func getRockets() {
         viewModel.getRockets()
     }
+    private func ignoreSafeAre() {
+        var insets = view.safeAreaInsets
+        insets.top = 0
+        collectionView.contentInset = insets
+    }
     private func setupUI() {
-        backgroundImage.kf.indicatorType = .activity
+        //        backgroundImage.kf.indicatorType = .activity
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.contentInsetAdjustmentBehavior = .never
         viewModel.delegate = self
+        collectionView.register(ImageCell.self,
+                                forCellWithReuseIdentifier: ImageCell.identifier)
         collectionView.register(TitleCell.self,
                                 forCellWithReuseIdentifier: TitleCell.identifier)
         collectionView.register(RocketMainCell.self,
@@ -60,34 +70,28 @@ class RocketViewController: UIViewController {
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: Header.identifier)
         view.backgroundColor = .black
-        view.addSubview(backgroundImage)
         view.addSubview(collectionView)
     }
     private func setupLayout() {
-        let backgroundImageConstraints = [
-            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            backgroundImage.heightAnchor.constraint(equalToConstant: view.frame.height / 2.2)
-        ]
         let collectionViewConstraints = [
-            collectionView.topAnchor.constraint(equalTo: backgroundImage.bottomAnchor, constant: -24),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ]
-        NSLayoutConstraint.activate(backgroundImageConstraints)
         NSLayoutConstraint.activate(collectionViewConstraints)
     }
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (sectionNumber, _) -> NSCollectionLayoutSection? in
             if sectionNumber == 0 {
+                return self.collectionView.imageSectionLayout()
+            }else if sectionNumber == 1 {
                 return self.collectionView.titleSectionLayout()
-            } else if sectionNumber == 1 {
-                return self.collectionView.firstSectionLayout()
             } else if sectionNumber == 2 {
+                return self.collectionView.firstSectionLayout()
+            } else if sectionNumber == 3 {
                 return self.collectionView.secondSectionLayout()
-            } else if sectionNumber == 5 {
+            } else if sectionNumber == 6 {
                 return self.collectionView.fourthSectionLayout()
             } else {
                 return self.collectionView.thirdSectionLayout()
@@ -98,7 +102,7 @@ class RocketViewController: UIViewController {
 
 extension RocketViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        6
+        7
     }
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -118,23 +122,30 @@ extension RocketViewController: UICollectionViewDataSource {
                                                                   for: indexPath) as? ButtonCell else {
             return UICollectionViewCell()
         }
+        guard let imageCell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.identifier, for: indexPath) as? ImageCell else {
+            return UICollectionViewCell()
+        }
         switch indexPath.section {
         case 0:
+            imageCell.configureCell(dict: viewModel.rocketsData,
+                                    mainKey: rocketNames[index])
+            return imageCell
+        case 1:
             titleCell.configureCell(name: rocketNames[index])
             titleCell.viewController = self
             return titleCell
-        case 1:
+        case 2:
             cell.configureCell(dictionary: viewModel.rocketsData,
                                mainKey: rocketNames[index],
                                switchUnit: 1,
                                indexPath: indexPath)
             return cell
-        case 2, 3, 4:
+        case 3, 4, 5:
             secondCell.configureCell(dict: viewModel.rocketsData,
                                      mainKey: rocketNames[index],
                                      indexPath: indexPath)
             return secondCell
-        case 5:
+        case 6:
             buttonCell.key = viewModel.rocketsData[rocketNames[index]]?[Rockets.id.rawValue]?[0] ?? ""
             buttonCell.viewController = self
             return buttonCell
@@ -146,13 +157,13 @@ extension RocketViewController: UICollectionViewDataSource {
                         viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                      withReuseIdentifier: Header.identifier,
-                                                                                      for: indexPath) as? Header else {
+                                                                               withReuseIdentifier: Header.identifier,
+                                                                               for: indexPath) as? Header else {
                 return UICollectionReusableView()
             }
-            if indexPath.section == 3 {
+            if indexPath.section == 4 {
                 header.label.text = RocketViewText.firstStage.rawValue
-            } else if indexPath.section == 4 {
+            } else if indexPath.section == 5 {
                 header.label.text = RocketViewText.secondStage.rawValue
             }
             return header
@@ -163,9 +174,11 @@ extension RocketViewController: UICollectionViewDataSource {
                         numberOfItemsInSection section: Int) -> Int {
         if viewModel.rocketsData.isEmpty == false {
             switch section {
-            case 1:
+            case 0, 1:
+                return 1
+            case 2:
                 return 4
-            case 2, 3, 4:
+            case 3, 4, 5:
                 return 3
             default:
                 return 1
@@ -183,11 +196,11 @@ extension RocketViewController: ViewModelProtocol {
     func updateView() {
         DispatchQueue.main.async { [self] in
             rocketNames = viewModel.rocketName
-            if let url = viewModel.rocketsData[rocketNames[index]]?[Rockets.images.rawValue]?.randomElement() {
-                if let posterPath = URL(string: url) {
-                    backgroundImage.kf.setImage(with: posterPath)
-                }
-            }
+            //            if let url = viewModel.rocketsData[rocketNames[index]]?[Rockets.images.rawValue]?.randomElement() {
+            //                if let posterPath = URL(string: url) {
+            //                    backgroundImage.kf.setImage(with: posterPath)
+            //                }
+            //            }
             collectionView.reloadData()
         }
     }

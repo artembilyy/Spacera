@@ -25,12 +25,12 @@ final class SettingsItemView: UIView {
                                                                                                  green: 142/255,
                                                                                                  blue: 143/255,
                                                                                                  alpha: 1)],
-                                                                                                for: .normal)
+                                                for: .normal)
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(red: 18/255,
                                                                                                  green: 18/255,
                                                                                                  blue: 18/255,
                                                                                                  alpha: 1)], for:
-                                                                                                .selected)
+                .selected)
         return segmentedControl
     }()
     private lazy var stackView: UIStackView = {

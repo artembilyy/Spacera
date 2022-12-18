@@ -38,21 +38,21 @@ final class RocketMainCell: UICollectionViewCell {
         container.translatesAutoresizingMaskIntoConstraints = false
         //
         unitValue.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        unitValue.textAlignment = .center
         unitValue.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(unitValue)
-//        unitValue.font = UIFont(name: "LabGrotesque-Bold", size: 16)
-//        var paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.lineHeightMultiple = 1.25
-//        unitValue.attributedText = NSMutableAttributedString(string: "229.6", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        guard let boldFont = UIFont(name: LabGrotesque.bold.rawValue, size: 16) else {
+            fatalError("Failed to load the LabGrotesque-Bold font.")
+        }
+        unitValue.font = UIFontMetrics.default.scaledFont(for: boldFont)
+        unitValue.adjustsFontForContentSizeCategory = true
+        guard let regularFont = UIFont(name: LabGrotesque.regular.rawValue, size: 16) else {
+            fatalError("Failed to load the LabGrotesque-Regular font.")
+        }
+        unitLabel.font = UIFontMetrics.default.scaledFont(for: regularFont)
+        unitLabel.adjustsFontForContentSizeCategory = true
         unitLabel.textColor = UIColor(red: 0.557, green: 0.557, blue: 0.561, alpha: 1)
-        unitLabel.textAlignment = .center
         unitLabel.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(unitLabel)
-//        unit.font = UIFont(name: "LabGrotesque-Regular", size: 14)
-//        var paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.lineHeightMultiple = 1.19
-        //        view.attributedText = NSMutableAttributedString(string: "Высота, ft", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
     // MARK: - Cell contraints
     private func setupConstraints() {
@@ -63,9 +63,9 @@ final class RocketMainCell: UICollectionViewCell {
             container.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ]
         let unitValueConstraints = [
-            unitValue.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: -16),
-            unitValue.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            unitValue.trailingAnchor.constraint(equalTo: container.trailingAnchor)
+            unitValue.topAnchor.constraint(equalTo: container.topAnchor, constant: 24),
+            unitValue.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 8),
+            unitValue.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -8)
         ]
         let unitConstraints = [
             unitLabel.topAnchor.constraint(equalTo: unitValue.bottomAnchor, constant: 4),
@@ -81,19 +81,25 @@ final class RocketMainCell: UICollectionViewCell {
                        mainKey: String,
                        switchUnit: Int,
                        indexPath: IndexPath) {
-        if indexPath.section == 1 {
+        let valueStyle = NSMutableParagraphStyle()
+        valueStyle.lineHeightMultiple = 1.25
+        valueStyle.alignment = .center
+        let unitStlye = NSMutableParagraphStyle()
+        unitStlye.lineHeightMultiple = 1.19
+        unitStlye.alignment = .center
+        if indexPath.section == 2 {
             if indexPath.item == 0 {
-                unitValue.text = dictionary[mainKey]?[Rockets.height.rawValue]?[switchUnit]
-                unitLabel.text = Rockets.height.rawValue.capitalized
+                unitValue.attributedText = NSMutableAttributedString(string: dictionary[mainKey]?[Rockets.height.rawValue]?[switchUnit] ?? "", attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
+                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.height.rawValue.capitalized, attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
             } else if indexPath.item == 1 {
-                unitValue.text = dictionary[mainKey]?[Rockets.diameter.rawValue]?[switchUnit]
-                unitLabel.text = Rockets.diameter.rawValue.capitalized
+                unitValue.attributedText = NSMutableAttributedString(string: dictionary[mainKey]?[Rockets.diameter.rawValue]?[switchUnit] ?? "", attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
+                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.diameter.rawValue.capitalized, attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
             } else if indexPath.item == 2 {
-                unitValue.text = dictionary[mainKey]?[Rockets.weight.rawValue]?[switchUnit]
-                unitLabel.text = Rockets.weight.rawValue.capitalized
+                unitValue.attributedText = NSMutableAttributedString(string: dictionary[mainKey]?[Rockets.weight.rawValue]?[switchUnit] ?? "", attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
+                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.weight.rawValue.capitalized, attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
             } else if indexPath.item == 3 {
-                unitValue.text = dictionary[mainKey]?[Rockets.payload.rawValue]?[switchUnit]
-                unitLabel.text = Rockets.payload.rawValue.capitalized
+                unitValue.attributedText = NSMutableAttributedString(string: dictionary[mainKey]?[Rockets.payload.rawValue]?[switchUnit] ?? "", attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
+                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.payload.rawValue.capitalized, attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
             }
         }
     }

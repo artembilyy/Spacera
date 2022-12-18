@@ -37,14 +37,19 @@ final class TitleCell: UICollectionViewCell {
         container.translatesAutoresizingMaskIntoConstraints = false
         //
         rocketName.backgroundColor = .clear
-        rocketName.text = ""
+        guard let customFont = UIFont(name: LabGrotesque.medium.rawValue, size: 24) else {
+            fatalError("Failed to load the LabGrotesque-Medium font.")
+        }
+        rocketName.font = UIFontMetrics.default.scaledFont(for: customFont)
+        rocketName.adjustsFontForContentSizeCategory = true
+        //        let paragraphStyle = NSMutableParagraphStyle()
+        //        paragraphStyle.lineHeightMultiple = 100
+        //        rocketName.attributedText = NSMutableAttributedString(string: "", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        
         rocketName.textAlignment = .left
-        rocketName.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
         rocketName.textColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1)
         rocketName.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(rocketName)
-        //        $0.font = UIFont(name: "LabGrotesque-Medium", size: 24)
-        //
         settingsButton.image = UIImage(systemName: "gearshape")
         settingsButton.tintColor = UIColor(red: 0.792, green: 0.792, blue: 0.792, alpha: 1)
         settingsButton.contentMode = .scaleAspectFill
@@ -69,15 +74,15 @@ final class TitleCell: UICollectionViewCell {
             container.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ]
         let rocketLabelConstraints = [
-            rocketName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 48),
+            rocketName.topAnchor.constraint(equalTo: contentView.topAnchor),
             rocketName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            rocketName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             rocketName.widthAnchor.constraint(equalToConstant: 170),
-            rocketName.heightAnchor.constraint(equalToConstant: 36)
         ]
         let buttonGearConstraints = [
             settingsButton.heightAnchor.constraint(equalToConstant: 32),
             settingsButton.widthAnchor.constraint(equalToConstant: 32),
-            settingsButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 48),
+            settingsButton.centerYAnchor.constraint(equalTo: rocketName.centerYAnchor),
             settingsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
         ]
         NSLayoutConstraint.activate(contrainerConstraints)
@@ -86,6 +91,8 @@ final class TitleCell: UICollectionViewCell {
     }
     // MARK: - Data usage
     func configureCell(name: String) {
-        rocketName.text = name
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.19
+        rocketName.attributedText = NSMutableAttributedString(string: name, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
 }

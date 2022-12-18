@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         let navigationController = UINavigationController(rootViewController: controller)
+//        navigationController.preferredStatusBarStyle = .darkContent
         window?.rootViewController = navigationController
         return true
     }

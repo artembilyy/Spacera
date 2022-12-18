@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,13 @@
 		ED189C8229467FB3008722EE /* RocketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8129467FB3008722EE /* RocketViewController.swift */; };
 		ED189C8429468176008722EE /* RocketMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8329468176008722EE /* RocketMainCell.swift */; };
 		ED189C8629468B39008722EE /* LaunchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8529468B39008722EE /* LaunchesViewModel.swift */; };
+		ED5C197B294DFFD2004ECBBD /* BackgroundImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5C197A294DFFD2004ECBBD /* BackgroundImageCell.swift */; };
+		ED5C198F294F34D3004ECBBD /* LabGrotesque-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED5C198B294F34D3004ECBBD /* LabGrotesque-Thin.ttf */; };
+		ED5C1990294F34D3004ECBBD /* LabGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED5C198C294F34D3004ECBBD /* LabGrotesque-Bold.ttf */; };
+		ED5C1991294F34D3004ECBBD /* LabGrotesque-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED5C198D294F34D3004ECBBD /* LabGrotesque-Regular.ttf */; };
+		ED5C1992294F34D3004ECBBD /* LabGrotesque-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED5C198E294F34D3004ECBBD /* LabGrotesque-Medium.ttf */; };
+		ED5C1995294F3723004ECBBD /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5C1994294F3723004ECBBD /* Fonts.swift */; };
+		ED5C1997294FB928004ECBBD /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5C1996294FB928004ECBBD /* Units.swift */; };
 		ED5CDF5F294746F900DCE078 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5CDF5E294746F900DCE078 /* Header.swift */; };
 		ED5CDF65294766E000DCE078 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5CDF64294766E000DCE078 /* SettingsViewController.swift */; };
 		ED5CDF672947CCE200DCE078 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5CDF662947CCE200DCE078 /* SettingsView.swift */; };
@@ -43,6 +50,14 @@
 		ED189C8129467FB3008722EE /* RocketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewController.swift; sourceTree = "<group>"; };
 		ED189C8329468176008722EE /* RocketMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketMainCell.swift; sourceTree = "<group>"; };
 		ED189C8529468B39008722EE /* LaunchesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewModel.swift; sourceTree = "<group>"; };
+		ED5C197A294DFFD2004ECBBD /* BackgroundImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageCell.swift; sourceTree = "<group>"; };
+		ED5C1989294F3446004ECBBD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED5C198B294F34D3004ECBBD /* LabGrotesque-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Thin.ttf"; sourceTree = "<group>"; };
+		ED5C198C294F34D3004ECBBD /* LabGrotesque-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Bold.ttf"; sourceTree = "<group>"; };
+		ED5C198D294F34D3004ECBBD /* LabGrotesque-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Regular.ttf"; sourceTree = "<group>"; };
+		ED5C198E294F34D3004ECBBD /* LabGrotesque-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Medium.ttf"; sourceTree = "<group>"; };
+		ED5C1994294F3723004ECBBD /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		ED5C1996294FB928004ECBBD /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
 		ED5CDF5E294746F900DCE078 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		ED5CDF64294766E000DCE078 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ED5CDF662947CCE200DCE078 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -50,7 +65,6 @@
 		ED6888EB2943DBEF00E20D21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED6888F42943DBF100E20D21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED6888F72943DBF100E20D21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		ED6888F92943DBF100E20D21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED9456DE29494BBA00CF6911 /* RocketInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketInfoCell.swift; sourceTree = "<group>"; };
 		ED9456E2294A6FD100CF6911 /* DetailButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonCell.swift; sourceTree = "<group>"; };
 		ED9456E4294B62BD00CF6911 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -85,9 +99,11 @@
 		ED189C6F2943F871008722EE /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				ED5C1994294F3723004ECBBD /* Fonts.swift */,
+				ED9456EC294D19C200CF6911 /* CompostionalLayout.swift */,
 				ED189C702943F884008722EE /* Global.swift */,
 				ED189C7F29467F42008722EE /* ViewModelProtocol.swift */,
-				ED9456EC294D19C200CF6911 /* CompostionalLayout.swift */,
+				ED5C1996294FB928004ECBBD /* Units.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -112,6 +128,7 @@
 		ED189C7B29467DE3008722EE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ED5C197A294DFFD2004ECBBD /* BackgroundImageCell.swift */,
 				ED9456E8294C7B9100CF6911 /* TitleCell.swift */,
 				ED189C8329468176008722EE /* RocketMainCell.swift */,
 				ED9456DE29494BBA00CF6911 /* RocketInfoCell.swift */,
@@ -134,6 +151,17 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		ED5C197C294F2BAC004ECBBD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				ED5C198C294F34D3004ECBBD /* LabGrotesque-Bold.ttf */,
+				ED5C198E294F34D3004ECBBD /* LabGrotesque-Medium.ttf */,
+				ED5C198D294F34D3004ECBBD /* LabGrotesque-Regular.ttf */,
+				ED5C198B294F34D3004ECBBD /* LabGrotesque-Thin.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		ED6888DF2943DBEF00E20D21 = {
 			isa = PBXGroup;
 			children = (
@@ -153,12 +181,13 @@
 		ED6888EA2943DBEF00E20D21 /* Spacera */ = {
 			isa = PBXGroup;
 			children = (
-				ED189C8729468B90008722EE /* Controller */,
 				ED189C722944B9AF008722EE /* Network */,
+				ED189C8729468B90008722EE /* Controller */,
 				ED189C6A2943E9FC008722EE /* Model */,
 				ED189C7B29467DE3008722EE /* View */,
 				ED189C7A29467DD1008722EE /* ViewModel */,
 				ED189C6F2943F871008722EE /* Helpers */,
+				ED5C197C294F2BAC004ECBBD /* Fonts */,
 				ED6888FF2943DEBE00E20D21 /* Application */,
 				ED6889002943DEC600E20D21 /* Resources */,
 			);
@@ -177,8 +206,8 @@
 			isa = PBXGroup;
 			children = (
 				ED6888F62943DBF100E20D21 /* LaunchScreen.storyboard */,
+				ED5C1989294F3446004ECBBD /* Info.plist */,
 				ED6888F42943DBF100E20D21 /* Assets.xcassets */,
-				ED6888F92943DBF100E20D21 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -224,7 +253,7 @@
 				};
 			};
 			buildConfigurationList = ED6888E32943DBEF00E20D21 /* Build configuration list for PBXProject "Spacera" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -250,6 +279,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED5C198F294F34D3004ECBBD /* LabGrotesque-Thin.ttf in Resources */,
+				ED5C1990294F34D3004ECBBD /* LabGrotesque-Bold.ttf in Resources */,
+				ED5C1991294F34D3004ECBBD /* LabGrotesque-Regular.ttf in Resources */,
+				ED5C1992294F34D3004ECBBD /* LabGrotesque-Medium.ttf in Resources */,
 				ED6888F82943DBF100E20D21 /* LaunchScreen.storyboard in Resources */,
 				ED6888F52943DBF100E20D21 /* Assets.xcassets in Resources */,
 			);
@@ -283,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED189C7E29467E00008722EE /* RocketViewModel.swift in Sources */,
+				ED5C1997294FB928004ECBBD /* Units.swift in Sources */,
 				ED5CDF5F294746F900DCE078 /* Header.swift in Sources */,
 				ED9456DF29494BBA00CF6911 /* RocketInfoCell.swift in Sources */,
 				ED6888EC2943DBEF00E20D21 /* AppDelegate.swift in Sources */,
@@ -290,6 +324,7 @@
 				ED189C712943F884008722EE /* Global.swift in Sources */,
 				ED9456E7294B637600CF6911 /* LaunchCell.swift in Sources */,
 				ED5CDF65294766E000DCE078 /* SettingsViewController.swift in Sources */,
+				ED5C1995294F3723004ECBBD /* Fonts.swift in Sources */,
 				ED5CDF672947CCE200DCE078 /* SettingsView.swift in Sources */,
 				ED189C8229467FB3008722EE /* RocketViewController.swift in Sources */,
 				ED9456E9294C7B9100CF6911 /* TitleCell.swift in Sources */,
@@ -302,6 +337,7 @@
 				ED189C8629468B39008722EE /* LaunchesViewModel.swift in Sources */,
 				ED189C8429468176008722EE /* RocketMainCell.swift in Sources */,
 				ED189C8029467F42008722EE /* ViewModelProtocol.swift in Sources */,
+				ED5C197B294DFFD2004ECBBD /* BackgroundImageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
