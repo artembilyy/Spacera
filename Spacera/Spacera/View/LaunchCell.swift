@@ -42,14 +42,18 @@ final class LaunchCell: UICollectionViewCell {
         titleLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         titleLabel.textAlignment = .left
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        guard let customFont = UIFont(name: LabGrotesque.bold.rawValue, size: 20) else {
+            fatalError("Failed to load the LabGrotesque-Bold font.")
+        }
+        titleLabel.font = UIFontMetrics.default.scaledFont(for: customFont)
+        titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(titleLabel)
         //
+        dateLabel.font = UIFontMetrics.default.scaledFont(for: customFont.withSize(16))
+        dateLabel.adjustsFontForContentSizeCategory = true
         dateLabel.textColor = UIColor(red: 0.557, green: 0.557, blue: 0.561, alpha: 1)
-        dateLabel.textAlignment = .right
-        dateLabel.textColor = UIColor(red: 0.557, green: 0.557, blue: 0.561, alpha: 1)
-        dateLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        dateLabel.textAlignment = .left
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(dateLabel)
         //
@@ -65,20 +69,20 @@ final class LaunchCell: UICollectionViewCell {
             container.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             container.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ]
-        let titleLabelConstraints = [
-            titleLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: -8),
-            titleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 32)
-        ]
-        let dateLabelConstraints = [
-            dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            dateLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 32)
-        ]
         let rocketImageConstraints = [
             rocketSuccessImage.widthAnchor.constraint(equalToConstant: 32),
             rocketSuccessImage.heightAnchor.constraint(equalToConstant: 32),
             rocketSuccessImage.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -32),
             rocketSuccessImage.centerYAnchor.constraint(equalTo: container.centerYAnchor)
-//            rocketSuccessImage.topAnchor.constraint(equalTo: container.topAnchor, constant: 34)
+        ]
+        let titleLabelConstraints = [
+            titleLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: -8),
+            titleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 32),
+            titleLabel.trailingAnchor.constraint(equalTo: rocketSuccessImage.leadingAnchor, constant: -16)
+        ]
+        let dateLabelConstraints = [
+            dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            dateLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 32)
         ]
         NSLayoutConstraint.activate(contrainerConstraints)
         NSLayoutConstraint.activate(titleLabelConstraints)
@@ -88,7 +92,7 @@ final class LaunchCell: UICollectionViewCell {
     // MARK: - Data usage
     func configureCell(name: String?, date: String?, success: Bool?) {
         titleLabel.text = name
-        dateLabel.text = date
+        dateLabel.text = TextFormatter.convertDateFormat(date: date ?? "", from: DateFormat.yyyyMMddTHHmmssZ, to: DateFormat.MMMMdyyyy)
         switch success {
         case true:
             rocketSuccessImage.image = UIImage(named: "rocketTrue")
@@ -97,5 +101,10 @@ final class LaunchCell: UICollectionViewCell {
         default:
             rocketSuccessImage.image = UIImage(systemName: "questionmark.circle.fill")
         }
+    }
+    func emptyData() {
+        titleLabel.text = "No information available"
+        rocketSuccessImage.image = UIImage(systemName: "xmark.circle.fill")
+        rocketSuccessImage.tintColor = .systemRed
     }
 }

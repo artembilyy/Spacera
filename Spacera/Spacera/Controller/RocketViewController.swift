@@ -9,10 +9,10 @@ import UIKit
 
 class RocketViewController: UIViewController {
     private lazy var viewModel = RocketViewModel()
-    private var index: Int = 0
+    private var selectedRocketIndex: Int!
     private var rocketNames: [String] = []
     init(index: Int) {
-        self.index = index
+        self.selectedRocketIndex = index
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -27,35 +27,33 @@ class RocketViewController: UIViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        delegate()
         setupUI()
-        getRockets()
+        fetchRockets()
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setupLayout()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        setNeedsStatusBarAppearanceUpdate()
-    }
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         ignoreSafeAre()
     }
-    private func getRockets() {
-        viewModel.getRockets()
+    private func fetchRockets() {
+        viewModel.fetchRockets()
     }
     private func ignoreSafeAre() {
         var insets = view.safeAreaInsets
         insets.top = 0
         collectionView.contentInset = insets
     }
-    private func setupUI() {
-        //        backgroundImage.kf.indicatorType = .activity
+    private func delegate() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.contentInsetAdjustmentBehavior = .never
         viewModel.delegate = self
+    }
+    private func setupUI() {
+        collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.register(ImageCell.self,
                                 forCellWithReuseIdentifier: ImageCell.identifier)
         collectionView.register(TitleCell.self,
@@ -83,17 +81,18 @@ class RocketViewController: UIViewController {
     }
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (sectionNumber, _) -> NSCollectionLayoutSection? in
-            if sectionNumber == 0 {
+            switch sectionNumber {
+            case 0:
                 return self.collectionView.imageSectionLayout()
-            }else if sectionNumber == 1 {
+            case 1:
                 return self.collectionView.titleSectionLayout()
-            } else if sectionNumber == 2 {
+            case 2:
                 return self.collectionView.firstSectionLayout()
-            } else if sectionNumber == 3 {
+            case 3:
                 return self.collectionView.secondSectionLayout()
-            } else if sectionNumber == 6 {
+            case 6:
                 return self.collectionView.fourthSectionLayout()
-            } else {
+            default:
                 return self.collectionView.thirdSectionLayout()
             }
         }
@@ -122,31 +121,33 @@ extension RocketViewController: UICollectionViewDataSource {
                                                                   for: indexPath) as? ButtonCell else {
             return UICollectionViewCell()
         }
-        guard let imageCell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.identifier, for: indexPath) as? ImageCell else {
+        guard let imageCell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.identifier,
+                                                                 for: indexPath) as? ImageCell else {
             return UICollectionViewCell()
         }
         switch indexPath.section {
         case 0:
             imageCell.configureCell(dict: viewModel.rocketsData,
-                                    mainKey: rocketNames[index])
+                                    mainKey: rocketNames[selectedRocketIndex])
             return imageCell
         case 1:
-            titleCell.configureCell(name: rocketNames[index])
+            titleCell.configureCell(name: rocketNames[selectedRocketIndex])
             titleCell.viewController = self
             return titleCell
         case 2:
             cell.configureCell(dictionary: viewModel.rocketsData,
-                               mainKey: rocketNames[index],
+                               mainKey: rocketNames[selectedRocketIndex],
                                switchUnit: 1,
                                indexPath: indexPath)
             return cell
         case 3, 4, 5:
             secondCell.configureCell(dict: viewModel.rocketsData,
-                                     mainKey: rocketNames[index],
+                                     mainKey: rocketNames[selectedRocketIndex],
                                      indexPath: indexPath)
             return secondCell
         case 6:
-            buttonCell.key = viewModel.rocketsData[rocketNames[index]]?[Rockets.id.rawValue]?[0] ?? ""
+            buttonCell.key = viewModel.rocketsData[rocketNames[selectedRocketIndex]]?[Rockets.id.rawValue]?[0] ?? ""
+            buttonCell.title = rocketNames[selectedRocketIndex]
             buttonCell.viewController = self
             return buttonCell
         default:
@@ -154,7 +155,8 @@ extension RocketViewController: UICollectionViewDataSource {
         }
     }
     func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                                withReuseIdentifier: Header.identifier,
@@ -162,9 +164,9 @@ extension RocketViewController: UICollectionViewDataSource {
                 return UICollectionReusableView()
             }
             if indexPath.section == 4 {
-                header.label.text = RocketViewText.firstStage.rawValue
+                header.label.attributedText = NSAttributedString(string: RocketViewText.firstStage.rawValue)
             } else if indexPath.section == 5 {
-                header.label.text = RocketViewText.secondStage.rawValue
+                header.label.attributedText = NSAttributedString(string: RocketViewText.secondStage.rawValue)
             }
             return header
         }
@@ -189,19 +191,15 @@ extension RocketViewController: UICollectionViewDataSource {
     }
 }
 
-extension RocketViewController: UICollectionViewDelegate {
-}
-
 extension RocketViewController: ViewModelProtocol {
     func updateView() {
         DispatchQueue.main.async { [self] in
             rocketNames = viewModel.rocketName
-            //            if let url = viewModel.rocketsData[rocketNames[index]]?[Rockets.images.rawValue]?.randomElement() {
-            //                if let posterPath = URL(string: url) {
-            //                    backgroundImage.kf.setImage(with: posterPath)
-            //                }
-            //            }
             collectionView.reloadData()
         }
     }
+}
+
+extension RocketViewController: UICollectionViewDelegate {
+    //
 }

@@ -31,19 +31,20 @@ final class LaunchesViewModel {
             for rocketID in self.launches where mainKey == rocketID.rocket! {
                 if let success = rocketID.success,
                    let name = rocketID.name,
-                   let date = rocketID.date_local {
+                   let date = rocketID.dateLocal {
                     self.namesArray.append(name)
+                    print(name)
                     self.datesArray.append(date)
                     self.successArray.append(success)
-//                    self.launchesData[[name]] += success
-//                    self.launchesData[[identifier]] += name
-//                    self.launchesData[[identifier]] += date
-//                    self.smallDict.updateValue(identifier, forKey: Launches.id.rawValue)
-//                    self.smallDict[Launches.success.rawValue]!.append(success)
-//                    self.smallDict.updateValue(name, forKey: Launches.name.rawValue)
-//                    self.smallDict[Launches.name.rawValue]!.append(name)
-//                    self.smallDict.updateValue(date, forKey: Launches.date.rawValue)
-//                    self.smallDict[Launches.date.rawValue]!.append(date)
+                    //                    self.launchesData[[name]] += success
+                    //                    self.launchesData[[identifier]] += name
+                    //                    self.launchesData[[identifier]] += date
+                    //                    self.smallDict.updateValue(identifier, forKey: Launches.id.rawValue)
+                    //                    self.smallDict[Launches.success.rawValue]!.append(success)
+                    //                    self.smallDict.updateValue(name, forKey: Launches.name.rawValue)
+                    //                    self.smallDict[Launches.name.rawValue]!.append(name)
+                    //                    self.smallDict.updateValue(date, forKey: Launches.date.rawValue)
+                    //                    self.smallDict[Launches.date.rawValue]!.append(date)
                 }
             }
             self.namesArray.reverse()

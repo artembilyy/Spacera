@@ -14,6 +14,7 @@ final class ButtonCell: UICollectionViewCell {
     private let container = UIView()
     private let button = UIButton(type: .system)
     var key: String?
+    var title: String?
     weak var viewController: RocketViewController?
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,8 +47,8 @@ final class ButtonCell: UICollectionViewCell {
         button.titleLabel?.adjustsFontForContentSizeCategory = true
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.25
-        let myAttributedTitle = NSAttributedString(string: "See launches",
-                                                   attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        let myAttributedTitle = NSAttributedString(string: "Show launches",
+                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         button.setAttributedTitle(myAttributedTitle, for: .normal)
         button.layer.cornerRadius = 12
         button.layer.backgroundColor = UIColor(red: 0.129, green: 0.129, blue: 0.129, alpha: 1).cgColor
@@ -73,7 +74,7 @@ final class ButtonCell: UICollectionViewCell {
     @objc
     private func buttonAction() {
         let detailsViewController = DetailtsViewController(keyForDict: key!)
-        print(key!)
+        detailsViewController.titleForNav = title ?? ""
         viewController?.navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }

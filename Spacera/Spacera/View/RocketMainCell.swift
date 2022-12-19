@@ -89,17 +89,25 @@ final class RocketMainCell: UICollectionViewCell {
         unitStlye.alignment = .center
         if indexPath.section == 2 {
             if indexPath.item == 0 {
-                unitValue.attributedText = NSMutableAttributedString(string: dictionary[mainKey]?[Rockets.height.rawValue]?[switchUnit] ?? "", attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
-                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.height.rawValue.capitalized, attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
+                unitValue.attributedText = NSMutableAttributedString(string: dictionary[mainKey]?[Rockets.height.rawValue]?[switchUnit] ?? "",
+                                                                     attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
+                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.height.rawValue.capitalized,
+                                                                     attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
             } else if indexPath.item == 1 {
-                unitValue.attributedText = NSMutableAttributedString(string: dictionary[mainKey]?[Rockets.diameter.rawValue]?[switchUnit] ?? "", attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
-                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.diameter.rawValue.capitalized, attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
+                unitValue.attributedText = NSMutableAttributedString(string: dictionary[mainKey]?[Rockets.diameter.rawValue]?[switchUnit] ?? "",
+                                                                     attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
+                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.diameter.rawValue.capitalized,
+                                                                     attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
             } else if indexPath.item == 2 {
-                unitValue.attributedText = NSMutableAttributedString(string: dictionary[mainKey]?[Rockets.weight.rawValue]?[switchUnit] ?? "", attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
-                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.weight.rawValue.capitalized, attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
+                unitValue.attributedText = NSMutableAttributedString(string: TextFormatter.numberWithCommas(dictionary[mainKey]?[Rockets.weight.rawValue]?[switchUnit] ?? ""),
+                                                                     attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
+                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.weight.rawValue.capitalized,
+                                                                     attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
             } else if indexPath.item == 3 {
-                unitValue.attributedText = NSMutableAttributedString(string: dictionary[mainKey]?[Rockets.payload.rawValue]?[switchUnit] ?? "", attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
-                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.payload.rawValue.capitalized, attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
+                unitValue.attributedText = NSMutableAttributedString(string: TextFormatter.numberWithCommas(dictionary[mainKey]?[Rockets.payload.rawValue]?[switchUnit] ?? ""),
+                                                                     attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
+                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.payload.rawValue.capitalized,
+                                                                     attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
             }
         }
     }

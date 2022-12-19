@@ -9,7 +9,8 @@ import UIKit
 
 class DetailtsViewController: UIViewController {
     private lazy var viewModel = LaunchesViewModel()
-    let mainKey: String
+    var mainKey: String
+    var titleForNav = String()
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.backgroundColor = .black
@@ -27,6 +28,8 @@ class DetailtsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.getLaunches(mainKey: mainKey)
+        title = titleForNav
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         viewModel.delegate = self
         view.backgroundColor = .systemRed
         collectionView.dataSource = self
@@ -52,13 +55,21 @@ extension DetailtsViewController: UICollectionViewDataSource {
                                                             for: indexPath) as? LaunchCell else {
             return UICollectionViewCell()
         }
-        cell.configureCell(name: viewModel.namesArray[indexPath.section],
-                           date: viewModel.datesArray[indexPath.section],
-                           success: viewModel.successArray[indexPath.section])
+        if viewModel.namesArray.isEmpty == true {
+            cell.emptyData()
+        } else {
+            cell.configureCell(name: viewModel.namesArray[indexPath.section],
+                               date: viewModel.datesArray[indexPath.section],
+                               success: viewModel.successArray[indexPath.section])
+        }
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        viewModel.namesArray.count
+        if viewModel.namesArray.isEmpty == true {
+            return 1
+        } else {
+            return viewModel.namesArray.count
+        }
     }
 }
 

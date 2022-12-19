@@ -26,7 +26,6 @@ class SettingsViewController: UIViewController {
         setupLayout()
     }
     private func setupUI() {
-        //rgb(18 18 18)
         view.backgroundColor = UIColor(red: 18/255, green: 18/255, blue: 18/255, alpha: 1)
         UnitTypes.allCases.forEach {
             let settingView = SettingsItemView()

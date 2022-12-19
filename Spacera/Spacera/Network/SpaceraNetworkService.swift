@@ -9,8 +9,15 @@ import Foundation
 import Alamofire
 
 final class NetworkService {
+    // MARK: - Decoder with convertFromSnakeCase
+    private let decoder: JSONDecoder = {
+        $0.keyDecodingStrategy = .convertFromSnakeCase
+        return $0
+    }(JSONDecoder())
+    // MARK: - Rockets request
     func getRocketsInfo(completion: @escaping ([Rocket]) -> Void) {
-        AF.request(GlobalLinks.spaceRockets).responseDecodable(of: [Rocket].self) { response in
+        AF.request(GlobalLinks.spaceRockets).responseDecodable(of: [Rocket].self,
+                                                               decoder: decoder) { response in
             switch response.result {
             case .success(let result):
                 completion(result)
@@ -19,8 +26,10 @@ final class NetworkService {
             }
         }
     }
+    // MARK: - Launches request
     func getLaunchesInfo(completion: @escaping ([Launch]) -> Void) {
-        AF.request(GlobalLinks.launches).responseDecodable(of: [Launch].self) { response in
+        AF.request(GlobalLinks.launches).responseDecodable(of: [Launch].self,
+                                                           decoder: decoder) { response in
             switch response.result {
             case .success(let result):
                 completion(result)

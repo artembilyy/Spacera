@@ -11,7 +11,7 @@
 		ED189C6E2943EE44008722EE /* LaunchesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C6D2943EE44008722EE /* LaunchesModels.swift */; };
 		ED189C712943F884008722EE /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C702943F884008722EE /* Global.swift */; };
 		ED189C752944BA09008722EE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = ED189C742944BA09008722EE /* Alamofire */; };
-		ED189C772944BA79008722EE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C762944BA79008722EE /* NetworkService.swift */; };
+		ED189C772944BA79008722EE /* SpaceraNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C762944BA79008722EE /* SpaceraNetworkService.swift */; };
 		ED189C7E29467E00008722EE /* RocketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C7D29467E00008722EE /* RocketViewModel.swift */; };
 		ED189C8029467F42008722EE /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C7F29467F42008722EE /* ViewModelProtocol.swift */; };
 		ED189C8229467FB3008722EE /* RocketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8129467FB3008722EE /* RocketViewController.swift */; };
@@ -24,6 +24,7 @@
 		ED5C1992294F34D3004ECBBD /* LabGrotesque-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED5C198E294F34D3004ECBBD /* LabGrotesque-Medium.ttf */; };
 		ED5C1995294F3723004ECBBD /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5C1994294F3723004ECBBD /* Fonts.swift */; };
 		ED5C1997294FB928004ECBBD /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5C1996294FB928004ECBBD /* Units.swift */; };
+		ED5C19992950794A004ECBBD /* TextFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5C19982950794A004ECBBD /* TextFormatter.swift */; };
 		ED5CDF5F294746F900DCE078 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5CDF5E294746F900DCE078 /* Header.swift */; };
 		ED5CDF65294766E000DCE078 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5CDF64294766E000DCE078 /* SettingsViewController.swift */; };
 		ED5CDF672947CCE200DCE078 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5CDF662947CCE200DCE078 /* SettingsView.swift */; };
@@ -44,7 +45,7 @@
 		ED189C6B2943EB4C008722EE /* RocketsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsModels.swift; sourceTree = "<group>"; };
 		ED189C6D2943EE44008722EE /* LaunchesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesModels.swift; sourceTree = "<group>"; };
 		ED189C702943F884008722EE /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
-		ED189C762944BA79008722EE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		ED189C762944BA79008722EE /* SpaceraNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceraNetworkService.swift; sourceTree = "<group>"; };
 		ED189C7D29467E00008722EE /* RocketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewModel.swift; sourceTree = "<group>"; };
 		ED189C7F29467F42008722EE /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		ED189C8129467FB3008722EE /* RocketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +59,7 @@
 		ED5C198E294F34D3004ECBBD /* LabGrotesque-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Medium.ttf"; sourceTree = "<group>"; };
 		ED5C1994294F3723004ECBBD /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		ED5C1996294FB928004ECBBD /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
+		ED5C19982950794A004ECBBD /* TextFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatter.swift; sourceTree = "<group>"; };
 		ED5CDF5E294746F900DCE078 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		ED5CDF64294766E000DCE078 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ED5CDF662947CCE200DCE078 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				ED189C702943F884008722EE /* Global.swift */,
 				ED189C7F29467F42008722EE /* ViewModelProtocol.swift */,
 				ED5C1996294FB928004ECBBD /* Units.swift */,
+				ED5C19982950794A004ECBBD /* TextFormatter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -111,7 +114,7 @@
 		ED189C722944B9AF008722EE /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				ED189C762944BA79008722EE /* NetworkService.swift */,
+				ED189C762944BA79008722EE /* SpaceraNetworkService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -222,7 +225,7 @@
 				ED6888E42943DBEF00E20D21 /* Sources */,
 				ED6888E52943DBEF00E20D21 /* Frameworks */,
 				ED6888E62943DBEF00E20D21 /* Resources */,
-				ED9456DD2948EF9D00CF6911 /* ShellScript */,
+				ED9456DD2948EF9D00CF6911 /* Swift Lint */,
 			);
 			buildRules = (
 			);
@@ -291,7 +294,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		ED9456DD2948EF9D00CF6911 /* ShellScript */ = {
+		ED9456DD2948EF9D00CF6911 /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -300,6 +303,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Swift Lint";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -330,8 +334,9 @@
 				ED9456E9294C7B9100CF6911 /* TitleCell.swift in Sources */,
 				ED9456E5294B62BE00CF6911 /* DetailsViewController.swift in Sources */,
 				ED9456E3294A6FD100CF6911 /* DetailButtonCell.swift in Sources */,
+				ED5C19992950794A004ECBBD /* TextFormatter.swift in Sources */,
 				ED9456ED294D19C200CF6911 /* CompostionalLayout.swift in Sources */,
-				ED189C772944BA79008722EE /* NetworkService.swift in Sources */,
+				ED189C772944BA79008722EE /* SpaceraNetworkService.swift in Sources */,
 				ED189C6C2943EB4C008722EE /* RocketsModels.swift in Sources */,
 				ED9456EB294C96E800CF6911 /* ViewControllersContainer.swift in Sources */,
 				ED189C8629468B39008722EE /* LaunchesViewModel.swift in Sources */,
