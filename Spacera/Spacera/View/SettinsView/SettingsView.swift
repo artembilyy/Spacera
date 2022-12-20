@@ -8,6 +8,7 @@
 import UIKit
 
 final class SettingsItemView: UIView {
+    
     lazy var titleLabel: UILabel = {
         $0.textColor = .white
         $0.textAlignment = .left
@@ -18,8 +19,14 @@ final class SettingsItemView: UIView {
     lazy var unitSegmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: ["", ""])
         segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.addTarget(nil, action: #selector(segmetntedControlChanged), for: .valueChanged)
-        segmentedControl.backgroundColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1)
+        segmentedControl.addTarget(nil,
+                                   action:
+                                    #selector(segmetntedControlChanged),
+                                   for: .valueChanged)
+        segmentedControl.backgroundColor = UIColor(red: 33/255,
+                                                   green: 33/255,
+                                                   blue: 33/255,
+                                                   alpha: 1)
         segmentedControl.selectedSegmentTintColor = UIColor.white
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(red: 142/255,
                                                                                                  green: 142/255,
@@ -32,7 +39,8 @@ final class SettingsItemView: UIView {
         return segmentedControl
     }()
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, unitSegmentedControl])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel,
+                                                       unitSegmentedControl])
         stackView.axis = .horizontal
         stackView.spacing = 28
         stackView.distribution = .fill
@@ -68,6 +76,7 @@ final class SettingsItemView: UIView {
         NSLayoutConstraint.activate(segmentedConstraints)
         NSLayoutConstraint.activate(stackViewConstraints)
     }
+    // MARK: - Value Changed SegmentedControl
     @objc
     private func segmetntedControlChanged() {
         print("Pressed")

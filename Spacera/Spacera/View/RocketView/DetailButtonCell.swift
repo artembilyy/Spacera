@@ -71,10 +71,13 @@ final class ButtonCell: UICollectionViewCell {
         NSLayoutConstraint.activate(contrainerConstraints)
         NSLayoutConstraint.activate(buttonConstraints)
     }
+    // MARK: - Push VC Action
     @objc
     private func buttonAction() {
-        let detailsViewController = DetailtsViewController(keyForDict: key!)
-        detailsViewController.titleForNav = title ?? ""
-        viewController?.navigationController?.pushViewController(detailsViewController, animated: true)
+        if let title = title,
+           let key = key {
+            let detailsViewController = DetailtsViewController(keyForDict: key, title: title)
+            viewController?.navigationController?.pushViewController(detailsViewController, animated: true)
+        }
     }
 }

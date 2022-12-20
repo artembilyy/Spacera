@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// MARK: - ViewModelProtocol
 protocol ViewModelProtocol: AnyObject {
     func showLoading()
     func hideLoading()

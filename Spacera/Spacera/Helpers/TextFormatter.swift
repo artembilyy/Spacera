@@ -6,14 +6,14 @@
 //
 
 import Foundation
-
+// MARK: - Format cases
 enum DateFormat: String {
     case yyyyMMdd           = "yyyy-MM-dd"
     case MMddyyyy           = "MM/dd/yyyy"
     case yyyyMMddTHHmmssZ   = "yyyy-MM-dd'T'HH:mm:ssZ"
     case MMMMdyyyy          = "MMMM d, yyyy"
 }
-
+// MARK: - Convering formats
 final class TextFormatter {
     static func convertDateFormat(date: String, from input: DateFormat, to output: DateFormat) -> String {
         let formatter = DateFormatter()

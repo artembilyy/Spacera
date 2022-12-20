@@ -8,9 +8,12 @@
 import UIKit
 
 class RocketViewController: UIViewController {
+    // MARK: - View model
     private lazy var viewModel = RocketViewModel()
-    private var selectedRocketIndex: Int!
+    // MARK: - Name for key
     private var rocketNames: [String] = []
+    // MARK: - Index of page
+    private var selectedRocketIndex: Int!
     init(index: Int) {
         self.selectedRocketIndex = index
         super.init(nibName: nil, bundle: nil)
@@ -18,6 +21,7 @@ class RocketViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    // collection view
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.backgroundColor = .black
@@ -25,6 +29,7 @@ class RocketViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate()
@@ -39,9 +44,11 @@ class RocketViewController: UIViewController {
         super.viewSafeAreaInsetsDidChange()
         ignoreSafeAre()
     }
+    // MARK: - Network request
     private func fetchRockets() {
         viewModel.fetchRockets()
     }
+    // MARK: - Setup UI
     private func ignoreSafeAre() {
         var insets = view.safeAreaInsets
         insets.top = 0
@@ -70,6 +77,7 @@ class RocketViewController: UIViewController {
         view.backgroundColor = .black
         view.addSubview(collectionView)
     }
+    // MARK: - Setup Layout
     private func setupLayout() {
         let collectionViewConstraints = [
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -79,6 +87,7 @@ class RocketViewController: UIViewController {
         ]
         NSLayoutConstraint.activate(collectionViewConstraints)
     }
+    // MARK: - Configure Compositional layout
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (sectionNumber, _) -> NSCollectionLayoutSection? in
             switch sectionNumber {
@@ -98,7 +107,7 @@ class RocketViewController: UIViewController {
         }
     }
 }
-
+// MARK: - Data Source
 extension RocketViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         7
@@ -190,8 +199,9 @@ extension RocketViewController: UICollectionViewDataSource {
         }
     }
 }
-
+// MARK: - ViewModeProtocol
 extension RocketViewController: ViewModelProtocol {
+    // MARK: - Reload Data
     func updateView() {
         DispatchQueue.main.async { [self] in
             rocketNames = viewModel.rocketName

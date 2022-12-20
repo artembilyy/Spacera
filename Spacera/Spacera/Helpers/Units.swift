@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// MARK: - NamesForCells
 enum RocketViewText: String {
     case firstFlight    = "First flight"
     case country        = "Country"
@@ -17,12 +17,12 @@ enum RocketViewText: String {
     case firstStage     = "FIRST STAGE"
     case secondStage    = "SECOND STAGE"
 }
-
+// MARK: - Sec Ton
 enum UnitType: String {
     case ton = "ton"
     case sec = "sec"
 }
-
+// MARK: - Unit Types for segmented control
 enum UnitTypes: String, CaseIterable {
     case height, diameter, weight, payload
     var description: [String] {

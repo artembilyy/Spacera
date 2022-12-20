@@ -38,9 +38,6 @@ final class RocketViewModel {
                 }
                 self.rocketProperties.updateValue(self.images,
                                                   forKey: Rockets.images.rawValue)
-                if let identifier = rocket.id {
-                    self.rocketProperties.updateValue([identifier], forKey: Rockets.id.rawValue)
-                }
                 // section 1
                 if let heightMeters = rocket.height?.meters,
                    let heightFeet = rocket.height?.feet,
@@ -71,26 +68,40 @@ final class RocketViewModel {
                                                       forKey: Rockets.costPerLaunch.rawValue)
                 }
                 // section 3
-                if let firstStageEngines = rocket.firstStage?.engines,
-                   let firstStageFuel = rocket.firstStage?.fuelAmountTons,
-                   let firstStageBurn = rocket.firstStage?.burnTimeSec {
+                if let firstStageEngines = rocket.firstStage?.engines {
                     self.rocketProperties.updateValue([String(firstStageEngines)],
                                                       forKey: Rockets.firstStageEngines.rawValue)
+                }
+                if let firstStageFuel = rocket.firstStage?.fuelAmountTons {
                     self.rocketProperties.updateValue([String(firstStageFuel)],
                                                       forKey: Rockets.firstStageFuelAmountTons.rawValue)
-                    self.rocketProperties.updateValue([String(firstStageBurn)],
+                }
+                if rocket.firstStage?.burnTimeSec == nil {
+                    self.rocketProperties.updateValue([String("unknown")],
                                                       forKey: Rockets.firstStageBurnTimeSEC.rawValue)
+                } else {
+                    if let firstStageBurn = rocket.firstStage?.burnTimeSec {
+                        self.rocketProperties.updateValue([String(firstStageBurn)],
+                                                          forKey: Rockets.firstStageBurnTimeSEC.rawValue)
+                    }
                 }
                 // section 4
-                if let secondStageEngines = rocket.secondStage?.engines,
-                   let secondStageFuel = rocket.secondStage?.fuelAmountTons,
-                   let secondStageBurn = rocket.secondStage?.burnTimeSec {
+                if let secondStageEngines = rocket.secondStage?.engines {
                     self.rocketProperties.updateValue([String(secondStageEngines)],
                                                       forKey: Rockets.secondStageEngines.rawValue)
+                }
+                if let secondStageFuel = rocket.secondStage?.fuelAmountTons {
                     self.rocketProperties.updateValue([String(secondStageFuel)],
                                                       forKey: Rockets.secondStageFuelAmountTons.rawValue)
-                    self.rocketProperties.updateValue([String(secondStageBurn)],
+                }
+                if rocket.secondStage?.burnTimeSec == nil {
+                    self.rocketProperties.updateValue(["unknown"],
                                                       forKey: Rockets.secondStageBurnTimeSEC.rawValue)
+                } else {
+                    if let secondStageBurn = rocket.secondStage?.burnTimeSec {
+                        self.rocketProperties.updateValue([String(secondStageBurn)],
+                                                          forKey: Rockets.secondStageBurnTimeSEC.rawValue)
+                    }
                 }
                 self.rocketsData[rocketName] = self.rocketProperties
                 self.rocketName.append(rocketName)

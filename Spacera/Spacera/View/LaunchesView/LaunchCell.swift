@@ -102,6 +102,7 @@ final class LaunchCell: UICollectionViewCell {
             rocketSuccessImage.image = UIImage(systemName: "questionmark.circle.fill")
         }
     }
+    // MARK: - Empty Data
     func emptyData() {
         titleLabel.text = "No information available"
         rocketSuccessImage.image = UIImage(systemName: "xmark.circle.fill")

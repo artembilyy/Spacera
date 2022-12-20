@@ -8,9 +8,20 @@
 import UIKit
 
 class DetailtsViewController: UIViewController {
+    // MARK: - View model
     private lazy var viewModel = LaunchesViewModel()
-    var mainKey: String
-    var titleForNav = String()
+    // MARK: - Init Prop
+    let launchType: String
+    let navigationTitle: String
+    init(keyForDict: String, title: String) {
+        self.launchType = keyForDict
+        self.navigationTitle = title
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    // collection
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.backgroundColor = .black
@@ -18,33 +29,37 @@ class DetailtsViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
-    init(keyForDict: String) {
-        self.mainKey = keyForDict
-        super.init(nibName: nil, bundle: nil)
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getLaunches(mainKey: mainKey)
-        title = titleForNav
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        delegate()
+        setupUI()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.getLaunches(mainKey: launchType)
+    }
+    // MARK: - Setup UI
+    private func delegate() {
         viewModel.delegate = self
-        view.backgroundColor = .systemRed
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+    private func setupUI() {
+        title = navigationTitle
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        view.backgroundColor = .systemRed
         collectionView.register(LaunchCell.self, forCellWithReuseIdentifier: LaunchCell.identifier)
         view.addSubview(collectionView)
         collectionView.frame = view.bounds
     }
+    // layout
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (_, _) -> NSCollectionLayoutSection? in
             return self.collectionView.laucnhSectionLayout()
         }
     }
 }
-
+// MARK: - Data Source
 extension DetailtsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         1
@@ -72,10 +87,10 @@ extension DetailtsViewController: UICollectionViewDataSource {
         }
     }
 }
-
+// MARK: - Collection Delegate
 extension DetailtsViewController: UICollectionViewDelegate {
 }
-
+// MARK: - ViewModelProtocol
 extension DetailtsViewController: ViewModelProtocol {
     func updateView() {
         DispatchQueue.main.async {

@@ -8,7 +8,9 @@
 import UIKit
 
 final class CustomPageViewController: UIPageViewController {
+    // MARK: - Controllers
     private var controllers = [UIViewController]()
+    // MARK: - Style
     override init(transitionStyle style: UIPageViewController.TransitionStyle,
                   navigationOrientation: UIPageViewController.NavigationOrientation,
                   options: [UIPageViewController.OptionsKey: Any]? = nil) {
@@ -17,16 +19,19 @@ final class CustomPageViewController: UIPageViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
         self.delegate = self
+        // add
         for index in 0...3 {
             let rocketViewController = RocketViewController(index: index)
             controllers.append(rocketViewController)
         }
         setViewControllers([controllers[0]], direction: .forward, animated: false)
     }
+    // MARK: - Indicator Style
     private func changeIndicatorColor() {
         let appearance = UIPageControl.appearance(whenContainedInInstancesOf: [RocketViewController.self])
         appearance.pageIndicatorTintColor = .lightGray
@@ -35,6 +40,7 @@ final class CustomPageViewController: UIPageViewController {
 }
 
 extension CustomPageViewController: UIPageViewControllerDataSource {
+    // MARK: - Swipe
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let indexOfCurrentPageViewController = controllers.firstIndex(of: viewController) else { return nil }
@@ -56,6 +62,7 @@ extension CustomPageViewController: UIPageViewControllerDataSource {
 }
 
 extension CustomPageViewController: UIPageViewControllerDelegate {
+    // MARK: - Dots count
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         changeIndicatorColor()
         return 4

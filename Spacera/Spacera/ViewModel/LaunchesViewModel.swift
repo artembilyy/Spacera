@@ -7,16 +7,10 @@
 
 import Foundation
 
-enum Launches: String {
-    case id, name, date, success
-}
-
 final class LaunchesViewModel {
     private lazy var networkManager: NetworkService = {
         return NetworkService()
     }()
-    private(set) var launches: [Launch] = []
-    private(set) var launchesData: [String: [Any]] = [:]
     private(set) var namesArray: [String] = []
     private(set) var datesArray: [String] = []
     private(set) var successArray: [Bool] = []
@@ -27,24 +21,13 @@ final class LaunchesViewModel {
         successArray.removeAll()
         delegate?.showLoading()
         networkManager.getLaunchesInfo { result in
-            self.launches = result
-            for rocketID in self.launches where mainKey == rocketID.rocket! {
+            for rocketID in result where mainKey == rocketID.rocket! {
                 if let success = rocketID.success,
                    let name = rocketID.name,
                    let date = rocketID.dateLocal {
                     self.namesArray.append(name)
-                    print(name)
                     self.datesArray.append(date)
                     self.successArray.append(success)
-                    //                    self.launchesData[[name]] += success
-                    //                    self.launchesData[[identifier]] += name
-                    //                    self.launchesData[[identifier]] += date
-                    //                    self.smallDict.updateValue(identifier, forKey: Launches.id.rawValue)
-                    //                    self.smallDict[Launches.success.rawValue]!.append(success)
-                    //                    self.smallDict.updateValue(name, forKey: Launches.name.rawValue)
-                    //                    self.smallDict[Launches.name.rawValue]!.append(name)
-                    //                    self.smallDict.updateValue(date, forKey: Launches.date.rawValue)
-                    //                    self.smallDict[Launches.date.rawValue]!.append(date)
                 }
             }
             self.namesArray.reverse()

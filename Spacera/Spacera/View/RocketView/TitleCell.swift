@@ -55,13 +55,14 @@ final class TitleCell: UICollectionViewCell {
         settingsButton.addGestureRecognizer(tapAction)
         container.addSubview(settingsButton)
     }
+    // MARK: - Present action button
     @objc
     private func settingsPressed() {
         let settingsViewController = SettingsViewController()
         let navController = UINavigationController(rootViewController: settingsViewController)
         viewController?.present(navController, animated: true)
     }
-    // MARK: - Cell contraints
+    // MARK: - Cell constraints
     private func setupConstraints() {
         let contrainerConstraints = [
             container.topAnchor.constraint(equalTo: contentView.topAnchor),
