@@ -13,7 +13,17 @@ final class RocketMainCell: UICollectionViewCell {
     // MARK: - UI Elements
     private let container = UIView()
     private let unitValue = UILabel()
+    private let valueStyle: NSMutableParagraphStyle = {
+        $0.lineHeightMultiple = 1.25
+        $0.alignment = .center
+        return $0
+    }(NSMutableParagraphStyle())
     private let unitLabel = UILabel()
+    private let unitStlye: NSMutableParagraphStyle = {
+        $0.lineHeightMultiple = 1.25
+        $0.alignment = .center
+        return $0
+    }(NSMutableParagraphStyle())
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -76,39 +86,66 @@ final class RocketMainCell: UICollectionViewCell {
         NSLayoutConstraint.activate(unitValueConstraints)
         NSLayoutConstraint.activate(unitConstraints)
     }
+    private func configurateAttributedString(text: String, paragraphStyle: NSMutableParagraphStyle) -> NSMutableAttributedString {
+        let result = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        return result
+    }
     // MARK: - Data usage
-    func configureCell(dictionary: [String: [String: [String]]],
-                       mainKey: String,
-                       switchUnit: Int,
-                       indexPath: IndexPath) {
-        let valueStyle = NSMutableParagraphStyle()
-        valueStyle.lineHeightMultiple = 1.25
-        valueStyle.alignment = .center
-        let unitStlye = NSMutableParagraphStyle()
-        unitStlye.lineHeightMultiple = 1.19
-        unitStlye.alignment = .center
-        if indexPath.section == 2 {
-            if indexPath.item == 0 {
-                unitValue.attributedText = NSMutableAttributedString(string: dictionary[mainKey]?[Rockets.height.rawValue]?[switchUnit] ?? "",
-                                                                     attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
-                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.height.rawValue.capitalized,
-                                                                     attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
-            } else if indexPath.item == 1 {
-                unitValue.attributedText = NSMutableAttributedString(string: dictionary[mainKey]?[Rockets.diameter.rawValue]?[switchUnit] ?? "",
-                                                                     attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
-                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.diameter.rawValue.capitalized,
-                                                                     attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
-            } else if indexPath.item == 2 {
-                unitValue.attributedText = NSMutableAttributedString(string: TextFormatter.numberWithCommas(dictionary[mainKey]?[Rockets.weight.rawValue]?[switchUnit] ?? ""),
-                                                                     attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
-                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.weight.rawValue.capitalized,
-                                                                     attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
-            } else if indexPath.item == 3 {
-                unitValue.attributedText = NSMutableAttributedString(string: TextFormatter.numberWithCommas(dictionary[mainKey]?[Rockets.payload.rawValue]?[switchUnit] ?? ""),
-                                                                     attributes: [NSAttributedString.Key.paragraphStyle: valueStyle])
-                unitLabel.attributedText = NSMutableAttributedString(string: Rockets.payload.rawValue.capitalized,
-                                                                     attributes: [NSAttributedString.Key.paragraphStyle: unitStlye])
+    func configureCell(rocket: Rocket, indexPath: IndexPath) {
+        switch indexPath.item {
+        case 0:
+            if UserDefaults.standard.string(forKey: RocketUnit.height.rawValue) == UnitType.m.rawValue {
+                unitValue.attributedText = configurateAttributedString(text: String(rocket.height?.meters ?? 0),
+                                                                       paragraphStyle: valueStyle)
+                unitLabel.attributedText = configurateAttributedString(text: RocketUnit.height.rawValue.capitalized + ", " + UnitType.m.rawValue,
+                                                                       paragraphStyle: unitStlye)
+            } else {
+                unitValue.attributedText = configurateAttributedString(text: String(rocket.height?.feet ?? 0),
+                                                                       paragraphStyle: valueStyle)
+                unitLabel.attributedText = configurateAttributedString(text: RocketUnit.height.rawValue.capitalized + ", " + UnitType.ft.rawValue,
+                                                                       paragraphStyle: unitStlye)
             }
+        case 1:
+            if UserDefaults.standard.string(forKey: RocketUnit.diameter.rawValue) == UnitType.m.rawValue {
+                unitValue.attributedText = configurateAttributedString(text: String(rocket.diameter?.meters ?? 0),
+                                                                       paragraphStyle: valueStyle)
+                unitLabel.attributedText = configurateAttributedString(text: RocketUnit.diameter.rawValue.capitalized + ", " + UnitType.m.rawValue,
+                                                                      paragraphStyle: unitStlye)
+            } else {
+                unitValue.attributedText = configurateAttributedString(text: String(rocket.diameter?.feet ?? 0),
+                                                                       paragraphStyle: valueStyle)
+                unitLabel.attributedText = configurateAttributedString(text: RocketUnit.diameter.rawValue.capitalized + ", " + UnitType.ft.rawValue,
+                                                                       paragraphStyle: unitStlye)
+            }
+        case 2:
+            if UserDefaults.standard.string(forKey: RocketUnit.weight.rawValue) == UnitType.kg.rawValue {
+                unitValue.attributedText = configurateAttributedString(text: TextFormatter.numberWithCommas(String(rocket.mass?.kg ?? 0)),
+                                                                       paragraphStyle: valueStyle)
+                unitLabel.attributedText = configurateAttributedString(text: RocketUnit.weight.rawValue.capitalized + ", " + UnitType.kg.rawValue,
+                                                                       paragraphStyle: unitStlye)
+            } else {
+                unitValue.attributedText = configurateAttributedString(text: TextFormatter.numberWithCommas(String(rocket.mass?.lb ?? 0)),
+                                                                       paragraphStyle: valueStyle)
+
+                unitLabel.attributedText = configurateAttributedString(text: RocketUnit.weight.rawValue.capitalized + ", " + UnitType.lb.rawValue,
+                                                                       paragraphStyle: unitStlye)
+            }
+        case 3:
+            if UserDefaults.standard.string(forKey: RocketUnit.payload.rawValue) == UnitType.kg.rawValue {
+                unitValue.attributedText = configurateAttributedString(text: TextFormatter.numberWithCommas(String(rocket.payloadWeights?[0].kg ?? 0)),
+                                                                       paragraphStyle: valueStyle)
+                unitLabel.attributedText = configurateAttributedString(text: RocketUnit.payload.rawValue.capitalized + ", " + UnitType.kg.rawValue,
+                                                                      paragraphStyle: unitStlye)
+            } else {
+                unitValue.attributedText = NSMutableAttributedString(string: TextFormatter.numberWithCommas(String(rocket.payloadWeights?[0].lb ?? 0)),
+                                                                     attributes:
+                                                                        [NSAttributedString.Key.paragraphStyle: valueStyle])
+                unitLabel.attributedText = configurateAttributedString(text: RocketUnit.payload.rawValue.capitalized + ", " + UnitType.lb.rawValue,
+                                                                       paragraphStyle: unitStlye)
+
+            }
+        default:
+            return
         }
     }
 }

@@ -28,7 +28,7 @@ final class TextFormatter {
         let symbol = "$"
         let units = ["K", "M", "B", "T"]
         guard let num = Double(number) else { return "" }
-        if (num < 1000.0) {
+        if num < 1000.0 {
             return "\(symbol)\(String(describing: num))"
         }
         let exp: Int = Int(log10(num) / 3.0)

@@ -6,8 +6,10 @@
 //
 
 import Foundation
+
 // MARK: - NamesForCells
-enum RocketViewText: String {
+enum RocketUnit: String {
+    case height, diameter, weight, payload
     case firstFlight    = "First flight"
     case country        = "Country"
     case costPerLaunch  = "Cost per launch"
@@ -19,18 +21,23 @@ enum RocketViewText: String {
 }
 // MARK: - Sec Ton
 enum UnitType: String {
-    case ton = "ton"
-    case sec = "sec"
+    case m
+    case ft
+    case kg
+    case lb
+    case ton
+    case sec
 }
+
 // MARK: - Unit Types for segmented control
 enum UnitTypes: String, CaseIterable {
     case height, diameter, weight, payload
     var description: [String] {
         switch self {
-        case .height:   return ["m", "ft"]
-        case .diameter: return ["m", "ft"]
-        case .weight:   return ["kg", "lb"]
-        case .payload:  return ["kg", "lb"]
+        case .height:   return [UnitType.m.rawValue, UnitType.ft.rawValue]
+        case .diameter: return [UnitType.m.rawValue, UnitType.ft.rawValue]
+        case .weight:   return [UnitType.kg.rawValue, UnitType.lb.rawValue]
+        case .payload:  return [UnitType.kg.rawValue, UnitType.lb.rawValue]
         }
     }
 }

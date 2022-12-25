@@ -10,11 +10,12 @@ import UIKit
 class DetailtsViewController: UIViewController {
     // MARK: - View model
     private lazy var viewModel = LaunchesViewModel()
+    private let child = LoadingViewController()
     // MARK: - Init Prop
     let launchType: String
     let navigationTitle: String
-    init(keyForDict: String, title: String) {
-        self.launchType = keyForDict
+    init(key: String, title: String) {
+        self.launchType = key
         self.navigationTitle = title
         super.init(nibName: nil, bundle: nil)
     }
@@ -43,14 +44,19 @@ class DetailtsViewController: UIViewController {
         viewModel.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.register(LaunchCell.self,
+                                forCellWithReuseIdentifier: LaunchCell.identifier)
     }
     private func setupUI() {
         title = navigationTitle
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        view.backgroundColor = .systemRed
-        collectionView.register(LaunchCell.self, forCellWithReuseIdentifier: LaunchCell.identifier)
-        view.addSubview(collectionView)
+        navigationController?.navigationBar.titleTextAttributes =
+        [NSAttributedString.Key.foregroundColor: UIColor.white]
+        addChild(child)
+        child.view.frame = view.frame
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
         collectionView.frame = view.bounds
+        view.addSubview(collectionView)
     }
     // layout
     private func createLayout() -> UICollectionViewCompositionalLayout {
@@ -70,20 +76,18 @@ extension DetailtsViewController: UICollectionViewDataSource {
                                                             for: indexPath) as? LaunchCell else {
             return UICollectionViewCell()
         }
-        if viewModel.namesArray.isEmpty == true {
+        if viewModel.launches.isEmpty == true {
             cell.emptyData()
         } else {
-            cell.configureCell(name: viewModel.namesArray[indexPath.section],
-                               date: viewModel.datesArray[indexPath.section],
-                               success: viewModel.successArray[indexPath.section])
+            cell.configureCell(launch: viewModel.launches[indexPath.section])
         }
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        if viewModel.namesArray.isEmpty == true {
+        if viewModel.launches.isEmpty == true {
             return 1
         } else {
-            return viewModel.namesArray.count
+            return viewModel.launches.count
         }
     }
 }
@@ -92,6 +96,16 @@ extension DetailtsViewController: UICollectionViewDelegate {
 }
 // MARK: - ViewModelProtocol
 extension DetailtsViewController: ViewModelProtocol {
+    func showLoading() {
+        view.bringSubviewToFront(child.view)
+    }
+    func hideLoading() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.child.willMove(toParent: nil)
+            self.child.view.removeFromSuperview()
+            self.child.removeFromParent()
+        }
+    }
     func updateView() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()

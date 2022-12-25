@@ -45,8 +45,9 @@ final class ImageCell: UICollectionViewCell {
         NSLayoutConstraint.activate(rocketImageConstraints)
     }
     // MARK: - Data usage
-    func configureCell(dict: [String: [String: [String]]], mainKey: String) {
-        if let url = dict[mainKey]?[Rockets.images.rawValue]?[1] {
+    func configureCell(rocket: Rocket) {
+        rocketImage.kf.indicatorType = .activity
+        if let url = rocket.flickrImages?[1] {
             if let posterPath = URL(string: url) {
                 rocketImage.kf.setImage(with: posterPath)
             }

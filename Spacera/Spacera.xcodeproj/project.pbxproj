@@ -17,6 +17,7 @@
 		ED189C8229467FB3008722EE /* RocketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8129467FB3008722EE /* RocketViewController.swift */; };
 		ED189C8429468176008722EE /* RocketMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8329468176008722EE /* RocketMainCell.swift */; };
 		ED189C8629468B39008722EE /* LaunchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C8529468B39008722EE /* LaunchesViewModel.swift */; };
+		ED3A09D12958FBA2007E96EE /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3A09D02958FBA2007E96EE /* LoadingViewController.swift */; };
 		ED5C197B294DFFD2004ECBBD /* BackgroundImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5C197A294DFFD2004ECBBD /* BackgroundImageCell.swift */; };
 		ED5C198F294F34D3004ECBBD /* LabGrotesque-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED5C198B294F34D3004ECBBD /* LabGrotesque-Thin.ttf */; };
 		ED5C1990294F34D3004ECBBD /* LabGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED5C198C294F34D3004ECBBD /* LabGrotesque-Bold.ttf */; };
@@ -39,6 +40,7 @@
 		ED9456EB294C96E800CF6911 /* PageControllerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456EA294C96E800CF6911 /* PageControllerContainer.swift */; };
 		ED9456ED294D19C200CF6911 /* CompostionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9456EC294D19C200CF6911 /* CompostionalLayout.swift */; };
 		ED9456F0294D1FC000CF6911 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = ED9456EF294D1FC000CF6911 /* Kingfisher */; };
+		EDC86B5429552629008FFE78 /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC86B5329552629008FFE78 /* NotificationCenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,7 @@
 		ED189C8129467FB3008722EE /* RocketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewController.swift; sourceTree = "<group>"; };
 		ED189C8329468176008722EE /* RocketMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketMainCell.swift; sourceTree = "<group>"; };
 		ED189C8529468B39008722EE /* LaunchesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewModel.swift; sourceTree = "<group>"; };
+		ED3A09D02958FBA2007E96EE /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		ED5C197A294DFFD2004ECBBD /* BackgroundImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageCell.swift; sourceTree = "<group>"; };
 		ED5C1989294F3446004ECBBD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED5C198B294F34D3004ECBBD /* LabGrotesque-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Thin.ttf"; sourceTree = "<group>"; };
@@ -74,6 +77,7 @@
 		ED9456E8294C7B9100CF6911 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		ED9456EA294C96E800CF6911 /* PageControllerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControllerContainer.swift; sourceTree = "<group>"; };
 		ED9456EC294D19C200CF6911 /* CompostionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompostionalLayout.swift; sourceTree = "<group>"; };
+		EDC86B5329552629008FFE78 /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +105,12 @@
 		ED189C6F2943F871008722EE /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				ED5C1994294F3723004ECBBD /* Fonts.swift */,
 				ED9456EC294D19C200CF6911 /* CompostionalLayout.swift */,
-				ED189C702943F884008722EE /* Global.swift */,
 				ED189C7F29467F42008722EE /* ViewModelProtocol.swift */,
+				ED189C702943F884008722EE /* Global.swift */,
 				ED5C1996294FB928004ECBBD /* Units.swift */,
+				ED5C1994294F3723004ECBBD /* Fonts.swift */,
+				EDC86B5329552629008FFE78 /* NotificationCenter.swift */,
 				ED5C19982950794A004ECBBD /* TextFormatter.swift */,
 			);
 			path = Helpers;
@@ -145,6 +150,7 @@
 				ED189C8129467FB3008722EE /* RocketViewController.swift */,
 				ED9456E4294B62BD00CF6911 /* LaunchesViewController.swift */,
 				ED5CDF64294766E000DCE078 /* SettingsViewController.swift */,
+				ED3A09D02958FBA2007E96EE /* LoadingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -334,7 +340,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# export PATH=\"$PATH:/opt/homebrew/bin\"\n# if which swiftlint > /dev/null; then\n#  swiftlint\n# else\n#  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n# fi\n";
+			shellScript = "# export PATH=\"$PATH:/opt/homebrew/bin\"\n# if which swiftlint > /dev/null; then\n#  swiftlint\n# else\n# echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n# fi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -354,6 +360,7 @@
 				ED5CDF65294766E000DCE078 /* SettingsViewController.swift in Sources */,
 				ED5C1995294F3723004ECBBD /* Fonts.swift in Sources */,
 				ED5CDF672947CCE200DCE078 /* SettingsView.swift in Sources */,
+				ED3A09D12958FBA2007E96EE /* LoadingViewController.swift in Sources */,
 				ED189C8229467FB3008722EE /* RocketViewController.swift in Sources */,
 				ED9456E9294C7B9100CF6911 /* TitleCell.swift in Sources */,
 				ED9456E5294B62BE00CF6911 /* LaunchesViewController.swift in Sources */,
@@ -365,6 +372,7 @@
 				ED9456EB294C96E800CF6911 /* PageControllerContainer.swift in Sources */,
 				ED189C8629468B39008722EE /* LaunchesViewModel.swift in Sources */,
 				ED189C8429468176008722EE /* RocketMainCell.swift in Sources */,
+				EDC86B5429552629008FFE78 /* NotificationCenter.swift in Sources */,
 				ED189C8029467F42008722EE /* ViewModelProtocol.swift in Sources */,
 				ED5C197B294DFFD2004ECBBD /* BackgroundImageCell.swift in Sources */,
 			);

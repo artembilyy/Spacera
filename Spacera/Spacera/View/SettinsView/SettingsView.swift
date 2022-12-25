@@ -8,7 +8,8 @@
 import UIKit
 
 final class SettingsItemView: UIView {
-    
+    // MARK: - Setup UI
+    var action: (() -> Void)?
     lazy var titleLabel: UILabel = {
         $0.textColor = .white
         $0.textAlignment = .left
@@ -31,11 +32,13 @@ final class SettingsItemView: UIView {
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(red: 142/255,
                                                                                                  green: 142/255,
                                                                                                  blue: 143/255,
-                                                                                                 alpha: 1)], for: .normal)
+                                                                                                 alpha: 1)],
+                                                for: .normal)
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(red: 18/255,
                                                                                                  green: 18/255,
                                                                                                  blue: 18/255,
-                                                                                                 alpha: 1)], for: .selected)
+                                                                                                 alpha: 1)],
+                                                for: .selected)
         return segmentedControl
     }()
     private lazy var stackView: UIStackView = {
@@ -47,6 +50,7 @@ final class SettingsItemView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -54,6 +58,7 @@ final class SettingsItemView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    // MARK: - Configure
     private func setupUI() {
         addSubview(stackView)
     }
@@ -78,7 +83,7 @@ final class SettingsItemView: UIView {
     }
     // MARK: - Value Changed SegmentedControl
     @objc
-    private func segmetntedControlChanged() {
-        print("Pressed")
+    private func segmetntedControlChanged(sender: UISegmentedControl) {
+        action?()
     }
 }

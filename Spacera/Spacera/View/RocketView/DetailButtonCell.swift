@@ -76,7 +76,7 @@ final class ButtonCell: UICollectionViewCell {
     private func buttonAction() {
         if let title = title,
            let key = key {
-            let detailsViewController = DetailtsViewController(keyForDict: key, title: title)
+            let detailsViewController = DetailtsViewController(key: key, title: title)
             viewController?.navigationController?.pushViewController(detailsViewController, animated: true)
         }
     }

@@ -38,7 +38,8 @@ final class Header: UICollectionViewCell {
         label.textColor = .white
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.25
-        label.attributedText = NSMutableAttributedString(string: "", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        label.attributedText = NSMutableAttributedString(string: "",
+                                                         attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
     // MARK: - Constraints
     private func setupConstraint() {

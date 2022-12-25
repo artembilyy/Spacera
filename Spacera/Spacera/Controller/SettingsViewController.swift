@@ -23,6 +23,11 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        configureSegmentedControls()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupSegmentedControls()
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -44,10 +49,96 @@ class SettingsViewController: UIViewController {
                                                             target: self,
                                                             action: #selector(closeAction))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes =
+                                                                [NSAttributedString.Key.foregroundColor: UIColor.white]
         title = "Settings"
     }
-    // MARK: - Dissmiss
+    private func setupSegmentedControls() {
+        for (index, view) in settingsItems.enumerated() {
+            selectedSegmentedIndex(index: index, view: view)
+        }
+    }
+    private func selectedSegmentedIndex(index: Int, view: UIView) {
+        guard let view = view as? SettingsItemView else { return }
+        switch index {
+        case 0:
+            if UserDefaults.standard.string(forKey: RocketUnit.height.rawValue) == UnitType.m.rawValue {
+                view.unitSegmentedControl.selectedSegmentIndex = 0
+            } else {
+                view.unitSegmentedControl.selectedSegmentIndex = 1
+            }
+        case 1:
+            if UserDefaults.standard.string(forKey: RocketUnit.diameter.rawValue) == UnitType.m.rawValue {
+                view.unitSegmentedControl.selectedSegmentIndex = 0
+            } else {
+                view.unitSegmentedControl.selectedSegmentIndex = 1
+            }
+        case 2:
+            if UserDefaults.standard.string(forKey: RocketUnit.weight.rawValue) == UnitType.kg.rawValue {
+                view.unitSegmentedControl.selectedSegmentIndex = 0
+            } else {
+                view.unitSegmentedControl.selectedSegmentIndex = 1
+            }
+        case 3:
+            if UserDefaults.standard.string(forKey: RocketUnit.payload.rawValue) == UnitType.kg.rawValue {
+                view.unitSegmentedControl.selectedSegmentIndex = 0
+            } else {
+                view.unitSegmentedControl.selectedSegmentIndex = 1
+            }
+        default:
+            return
+        }
+    }
+    private func configureSegmentedControls() {
+        for (index, view) in settingsItems.enumerated() {
+            setAction(index: index, view: view) { completion in
+                switch index {
+                case 0:
+                    if completion == 0 {
+                        UserDefaults.standard.set(UnitType.m.rawValue, forKey: RocketUnit.height.rawValue)
+                    } else {
+                        UserDefaults.standard.set(UnitType.ft.rawValue, forKey: RocketUnit.height.rawValue)
+                    }
+                case 1:
+                    if completion == 0 {
+                        UserDefaults.standard.set(UnitType.m.rawValue, forKey: RocketUnit.diameter.rawValue)
+                    } else {
+                        UserDefaults.standard.set(UnitType.ft.rawValue, forKey: RocketUnit.diameter.rawValue)
+                    }
+                case 2:
+                    if completion == 0 {
+                        UserDefaults.standard.set(UnitType.kg.rawValue, forKey: RocketUnit.weight.rawValue)
+                    } else {
+                        UserDefaults.standard.set(UnitType.lb.rawValue, forKey: RocketUnit.weight.rawValue)
+                    }
+                case 3:
+                    if completion == 0 {
+                        UserDefaults.standard.set(UnitType.kg.rawValue, forKey: RocketUnit.payload.rawValue)
+                    } else {
+                        UserDefaults.standard.set(UnitType.lb.rawValue, forKey: RocketUnit.payload.rawValue)
+                    }
+                default: break
+                }
+            }
+        }
+    }
+    private func setAction(index: Int, view: UIView, completion: @escaping (Int) -> Void) {
+        guard let view = view as? SettingsItemView else { return }
+        view.action = { [weak self] in
+            switch view.unitSegmentedControl.selectedSegmentIndex {
+            case let index where index == 0:
+                completion(index)
+            case let index where index == 1:
+                completion(index)
+            default: break
+            }
+            self?.reloadData()
+        }
+    }
+    private func reloadData() {
+        NotificationCenter.default.post(name: NotificationObserver.reloadData, object: nil)
+    }
+    // MARK: - Dismiss
     @objc
     private func closeAction() {
         self.dismiss(animated: true)

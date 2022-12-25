@@ -10,6 +10,7 @@ import UIKit
 class RocketViewController: UIViewController {
     // MARK: - View model
     private lazy var viewModel = RocketViewModel()
+    private let child = LoadingViewController()
     // MARK: - Name for key
     private var rocketNames: [String] = []
     // MARK: - Index of page
@@ -58,6 +59,10 @@ class RocketViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         viewModel.delegate = self
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadData),
+                                               name: NotificationObserver.reloadData,
+                                               object: nil)
     }
     private func setupUI() {
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -75,7 +80,17 @@ class RocketViewController: UIViewController {
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: Header.identifier)
         view.backgroundColor = .black
+        addChild(child)
+        child.view.frame = view.frame
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
         view.addSubview(collectionView)
+    }
+    @objc
+    private func reloadData() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     // MARK: - Setup Layout
     private func setupLayout() {
@@ -136,27 +151,23 @@ extension RocketViewController: UICollectionViewDataSource {
         }
         switch indexPath.section {
         case 0:
-            imageCell.configureCell(dict: viewModel.rocketsData,
-                                    mainKey: rocketNames[selectedRocketIndex])
+            imageCell.configureCell(rocket: viewModel.rockets[selectedRocketIndex])
             return imageCell
         case 1:
-            titleCell.configureCell(name: rocketNames[selectedRocketIndex])
+            titleCell.configureCell(rocket: viewModel.rockets[selectedRocketIndex])
             titleCell.viewController = self
             return titleCell
         case 2:
-            cell.configureCell(dictionary: viewModel.rocketsData,
-                               mainKey: rocketNames[selectedRocketIndex],
-                               switchUnit: 1,
+            cell.configureCell(rocket: viewModel.rockets[selectedRocketIndex],
                                indexPath: indexPath)
             return cell
         case 3, 4, 5:
-            secondCell.configureCell(dict: viewModel.rocketsData,
-                                     mainKey: rocketNames[selectedRocketIndex],
+            secondCell.configureCell(rocket: viewModel.rockets[selectedRocketIndex],
                                      indexPath: indexPath)
             return secondCell
         case 6:
-            buttonCell.key = viewModel.rocketsData[rocketNames[selectedRocketIndex]]?[Rockets.id.rawValue]?[0] ?? ""
-            buttonCell.title = rocketNames[selectedRocketIndex]
+            buttonCell.key = viewModel.rockets[selectedRocketIndex].id!
+            buttonCell.title = viewModel.rockets[selectedRocketIndex].name!
             buttonCell.viewController = self
             return buttonCell
         default:
@@ -173,9 +184,9 @@ extension RocketViewController: UICollectionViewDataSource {
                 return UICollectionReusableView()
             }
             if indexPath.section == 4 {
-                header.label.attributedText = NSAttributedString(string: RocketViewText.firstStage.rawValue)
+                header.label.attributedText = NSAttributedString(string: RocketUnit.firstStage.rawValue)
             } else if indexPath.section == 5 {
-                header.label.attributedText = NSAttributedString(string: RocketViewText.secondStage.rawValue)
+                header.label.attributedText = NSAttributedString(string: RocketUnit.secondStage.rawValue)
             }
             return header
         }
@@ -183,7 +194,7 @@ extension RocketViewController: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        if viewModel.rocketsData.isEmpty == false {
+        if viewModel.rockets.isEmpty == false {
             switch section {
             case 0, 1:
                 return 1
@@ -201,10 +212,19 @@ extension RocketViewController: UICollectionViewDataSource {
 }
 // MARK: - ViewModeProtocol
 extension RocketViewController: ViewModelProtocol {
+    func showLoading() {
+        view.bringSubviewToFront(child.view)
+    }
+    func hideLoading() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.child.willMove(toParent: nil)
+            self.child.view.removeFromSuperview()
+            self.child.removeFromParent()
+        }
+    }
     // MARK: - Reload Data
     func updateView() {
         DispatchQueue.main.async { [self] in
-            rocketNames = viewModel.rocketName
             collectionView.reloadData()
         }
     }

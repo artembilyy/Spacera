@@ -87,10 +87,10 @@ final class TitleCell: UICollectionViewCell {
         NSLayoutConstraint.activate(buttonGearConstraints)
     }
     // MARK: - Data usage
-    func configureCell(name: String) {
+    func configureCell(rocket: Rocket) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.19
-        rocketName.attributedText = NSMutableAttributedString(string: name,
+        rocketName.attributedText = NSMutableAttributedString(string: rocket.name!,
                                                               attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
 }

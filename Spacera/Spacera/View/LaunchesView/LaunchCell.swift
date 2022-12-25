@@ -90,16 +90,19 @@ final class LaunchCell: UICollectionViewCell {
         NSLayoutConstraint.activate(rocketImageConstraints)
     }
     // MARK: - Data usage
-    func configureCell(name: String?, date: String?, success: Bool?) {
-        titleLabel.text = name
-        dateLabel.text = TextFormatter.convertDateFormat(date: date ?? "", from: DateFormat.yyyyMMddTHHmmssZ, to: DateFormat.MMMMdyyyy)
-        switch success {
+    func configureCell(launch: Launch) {
+        titleLabel.text = launch.name
+        dateLabel.text = TextFormatter.convertDateFormat(date: launch.dateLocal ?? "",
+                                                         from: DateFormat.yyyyMMddTHHmmssZ,
+                                                         to: DateFormat.MMMMdyyyy)
+        switch launch.success {
         case true:
             rocketSuccessImage.image = UIImage(named: "rocketTrue")
         case false:
             rocketSuccessImage.image = UIImage(named: "rocketFalse")
         default:
             rocketSuccessImage.image = UIImage(systemName: "questionmark.circle.fill")
+            rocketSuccessImage.tintColor = .systemGray
         }
     }
     // MARK: - Empty Data
