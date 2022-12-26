@@ -7,16 +7,20 @@
 import UIKit
 
 class LoadingViewController: UIViewController {
-    var spinner = UIActivityIndicatorView(style: .large)
-    
-    override func loadView() {
-        view = UIView()
-        view.backgroundColor = .black
-
+    let spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.startAnimating()
+        return spinner
+    }()
+    // UI
+    override func loadView() {
+        super.loadView()
+        view = UIView()
+        view.backgroundColor = .black
         view.addSubview(spinner)
-
+    }
+    override func viewWillLayoutSubviews() {
         spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }

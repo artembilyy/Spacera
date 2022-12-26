@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 // MARK: - NamesForCells
 enum RocketUnit: String {
     case height, diameter, weight, payload
@@ -28,7 +27,6 @@ enum UnitType: String {
     case ton
     case sec
 }
-
 // MARK: - Unit Types for segmented control
 enum UnitTypes: String, CaseIterable {
     case height, diameter, weight, payload

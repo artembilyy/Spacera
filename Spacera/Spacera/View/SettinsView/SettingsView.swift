@@ -9,7 +9,6 @@ import UIKit
 
 final class SettingsItemView: UIView {
     // MARK: - Setup UI
-    var action: (() -> Void)?
     lazy var titleLabel: UILabel = {
         $0.textColor = .white
         $0.textAlignment = .left
@@ -24,20 +23,11 @@ final class SettingsItemView: UIView {
                                    action:
                                     #selector(segmetntedControlChanged),
                                    for: .valueChanged)
-        segmentedControl.backgroundColor = UIColor(red: 33/255,
-                                                   green: 33/255,
-                                                   blue: 33/255,
-                                                   alpha: 1)
+        segmentedControl.backgroundColor = Fonts.customLightBlack.color
         segmentedControl.selectedSegmentTintColor = UIColor.white
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(red: 142/255,
-                                                                                                 green: 142/255,
-                                                                                                 blue: 143/255,
-                                                                                                 alpha: 1)],
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Fonts.customMidGray.color],
                                                 for: .normal)
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(red: 18/255,
-                                                                                                 green: 18/255,
-                                                                                                 blue: 18/255,
-                                                                                                 alpha: 1)],
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Fonts.customBlack.color],
                                                 for: .selected)
         return segmentedControl
     }()
@@ -50,7 +40,8 @@ final class SettingsItemView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    // MARK: - Init
+    var segmentedAction: (() -> Void)?
+    // MARK: - Assembly
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -58,14 +49,15 @@ final class SettingsItemView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // MARK: - Configure
-    private func setupUI() {
-        addSubview(stackView)
-    }
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()
     }
+    // MARK: - Configure
+    private func setupUI() {
+        addSubview(stackView)
+    }
+    // MARK: - SetupConstraints
     private func setupConstraints() {
         let segmentedConstraints = [
             unitSegmentedControl.widthAnchor.constraint(equalToConstant: 115)
@@ -84,6 +76,6 @@ final class SettingsItemView: UIView {
     // MARK: - Value Changed SegmentedControl
     @objc
     private func segmetntedControlChanged(sender: UISegmentedControl) {
-        action?()
+        segmentedAction?()
     }
 }

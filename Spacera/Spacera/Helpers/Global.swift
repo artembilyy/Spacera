@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// MARK: - URL
 struct GlobalLinks {
     static let spaceRockets = "https://api.spacexdata.com/v4/rockets"
     static let launches = "https://api.spacexdata.com/v4/launches"

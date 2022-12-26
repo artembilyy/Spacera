@@ -39,7 +39,11 @@ class DetailtsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         viewModel.getLaunches(mainKey: launchType)
     }
+    override func viewWillLayoutSubviews() {
+        setupLayout()
+    }
     // MARK: - Setup UI
+    // delegate
     private func delegate() {
         viewModel.delegate = self
         collectionView.dataSource = self
@@ -47,18 +51,22 @@ class DetailtsViewController: UIViewController {
         collectionView.register(LaunchCell.self,
                                 forCellWithReuseIdentifier: LaunchCell.identifier)
     }
+    // UI
     private func setupUI() {
         title = navigationTitle
         navigationController?.navigationBar.titleTextAttributes =
         [NSAttributedString.Key.foregroundColor: UIColor.white]
         addChild(child)
-        child.view.frame = view.frame
         view.addSubview(child.view)
         child.didMove(toParent: self)
-        collectionView.frame = view.bounds
         view.addSubview(collectionView)
     }
-    // layout
+    // MARK: - Setup Layout
+    private func setupLayout() {
+        child.view.frame = view.frame
+        collectionView.frame = view.bounds
+    }
+    // collection view layout
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (_, _) -> NSCollectionLayoutSection? in
             return self.collectionView.laucnhSectionLayout()
@@ -67,9 +75,18 @@ class DetailtsViewController: UIViewController {
 }
 // MARK: - Data Source
 extension DetailtsViewController: UICollectionViewDataSource {
+    // MARK: Sections num
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if viewModel.launches.isEmpty == true {
+            return 1
+        } else {
+            return viewModel.launches.count
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         1
     }
+    // MARK: Return Cell
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LaunchCell.identifier,
@@ -83,32 +100,28 @@ extension DetailtsViewController: UICollectionViewDataSource {
         }
         return cell
     }
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        if viewModel.launches.isEmpty == true {
-            return 1
-        } else {
-            return viewModel.launches.count
-        }
-    }
 }
 // MARK: - Collection Delegate
 extension DetailtsViewController: UICollectionViewDelegate {
 }
 // MARK: - ViewModelProtocol
 extension DetailtsViewController: ViewModelProtocol {
+    // MARK: Show indicator
     func showLoading() {
         view.bringSubviewToFront(child.view)
     }
+    // MARK: Hide indicator
     func hideLoading() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.child.willMove(toParent: nil)
-            self.child.view.removeFromSuperview()
-            self.child.removeFromParent()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [unowned self] in
+            child.willMove(toParent: nil)
+            child.view.removeFromSuperview()
+            child.removeFromParent()
         }
     }
+    // MARK: Reload Data
     func updateView() {
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
+        DispatchQueue.main.async { [unowned self] in
+            collectionView.reloadData()
         }
     }
 }

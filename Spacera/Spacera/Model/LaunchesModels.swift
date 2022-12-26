@@ -5,7 +5,7 @@
 //  Created by Artem Bilyi on 09.12.2022.
 //
 import Foundation
-// MARK: - LaunchesModels
+// MARK: - LaunchesModel
 struct Launch: Decodable {
     let rocket: String?
     let name: String?

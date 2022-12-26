@@ -16,6 +16,7 @@ final class ButtonCell: UICollectionViewCell {
     var key: String?
     var title: String?
     weak var viewController: RocketViewController?
+    // MARK: - Assembly
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -40,10 +41,7 @@ final class ButtonCell: UICollectionViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        guard let customFont = UIFont(name: LabGrotesque.bold.rawValue, size: 16) else {
-            fatalError("Failed to load the LabGrotesque-Bold font.")
-        }
-        button.titleLabel?.font = UIFontMetrics.default.scaledFont(for: customFont)
+        button.titleLabel?.font = UIFont.setFont(name: LabGrotesque.bold.rawValue, size: 16)
         button.titleLabel?.adjustsFontForContentSizeCategory = true
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.25
@@ -51,7 +49,7 @@ final class ButtonCell: UICollectionViewCell {
                                                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         button.setAttributedTitle(myAttributedTitle, for: .normal)
         button.layer.cornerRadius = 12
-        button.layer.backgroundColor = UIColor(red: 0.129, green: 0.129, blue: 0.129, alpha: 1).cgColor
+        button.layer.backgroundColor = Fonts.customGray.color.cgColor
         container.addSubview(button)
     }
     // MARK: - Cell contraints

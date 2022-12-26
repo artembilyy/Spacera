@@ -14,15 +14,16 @@ class RocketViewController: UIViewController {
     // MARK: - Name for key
     private var rocketNames: [String] = []
     // MARK: - Index of page
-    private var selectedRocketIndex: Int!
+    private var rocketIndex: Int!
+    // switch rockets by index
     init(index: Int) {
-        self.selectedRocketIndex = index
+        self.rocketIndex = index
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // collection view
+    // MARK: - Collection View
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.backgroundColor = .black
@@ -50,11 +51,13 @@ class RocketViewController: UIViewController {
         viewModel.fetchRockets()
     }
     // MARK: - Setup UI
+    // top safe area
     private func ignoreSafeAre() {
         var insets = view.safeAreaInsets
         insets.top = 0
         collectionView.contentInset = insets
     }
+    // delegate
     private func delegate() {
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -64,6 +67,7 @@ class RocketViewController: UIViewController {
                                                name: NotificationObserver.reloadData,
                                                object: nil)
     }
+    // UI
     private func setupUI() {
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.register(ImageCell.self,
@@ -85,12 +89,6 @@ class RocketViewController: UIViewController {
         view.addSubview(child.view)
         child.didMove(toParent: self)
         view.addSubview(collectionView)
-    }
-    @objc
-    private func reloadData() {
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
     }
     // MARK: - Setup Layout
     private func setupLayout() {
@@ -121,12 +119,38 @@ class RocketViewController: UIViewController {
             }
         }
     }
+    // MARK: - Call by Notification
+    @objc
+    private func reloadData() {
+        DispatchQueue.main.async { [unowned self] in
+            collectionView.reloadData()
+        }
+    }
 }
 // MARK: - Data Source
 extension RocketViewController: UICollectionViewDataSource {
+    // MARK: Sections num
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         7
     }
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        if viewModel.rockets.isEmpty == false {
+            switch section {
+            case 0, 1:
+                return 1
+            case 2:
+                return 4
+            case 3, 4, 5:
+                return 3
+            default:
+                return 1
+            }
+        } else {
+            return 0
+        }
+    }
+    // MARK: Return Cell
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let titleCell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCell.identifier,
@@ -149,31 +173,37 @@ extension RocketViewController: UICollectionViewDataSource {
                                                                  for: indexPath) as? ImageCell else {
             return UICollectionViewCell()
         }
+        // configure cells
         switch indexPath.section {
         case 0:
-            imageCell.configureCell(rocket: viewModel.rockets[selectedRocketIndex])
+            imageCell.configureCell(rocket: viewModel.rockets[rocketIndex])
             return imageCell
         case 1:
-            titleCell.configureCell(rocket: viewModel.rockets[selectedRocketIndex])
+            titleCell.configureCell(rocket: viewModel.rockets[rocketIndex])
             titleCell.viewController = self
             return titleCell
         case 2:
-            cell.configureCell(rocket: viewModel.rockets[selectedRocketIndex],
+            cell.configureCell(rocket: viewModel.rockets[rocketIndex],
                                indexPath: indexPath)
             return cell
         case 3, 4, 5:
-            secondCell.configureCell(rocket: viewModel.rockets[selectedRocketIndex],
+            secondCell.configureCell(rocket: viewModel.rockets[rocketIndex],
                                      indexPath: indexPath)
             return secondCell
         case 6:
-            buttonCell.key = viewModel.rockets[selectedRocketIndex].id!
-            buttonCell.title = viewModel.rockets[selectedRocketIndex].name!
+            if let key = viewModel.rockets[rocketIndex].id {
+                buttonCell.key = key
+            }
+            if let title = viewModel.rockets[rocketIndex].name {
+                buttonCell.title = title
+            }
             buttonCell.viewController = self
             return buttonCell
         default:
             return UICollectionViewCell()
         }
     }
+    // MARK: Headers for sections
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
@@ -192,39 +222,24 @@ extension RocketViewController: UICollectionViewDataSource {
         }
         return UICollectionReusableView()
     }
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
-        if viewModel.rockets.isEmpty == false {
-            switch section {
-            case 0, 1:
-                return 1
-            case 2:
-                return 4
-            case 3, 4, 5:
-                return 3
-            default:
-                return 1
-            }
-        } else {
-            return 0
-        }
-    }
 }
 // MARK: - ViewModeProtocol
 extension RocketViewController: ViewModelProtocol {
+    // MARK: Show indicator
     func showLoading() {
         view.bringSubviewToFront(child.view)
     }
+    // MARK: Hide indicator
     func hideLoading() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.child.willMove(toParent: nil)
-            self.child.view.removeFromSuperview()
-            self.child.removeFromParent()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [unowned self] in
+            child.willMove(toParent: nil)
+            child.view.removeFromSuperview()
+            child.removeFromParent()
         }
     }
-    // MARK: - Reload Data
+    // MARK: Reload Data
     func updateView() {
-        DispatchQueue.main.async { [self] in
+        DispatchQueue.main.async { [unowned self] in
             collectionView.reloadData()
         }
     }

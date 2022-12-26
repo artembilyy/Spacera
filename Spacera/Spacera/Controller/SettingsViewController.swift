@@ -8,7 +8,7 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-    // MARK: - Configure by for in
+    // MARK: - Array of segmented control type
     private var settingsItems: [UIView] = []
     // stack view
     private lazy var stackView: UIStackView = {
@@ -35,7 +35,7 @@ class SettingsViewController: UIViewController {
     }
     // MARK: - Setup UI
     private func setupUI() {
-        view.backgroundColor = UIColor(red: 18/255, green: 18/255, blue: 18/255, alpha: 1)
+        view.backgroundColor = Fonts.customDeepGray.color
         UnitTypes.allCases.forEach {
             let settingView = SettingsItemView()
             settingView.unitSegmentedControl.setTitle($0.description[0], forSegmentAt: 0)
@@ -50,7 +50,7 @@ class SettingsViewController: UIViewController {
                                                             action: #selector(closeAction))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes =
-                                                                [NSAttributedString.Key.foregroundColor: UIColor.white]
+        [NSAttributedString.Key.foregroundColor: UIColor.white]
         title = "Settings"
     }
     private func setupSegmentedControls() {
@@ -124,7 +124,7 @@ class SettingsViewController: UIViewController {
     }
     private func setAction(index: Int, view: UIView, completion: @escaping (Int) -> Void) {
         guard let view = view as? SettingsItemView else { return }
-        view.action = { [weak self] in
+        view.segmentedAction = { [weak self] in
             switch view.unitSegmentedControl.selectedSegmentIndex {
             case let index where index == 0:
                 completion(index)
@@ -135,6 +135,7 @@ class SettingsViewController: UIViewController {
             self?.reloadData()
         }
     }
+    // MARK: - Notifiaction register
     private func reloadData() {
         NotificationCenter.default.post(name: NotificationObserver.reloadData, object: nil)
     }

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// MARK: - Notifaction
 struct NotificationObserver {
     static let reloadData = Notification.Name("reloadData")
 }

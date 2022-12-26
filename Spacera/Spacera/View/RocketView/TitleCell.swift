@@ -12,9 +12,10 @@ final class TitleCell: UICollectionViewCell {
     static let identifier = "titleCellIdentifier"
     // MARK: - UI Elements
     private let container = UIView()
-    private let rocketName = UILabel()
+    private let title = UILabel()
     private let settingsButton = UIImageView()
     weak var viewController: UIViewController?
+    // MARK: - Assembly
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -27,27 +28,21 @@ final class TitleCell: UICollectionViewCell {
         super.layoutSubviews()
         setupConstraints()
     }
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
     // MARK: - Configure cell
     private func configureView() {
         contentView.addSubview(container)
         container.backgroundColor = .black
         container.translatesAutoresizingMaskIntoConstraints = false
         //
-        rocketName.backgroundColor = .clear
-        guard let customFont = UIFont(name: LabGrotesque.medium.rawValue, size: 32) else {
-            fatalError("Failed to load the LabGrotesque-Medium font.")
-        }
-        rocketName.font = UIFontMetrics.default.scaledFont(for: customFont)
-        rocketName.adjustsFontForContentSizeCategory = true
-        rocketName.textAlignment = .left
-        rocketName.textColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1)
-        rocketName.translatesAutoresizingMaskIntoConstraints = false
-        container.addSubview(rocketName)
+        title.backgroundColor = .clear
+        title.font = UIFont.setFont(name: LabGrotesque.medium.rawValue, size: 32)
+        title.adjustsFontForContentSizeCategory = true
+        title.textAlignment = .left
+        title.textColor = Fonts.customWhire.color
+        title.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(title)
         settingsButton.image = UIImage(systemName: "gearshape")
-        settingsButton.tintColor = UIColor(red: 0.792, green: 0.792, blue: 0.792, alpha: 1)
+        settingsButton.tintColor = Fonts.customLightGray.color
         settingsButton.contentMode = .scaleAspectFill
         settingsButton.isUserInteractionEnabled = true
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
@@ -71,10 +66,10 @@ final class TitleCell: UICollectionViewCell {
             container.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ]
         let rocketLabelConstraints = [
-            rocketName.topAnchor.constraint(equalTo: contentView.topAnchor),
-            rocketName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            rocketName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            rocketName.widthAnchor.constraint(equalToConstant: 220)
+            title.topAnchor.constraint(equalTo: contentView.topAnchor),
+            title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            title.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            title.widthAnchor.constraint(equalToConstant: 220)
         ]
         let buttonGearConstraints = [
             settingsButton.heightAnchor.constraint(equalToConstant: 32),
@@ -88,9 +83,11 @@ final class TitleCell: UICollectionViewCell {
     }
     // MARK: - Data usage
     func configureCell(rocket: Rocket) {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.19
-        rocketName.attributedText = NSMutableAttributedString(string: rocket.name!,
-                                                              attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        let style = NSMutableParagraphStyle()
+        style.lineHeightMultiple = 1.19
+        if let name = rocket.name {
+            title.attributedText = NSMutableAttributedString(string: name,
+                                                             attributes: [NSAttributedString.Key.paragraphStyle: style])
+        }
     }
 }

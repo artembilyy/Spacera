@@ -31,12 +31,6 @@ final class CustomPageViewController: UIPageViewController {
         }
         setViewControllers([controllers[0]], direction: .forward, animated: false)
     }
-    // MARK: - Indicator Style
-    private func changeIndicatorColor() {
-        let appearance = UIPageControl.appearance(whenContainedInInstancesOf: [RocketViewController.self])
-        appearance.pageIndicatorTintColor = .lightGray
-        appearance.currentPageIndicatorTintColor = .black
-    }
 }
 
 extension CustomPageViewController: UIPageViewControllerDataSource {
@@ -64,7 +58,6 @@ extension CustomPageViewController: UIPageViewControllerDataSource {
 extension CustomPageViewController: UIPageViewControllerDelegate {
     // MARK: - Dots count
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        changeIndicatorColor()
         return 4
     }
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {

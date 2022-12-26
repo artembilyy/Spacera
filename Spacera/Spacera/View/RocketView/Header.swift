@@ -12,6 +12,7 @@ final class Header: UICollectionViewCell {
     static let identifier = "headerIdentifier"
     private let contrainer = UIView()
     let label = UILabel()
+    // MARK: - Assembly
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -30,16 +31,14 @@ final class Header: UICollectionViewCell {
         contrainer.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
-        guard let customFont = UIFont(name: LabGrotesque.bold.rawValue, size: 16) else {
-            fatalError("Failed to load the LabGrotesque-Bold font.")
-        }
-        label.font = UIFontMetrics.default.scaledFont(for: customFont)
+        label.font = UIFont.setFont(name: LabGrotesque.bold.rawValue, size: 16)
         label.adjustsFontForContentSizeCategory = true
         label.textColor = .white
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.25
         label.attributedText = NSMutableAttributedString(string: "",
-                                                         attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+                                                         attributes: [NSAttributedString.Key.paragraphStyle:
+                                                                        paragraphStyle])
     }
     // MARK: - Constraints
     private func setupConstraint() {

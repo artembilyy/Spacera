@@ -15,6 +15,7 @@ final class LaunchCell: UICollectionViewCell {
     private let rocketSuccessImage = UIImageView()
     private let titleLabel = UILabel()
     private let dateLabel = UILabel()
+    // MARK: - Assembly
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -27,32 +28,26 @@ final class LaunchCell: UICollectionViewCell {
         super.layoutSubviews()
         setupConstraints()
     }
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
     // MARK: - Configure cell
     private func configureView() {
         //
         contentView.backgroundColor = .black
         contentView.addSubview(container)
-        container.backgroundColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1)
+        container.backgroundColor = Fonts.customLightBlack.color
         container.layer.cornerRadius = 24
         container.translatesAutoresizingMaskIntoConstraints = false
         //
-        titleLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.textColor = .white
-        guard let customFont = UIFont(name: LabGrotesque.bold.rawValue, size: 20) else {
-            fatalError("Failed to load the LabGrotesque-Bold font.")
-        }
-        titleLabel.font = UIFontMetrics.default.scaledFont(for: customFont)
+        titleLabel.font = UIFont.setFont(name: LabGrotesque.bold.rawValue, size: 20)
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(titleLabel)
         //
-        dateLabel.font = UIFontMetrics.default.scaledFont(for: customFont.withSize(16))
+        dateLabel.font = UIFont.setFont(name: LabGrotesque.bold.rawValue, size: 16)
         dateLabel.adjustsFontForContentSizeCategory = true
-        dateLabel.textColor = UIColor(red: 0.557, green: 0.557, blue: 0.561, alpha: 1)
+        dateLabel.textColor = Fonts.customMidGray.color
         dateLabel.textAlignment = .left
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(dateLabel)

@@ -25,9 +25,6 @@ final class ImageCell: UICollectionViewCell {
         super.layoutSubviews()
         setupConstraints()
     }
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
     // MARK: - Configure cell
     private func configureView() {
         contentView.addSubview(rocketImage)

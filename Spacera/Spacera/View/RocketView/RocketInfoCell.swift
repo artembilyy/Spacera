@@ -24,12 +24,8 @@ final class RocketInfoCell: UICollectionViewCell {
         $0.alignment = .center
         return $0
     }(NSMutableParagraphStyle())
-    private lazy var valueStyle: [NSAttributedString.Key: NSMutableParagraphStyle] = {
-        let value = [NSAttributedString.Key: NSMutableParagraphStyle]()
-        let valueStyle = [NSAttributedString.Key.paragraphStyle: leftStyle]
-        return value
-    }()
-    private let attributedText = NSMutableAttributedString()
+    private let customString = NSMutableAttributedString()
+    // MARK: - Assembly
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -51,21 +47,15 @@ final class RocketInfoCell: UICollectionViewCell {
         container.backgroundColor = .black
         container.translatesAutoresizingMaskIntoConstraints = false
         //
-        leftLabel.textColor = UIColor(red: 0.557, green: 0.557, blue: 0.561, alpha: 1)
+        leftLabel.textColor = Fonts.customMidGray.color
         leftLabel.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(leftLabel)
-        guard let regulardFont = UIFont(name: LabGrotesque.regular.rawValue, size: 16) else {
-            fatalError("Failed to load the LabGrotesque-Bold font.")
-        }
-        leftLabel.font = UIFontMetrics.default.scaledFont(for: regulardFont)
+        leftLabel.font = UIFont.setFont(name: LabGrotesque.regular.rawValue, size: 16)
         leftLabel.adjustsFontForContentSizeCategory = true
         rightlabel.textColor = .white
         rightlabel.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(rightlabel)
-        guard let boldFont = UIFont(name: LabGrotesque.bold.rawValue, size: 16) else {
-            fatalError("Failed to load the LabGrotesque-Bold font.")
-        }
-        rightlabel.font = UIFontMetrics.default.scaledFont(for: boldFont)
+        rightlabel.font = UIFont.setFont(name: LabGrotesque.bold.rawValue, size: 16)
         rightlabel.adjustsFontForContentSizeCategory = true
     }
     // MARK: - Cell contraints
@@ -90,106 +80,111 @@ final class RocketInfoCell: UICollectionViewCell {
         NSLayoutConstraint.activate(unitValueConstraints)
         NSLayoutConstraint.activate(unitConstraints)
     }
+    private func configurateAttributedString(text: String,
+                                             paragraphStyle: NSMutableParagraphStyle) -> NSMutableAttributedString {
+        let result = NSMutableAttributedString(string: text,
+                                               attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        return result
+    }
     // MARK: - Data usage
     func configureCell(rocket: Rocket,
                        indexPath: IndexPath) {
-        guard let boldFont = UIFont(name: LabGrotesque.bold.rawValue, size: 16) else {
-            fatalError("Failed to load the LabGrotesque-Bold font.")
-        }
-        let color = UIColor(red: 0.557, green: 0.557, blue: 0.561, alpha: 1)
-        let unitTypeStyle = [NSAttributedString.Key.font: UIFontMetrics.default.scaledFont(for: boldFont),
+        let color = Fonts.customMidGray.color
+        let unitTypeStyle = [NSAttributedString.Key.font:
+                                UIFont.setFont(name: LabGrotesque.bold.rawValue,
+                                               size: 16),
                              NSAttributedString.Key.foregroundColor: color]
         switch indexPath.section {
         case 3:
             switch indexPath.item {
             case 0:
-                leftLabel.attributedText = NSMutableAttributedString(string: RocketUnit.firstFlight.rawValue,
-                                                                     attributes: valueStyle)
-                rightlabel.attributedText = NSMutableAttributedString(string: TextFormatter.convertDateFormat(date: rocket.firstFlight ?? "",
+                leftLabel.attributedText = configurateAttributedString(text: RocketUnit.firstFlight.rawValue,
+                                                                       paragraphStyle: leftStyle)
+                rightlabel.attributedText = configurateAttributedString(text: TextFormatter.convertDateFormat(date: rocket.firstFlight ?? "",
                                                                                                               from: DateFormat.yyyyMMdd,
                                                                                                               to: DateFormat.MMddyyyy),
-                                                                      attributes: [NSAttributedString.Key.paragraphStyle: rightStyle])
+                                                                        paragraphStyle: rightStyle)
             case 1:
-                leftLabel.attributedText = NSMutableAttributedString(string: RocketUnit.country.rawValue,
-                                                                     attributes: valueStyle)
-                rightlabel.attributedText = NSMutableAttributedString(string: rocket.country ?? "",
-                                                                      attributes: [NSAttributedString.Key.paragraphStyle: rightStyle])
+                leftLabel.attributedText = configurateAttributedString(text: RocketUnit.country.rawValue,
+                                                                       paragraphStyle: leftStyle)
+                rightlabel.attributedText = configurateAttributedString(text: rocket.country ?? "",
+                                                                        paragraphStyle: rightStyle)
             case 2:
-                leftLabel.attributedText = NSMutableAttributedString(string: RocketUnit.costPerLaunch.rawValue,
-                                                                     attributes: valueStyle)
-                rightlabel.attributedText = NSMutableAttributedString(string: TextFormatter.roundNumberWithUnit(String(rocket.costPerLaunch ?? 0)),
-                                                                      attributes: [NSAttributedString.Key.paragraphStyle: rightStyle])
+                leftLabel.attributedText = configurateAttributedString(text: RocketUnit.costPerLaunch.rawValue,
+                                                                       paragraphStyle: leftStyle)
+                rightlabel.attributedText = configurateAttributedString(text: TextFormatter.roundNumberWithUnit(String(rocket.costPerLaunch ?? 0)),
+                                                                        paragraphStyle: rightStyle)
             default:
                 return
             }
         case 4:
             switch indexPath.item {
             case 0:
-                leftLabel.attributedText = NSMutableAttributedString(string: RocketUnit.engines.rawValue,
-                                                                     attributes: valueStyle)
-                rightlabel.attributedText = NSMutableAttributedString(string: String(rocket.firstStage?.engines ?? 0),
-                                                                      attributes: [NSAttributedString.Key.paragraphStyle: rightStyle])
+                leftLabel.attributedText = configurateAttributedString(text: RocketUnit.engines.rawValue,
+                                                                       paragraphStyle: leftStyle)
+                rightlabel.attributedText = configurateAttributedString(text: String(rocket.firstStage?.engines ?? 0),
+                                                                        paragraphStyle: rightStyle)
             case 1:
-                leftLabel.attributedText = NSMutableAttributedString(string: RocketUnit.fuelAmountTons.rawValue,
-                                                                     attributes: valueStyle)
-                attributedText.append(NSAttributedString(string: String(rocket.firstStage?.fuelAmountTons ?? 0),
-                                                         attributes: valueStyle))
-                attributedText.append(NSAttributedString(string: " "))
-                attributedText.append(NSAttributedString(string: UnitType.ton.rawValue,
-                                                         attributes: unitTypeStyle))
-                rightlabel.attributedText = attributedText
+                leftLabel.attributedText = configurateAttributedString(text: RocketUnit.fuelAmountTons.rawValue,
+                                                                       paragraphStyle: leftStyle)
+                customString.append(configurateAttributedString(text: String(rocket.firstStage?.fuelAmountTons ?? 0),
+                                                                paragraphStyle: leftStyle) )
+                customString.append(NSAttributedString(string: " "))
+                customString.append(NSMutableAttributedString(string: UnitType.ton.rawValue,
+                                                              attributes: unitTypeStyle))
+                rightlabel.attributedText = customString
             case 2:
-                leftLabel.attributedText = NSMutableAttributedString(string: RocketUnit.burnTimeSec.rawValue,
-                                                                     attributes: valueStyle)
+                leftLabel.attributedText = configurateAttributedString(text: RocketUnit.burnTimeSec.rawValue,
+                                                                       paragraphStyle: leftStyle)
                 if rocket.firstStage?.burnTimeSec != nil {
-                    attributedText.append(NSAttributedString(string: String((rocket.firstStage?.burnTimeSec)!),
-                                                             attributes: valueStyle))
+                    customString.append(configurateAttributedString(text: String(rocket.firstStage?.burnTimeSec ?? 0),
+                                                                    paragraphStyle: leftStyle) )
                 } else {
-                    attributedText.append(NSAttributedString(string: String("unknown"),
-                                                             attributes: valueStyle))
+                    customString.append(configurateAttributedString(text: "unknown",
+                                                                    paragraphStyle: leftStyle))
                 }
-                attributedText.append(NSAttributedString(string: " "))
-                attributedText.append(NSAttributedString(string: UnitType.sec.rawValue,
-                                                         attributes: unitTypeStyle))
-                rightlabel.attributedText = attributedText
+                customString.append(NSAttributedString(string: " "))
+                customString.append(NSAttributedString(string: UnitType.sec.rawValue,
+                                                       attributes: unitTypeStyle))
+                rightlabel.attributedText = customString
             default:
                 return
             }
         case 5:
             switch indexPath.item {
             case 0:
-                leftLabel.attributedText = NSMutableAttributedString(string: RocketUnit.engines.rawValue,
-                                                                     attributes: valueStyle)
-                rightlabel.attributedText = NSMutableAttributedString(string: String(rocket.secondStage?.engines ?? 0),
-                                                                      attributes: [NSAttributedString.Key.paragraphStyle: rightStyle])
+                leftLabel.attributedText = configurateAttributedString(text: RocketUnit.engines.rawValue,
+                                                                       paragraphStyle: leftStyle)
+                rightlabel.attributedText = configurateAttributedString(text: String(rocket.secondStage?.engines ?? 0),
+                                                                        paragraphStyle: rightStyle)
             case 1:
-                leftLabel.attributedText = NSMutableAttributedString(string: RocketUnit.fuelAmountTons.rawValue,
-                                                                     attributes: valueStyle)
-                attributedText.append(NSAttributedString(string: String(rocket.secondStage?.fuelAmountTons ?? 0),
-                                                         attributes: valueStyle))
-                attributedText.append(NSAttributedString(string: " "))
-                attributedText.append(NSAttributedString(string: UnitType.ton.rawValue,
-                                                         attributes: unitTypeStyle))
-                rightlabel.attributedText = attributedText
+                leftLabel.attributedText = configurateAttributedString(text: RocketUnit.fuelAmountTons.rawValue,
+                                                                       paragraphStyle: leftStyle)
+                customString.append(configurateAttributedString(text: String(rocket.secondStage?.fuelAmountTons ?? 0),
+                                                                paragraphStyle: leftStyle) )
+                customString.append(NSAttributedString(string: " "))
+                customString.append(NSMutableAttributedString(string: UnitType.ton.rawValue,
+                                                              attributes: unitTypeStyle))
+                rightlabel.attributedText = customString
             case 2:
-                leftLabel.attributedText = NSMutableAttributedString(string: RocketUnit.burnTimeSec.rawValue,
-                                                                     attributes: valueStyle)
+                leftLabel.attributedText =  configurateAttributedString(text: RocketUnit.burnTimeSec.rawValue,
+                                                                        paragraphStyle: leftStyle)
                 if rocket.secondStage?.burnTimeSec != nil {
-                    attributedText.append(NSAttributedString(string: String((rocket.secondStage?.burnTimeSec)!),
-                                                             attributes: valueStyle))
+                    customString.append(configurateAttributedString(text: String(rocket.secondStage?.burnTimeSec ?? 0),
+                                                                    paragraphStyle: leftStyle) )
                 } else {
-                    attributedText.append(NSAttributedString(string: String("unknown"),
-                                                             attributes: valueStyle))
+                    customString.append(configurateAttributedString(text: "unknown",
+                                                                    paragraphStyle: leftStyle))
                 }
-                attributedText.append(NSAttributedString(string: " "))
-                attributedText.append(NSAttributedString(string: UnitType.sec.rawValue,
-                                                         attributes: unitTypeStyle))
-                rightlabel.attributedText = attributedText
+                customString.append(NSAttributedString(string: " "))
+                customString.append(NSAttributedString(string: UnitType.sec.rawValue,
+                                                       attributes: unitTypeStyle))
+                rightlabel.attributedText = customString
             default:
                 return
             }
         default:
-            print("error")
+            print("Error while configure RocketInfoCell")
         }
     }
 }
