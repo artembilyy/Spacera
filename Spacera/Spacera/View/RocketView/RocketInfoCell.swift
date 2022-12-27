@@ -38,9 +38,6 @@ final class RocketInfoCell: UICollectionViewCell {
         super.layoutSubviews()
         setupConstraints()
     }
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
     // MARK: - Configure cell
     private func configureView() {
         contentView.addSubview(container)
@@ -128,24 +125,24 @@ final class RocketInfoCell: UICollectionViewCell {
                 leftLabel.attributedText = configurateAttributedString(text: RocketUnit.fuelAmountTons.rawValue,
                                                                        paragraphStyle: leftStyle)
                 customString.append(configurateAttributedString(text: String(rocket.firstStage?.fuelAmountTons ?? 0),
-                                                                paragraphStyle: leftStyle) )
+                                                                  paragraphStyle: leftStyle) )
                 customString.append(NSAttributedString(string: " "))
                 customString.append(NSMutableAttributedString(string: UnitType.ton.rawValue,
-                                                              attributes: unitTypeStyle))
+                                                                attributes: unitTypeStyle))
                 rightlabel.attributedText = customString
             case 2:
                 leftLabel.attributedText = configurateAttributedString(text: RocketUnit.burnTimeSec.rawValue,
                                                                        paragraphStyle: leftStyle)
                 if rocket.firstStage?.burnTimeSec != nil {
                     customString.append(configurateAttributedString(text: String(rocket.firstStage?.burnTimeSec ?? 0),
-                                                                    paragraphStyle: leftStyle) )
+                                                                      paragraphStyle: leftStyle) )
                 } else {
                     customString.append(configurateAttributedString(text: "unknown",
-                                                                    paragraphStyle: leftStyle))
+                                                                      paragraphStyle: leftStyle))
                 }
                 customString.append(NSAttributedString(string: " "))
                 customString.append(NSAttributedString(string: UnitType.sec.rawValue,
-                                                       attributes: unitTypeStyle))
+                                                         attributes: unitTypeStyle))
                 rightlabel.attributedText = customString
             default:
                 return
@@ -154,31 +151,31 @@ final class RocketInfoCell: UICollectionViewCell {
             switch indexPath.item {
             case 0:
                 leftLabel.attributedText = configurateAttributedString(text: RocketUnit.engines.rawValue,
-                                                                       paragraphStyle: leftStyle)
+                                                                        paragraphStyle: leftStyle)
                 rightlabel.attributedText = configurateAttributedString(text: String(rocket.secondStage?.engines ?? 0),
                                                                         paragraphStyle: rightStyle)
             case 1:
                 leftLabel.attributedText = configurateAttributedString(text: RocketUnit.fuelAmountTons.rawValue,
                                                                        paragraphStyle: leftStyle)
                 customString.append(configurateAttributedString(text: String(rocket.secondStage?.fuelAmountTons ?? 0),
-                                                                paragraphStyle: leftStyle) )
+                                                                  paragraphStyle: leftStyle) )
                 customString.append(NSAttributedString(string: " "))
                 customString.append(NSMutableAttributedString(string: UnitType.ton.rawValue,
-                                                              attributes: unitTypeStyle))
+                                                                attributes: unitTypeStyle))
                 rightlabel.attributedText = customString
             case 2:
                 leftLabel.attributedText =  configurateAttributedString(text: RocketUnit.burnTimeSec.rawValue,
                                                                         paragraphStyle: leftStyle)
                 if rocket.secondStage?.burnTimeSec != nil {
                     customString.append(configurateAttributedString(text: String(rocket.secondStage?.burnTimeSec ?? 0),
-                                                                    paragraphStyle: leftStyle) )
+                                                                      paragraphStyle: leftStyle) )
                 } else {
                     customString.append(configurateAttributedString(text: "unknown",
-                                                                    paragraphStyle: leftStyle))
+                                                                      paragraphStyle: leftStyle))
                 }
                 customString.append(NSAttributedString(string: " "))
                 customString.append(NSAttributedString(string: UnitType.sec.rawValue,
-                                                       attributes: unitTypeStyle))
+                                                         attributes: unitTypeStyle))
                 rightlabel.attributedText = customString
             default:
                 return

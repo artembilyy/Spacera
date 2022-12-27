@@ -37,10 +37,6 @@ final class RocketMainCell: UICollectionViewCell {
         super.layoutSubviews()
         setupConstraints()
     }
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        unitLabel.text = ""
-    }
     // MARK: - Configure cell
     private func configureView() {
         contentView.addSubview(container)

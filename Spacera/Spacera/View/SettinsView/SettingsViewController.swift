@@ -53,42 +53,7 @@ class SettingsViewController: UIViewController {
         [NSAttributedString.Key.foregroundColor: UIColor.white]
         title = "Settings"
     }
-    private func setupSegmentedControls() {
-        for (index, view) in settingsItems.enumerated() {
-            selectedSegmentedIndex(index: index, view: view)
-        }
-    }
-    private func selectedSegmentedIndex(index: Int, view: UIView) {
-        guard let view = view as? SettingsItemView else { return }
-        switch index {
-        case 0:
-            if UserDefaults.standard.string(forKey: RocketUnit.height.rawValue) == UnitType.m.rawValue {
-                view.unitSegmentedControl.selectedSegmentIndex = 0
-            } else {
-                view.unitSegmentedControl.selectedSegmentIndex = 1
-            }
-        case 1:
-            if UserDefaults.standard.string(forKey: RocketUnit.diameter.rawValue) == UnitType.m.rawValue {
-                view.unitSegmentedControl.selectedSegmentIndex = 0
-            } else {
-                view.unitSegmentedControl.selectedSegmentIndex = 1
-            }
-        case 2:
-            if UserDefaults.standard.string(forKey: RocketUnit.weight.rawValue) == UnitType.kg.rawValue {
-                view.unitSegmentedControl.selectedSegmentIndex = 0
-            } else {
-                view.unitSegmentedControl.selectedSegmentIndex = 1
-            }
-        case 3:
-            if UserDefaults.standard.string(forKey: RocketUnit.payload.rawValue) == UnitType.kg.rawValue {
-                view.unitSegmentedControl.selectedSegmentIndex = 0
-            } else {
-                view.unitSegmentedControl.selectedSegmentIndex = 1
-            }
-        default:
-            return
-        }
-    }
+    // MARK: -
     private func configureSegmentedControls() {
         for (index, view) in settingsItems.enumerated() {
             setAction(index: index, view: view) { completion in
@@ -133,6 +98,42 @@ class SettingsViewController: UIViewController {
             default: break
             }
             self?.reloadData()
+        }
+    }
+    private func setupSegmentedControls() {
+        for (index, view) in settingsItems.enumerated() {
+            selectedSegmentedIndex(index: index, view: view)
+        }
+    }
+    private func selectedSegmentedIndex(index: Int, view: UIView) {
+        guard let view = view as? SettingsItemView else { return }
+        switch index {
+        case 0:
+            if UserDefaults.standard.string(forKey: RocketUnit.height.rawValue) == UnitType.m.rawValue {
+                view.unitSegmentedControl.selectedSegmentIndex = 0
+            } else {
+                view.unitSegmentedControl.selectedSegmentIndex = 1
+            }
+        case 1:
+            if UserDefaults.standard.string(forKey: RocketUnit.diameter.rawValue) == UnitType.m.rawValue {
+                view.unitSegmentedControl.selectedSegmentIndex = 0
+            } else {
+                view.unitSegmentedControl.selectedSegmentIndex = 1
+            }
+        case 2:
+            if UserDefaults.standard.string(forKey: RocketUnit.weight.rawValue) == UnitType.kg.rawValue {
+                view.unitSegmentedControl.selectedSegmentIndex = 0
+            } else {
+                view.unitSegmentedControl.selectedSegmentIndex = 1
+            }
+        case 3:
+            if UserDefaults.standard.string(forKey: RocketUnit.payload.rawValue) == UnitType.kg.rawValue {
+                view.unitSegmentedControl.selectedSegmentIndex = 0
+            } else {
+                view.unitSegmentedControl.selectedSegmentIndex = 1
+            }
+        default:
+            return
         }
     }
     // MARK: - Notifiaction register

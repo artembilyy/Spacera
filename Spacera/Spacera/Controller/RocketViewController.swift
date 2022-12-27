@@ -7,12 +7,11 @@
 
 import UIKit
 
-class RocketViewController: UIViewController {
+final class RocketViewController: UIViewController {
     // MARK: - View model
     private lazy var viewModel = RocketViewModel()
+    // MARK: - loader
     private let child = LoadingViewController()
-    // MARK: - Name for key
-    private var rocketNames: [String] = []
     // MARK: - Index of page
     private var rocketIndex: Int!
     // switch rockets by index

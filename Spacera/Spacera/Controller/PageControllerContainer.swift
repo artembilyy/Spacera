@@ -22,9 +22,8 @@ final class CustomPageViewController: UIPageViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dataSource = self
-        self.delegate = self
-        // add
+        dataSource = self
+        delegate = self
         for index in 0...3 {
             let rocketViewController = RocketViewController(index: index)
             controllers.append(rocketViewController)

@@ -152,7 +152,6 @@
 				ED9456EA294C96E800CF6911 /* PageControllerContainer.swift */,
 				ED189C8129467FB3008722EE /* RocketViewController.swift */,
 				ED9456E4294B62BD00CF6911 /* LaunchesViewController.swift */,
-				ED5CDF64294766E000DCE078 /* SettingsViewController.swift */,
 				ED3A09D4295A0D1D007E96EE /* Indicator */,
 			);
 			path = Controller;
@@ -252,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				ED5CDF662947CCE200DCE078 /* SettingsView.swift */,
+				ED5CDF64294766E000DCE078 /* SettingsViewController.swift */,
 			);
 			path = SettinsView;
 			sourceTree = "<group>";

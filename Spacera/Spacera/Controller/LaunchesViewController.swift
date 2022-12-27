@@ -7,9 +7,10 @@
 
 import UIKit
 
-class DetailtsViewController: UIViewController {
+final class DetailtsViewController: UIViewController {
     // MARK: - View model
     private lazy var viewModel = LaunchesViewModel()
+    // MARK: - loader
     private let child = LoadingViewController()
     // MARK: - Init Prop
     let launchType: String
@@ -56,6 +57,8 @@ class DetailtsViewController: UIViewController {
         title = navigationTitle
         navigationController?.navigationBar.titleTextAttributes =
         [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+                navigationController?.navigationBar.tintColor = UIColor.white
         addChild(child)
         view.addSubview(child.view)
         child.didMove(toParent: self)
