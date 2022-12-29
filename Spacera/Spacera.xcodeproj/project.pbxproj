@@ -7,27 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ED189C6C2943EB4C008722EE /* RocketsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C6B2943EB4C008722EE /* RocketsModels.swift */; };
-		ED189C6E2943EE44008722EE /* LaunchesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189C6D2943EE44008722EE /* LaunchesModels.swift */; };
-		ED6888EC2943DBEF00E20D21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6888EB2943DBEF00E20D21 /* AppDelegate.swift */; };
-		ED6888F02943DBEF00E20D21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6888EF2943DBEF00E20D21 /* ViewController.swift */; };
-		ED6888F52943DBF100E20D21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED6888F42943DBF100E20D21 /* Assets.xcassets */; };
-		ED6888F82943DBF100E20D21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED6888F62943DBF100E20D21 /* LaunchScreen.storyboard */; };
+		ED07439B295C9D6300E8F96C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED07439A295C9D6300E8F96C /* AppDelegate.swift */; };
+		ED07439F295C9D6300E8F96C /* RocketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED07439E295C9D6300E8F96C /* RocketViewController.swift */; };
+		ED0743A4295C9D6400E8F96C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED0743A3295C9D6400E8F96C /* Assets.xcassets */; };
+		ED0743A7295C9D6400E8F96C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED0743A5295C9D6400E8F96C /* LaunchScreen.storyboard */; };
+		ED0743B4295CAFD900E8F96C /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0743B3295CAFD900E8F96C /* Rocket.swift */; };
+		ED0743BB295CB90B00E8F96C /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0743BA295CB90B00E8F96C /* Assembly.swift */; };
+		ED0743BD295CB94400E8F96C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0743BC295CB94400E8F96C /* Router.swift */; };
+		ED0743BF295CC31D00E8F96C /* RocketPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0743BE295CC31D00E8F96C /* RocketPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		ED189C6B2943EB4C008722EE /* RocketsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsModels.swift; sourceTree = "<group>"; };
-		ED189C6D2943EE44008722EE /* LaunchesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesModels.swift; sourceTree = "<group>"; };
-		ED6888E82943DBEF00E20D21 /* Spacera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spacera.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		ED6888EB2943DBEF00E20D21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ED6888EF2943DBEF00E20D21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		ED6888F42943DBF100E20D21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		ED6888F72943DBF100E20D21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		ED6888F92943DBF100E20D21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED074397295C9D6300E8F96C /* Spacera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spacera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED07439A295C9D6300E8F96C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ED07439E295C9D6300E8F96C /* RocketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewController.swift; sourceTree = "<group>"; };
+		ED0743A3295C9D6400E8F96C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ED0743A6295C9D6400E8F96C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ED0743A8295C9D6400E8F96C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED0743B3295CAFD900E8F96C /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
+		ED0743BA295CB90B00E8F96C /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		ED0743BC295CB94400E8F96C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		ED0743BE295CC31D00E8F96C /* RocketPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		ED6888E52943DBEF00E20D21 /* Frameworks */ = {
+		ED074394295C9D6300E8F96C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -37,70 +41,128 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		ED189C6A2943E9FC008722EE /* Models */ = {
+		ED07438E295C9D6300E8F96C = {
 			isa = PBXGroup;
 			children = (
-				ED189C6B2943EB4C008722EE /* RocketsModels.swift */,
-				ED189C6D2943EE44008722EE /* LaunchesModels.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		ED6888DF2943DBEF00E20D21 = {
-			isa = PBXGroup;
-			children = (
-				ED6888EA2943DBEF00E20D21 /* Spacera */,
-				ED6888E92943DBEF00E20D21 /* Products */,
+				ED074399295C9D6300E8F96C /* Spacera */,
+				ED074398295C9D6300E8F96C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		ED6888E92943DBEF00E20D21 /* Products */ = {
+		ED074398295C9D6300E8F96C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ED6888E82943DBEF00E20D21 /* Spacera.app */,
+				ED074397295C9D6300E8F96C /* Spacera.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		ED6888EA2943DBEF00E20D21 /* Spacera */ = {
+		ED074399295C9D6300E8F96C /* Spacera */ = {
 			isa = PBXGroup;
 			children = (
-				ED189C6A2943E9FC008722EE /* Models */,
-				ED6889002943DEC600E20D21 /* Resources */,
-				ED6888FF2943DEBE00E20D21 /* Application */,
-				ED6888EF2943DBEF00E20D21 /* ViewController.swift */,
+				ED0743B9295CB8D300E8F96C /* Assembly */,
+				ED0743B8295CB8C700E8F96C /* Router */,
+				ED0743B0295C9D8900E8F96C /* ServiceLayer */,
+				ED0743AE295C9D7200E8F96C /* RocketModule */,
+				ED0743B2295C9DA600E8F96C /* Application */,
+				ED0743B1295C9D9900E8F96C /* Resources */,
+				ED0743AF295C9D8000E8F96C /* LaunchModule */,
 			);
 			path = Spacera;
 			sourceTree = "<group>";
 		};
-		ED6888FF2943DEBE00E20D21 /* Application */ = {
+		ED0743AE295C9D7200E8F96C /* RocketModule */ = {
 			isa = PBXGroup;
 			children = (
-				ED6888EB2943DBEF00E20D21 /* AppDelegate.swift */,
+				ED0743B7295CB15B00E8F96C /* Presenter */,
+				ED0743B6295CAFF700E8F96C /* View */,
+				ED0743B5295CAFE800E8F96C /* Model */,
+			);
+			path = RocketModule;
+			sourceTree = "<group>";
+		};
+		ED0743AF295C9D8000E8F96C /* LaunchModule */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LaunchModule;
+			sourceTree = "<group>";
+		};
+		ED0743B0295C9D8900E8F96C /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		ED0743B1295C9D9900E8F96C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ED0743A3295C9D6400E8F96C /* Assets.xcassets */,
+				ED0743A5295C9D6400E8F96C /* LaunchScreen.storyboard */,
+				ED0743A8295C9D6400E8F96C /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		ED0743B2295C9DA600E8F96C /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				ED07439A295C9D6300E8F96C /* AppDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
 		};
-		ED6889002943DEC600E20D21 /* Resources */ = {
+		ED0743B5295CAFE800E8F96C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ED6888F62943DBF100E20D21 /* LaunchScreen.storyboard */,
-				ED6888F42943DBF100E20D21 /* Assets.xcassets */,
-				ED6888F92943DBF100E20D21 /* Info.plist */,
+				ED0743B3295CAFD900E8F96C /* Rocket.swift */,
 			);
-			path = Resources;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ED0743B6295CAFF700E8F96C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ED07439E295C9D6300E8F96C /* RocketViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		ED0743B7295CB15B00E8F96C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				ED0743BE295CC31D00E8F96C /* RocketPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		ED0743B8295CB8C700E8F96C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				ED0743BC295CB94400E8F96C /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		ED0743B9295CB8D300E8F96C /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				ED0743BA295CB90B00E8F96C /* Assembly.swift */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		ED6888E72943DBEF00E20D21 /* Spacera */ = {
+		ED074396295C9D6300E8F96C /* Spacera */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ED6888FC2943DBF100E20D21 /* Build configuration list for PBXNativeTarget "Spacera" */;
+			buildConfigurationList = ED0743AB295C9D6400E8F96C /* Build configuration list for PBXNativeTarget "Spacera" */;
 			buildPhases = (
-				ED6888E42943DBEF00E20D21 /* Sources */,
-				ED6888E52943DBEF00E20D21 /* Frameworks */,
-				ED6888E62943DBEF00E20D21 /* Resources */,
+				ED074393295C9D6300E8F96C /* Sources */,
+				ED074394295C9D6300E8F96C /* Frameworks */,
+				ED074395295C9D6300E8F96C /* Resources */,
 			);
 			buildRules = (
 			);
@@ -108,25 +170,25 @@
 			);
 			name = Spacera;
 			productName = Spacera;
-			productReference = ED6888E82943DBEF00E20D21 /* Spacera.app */;
+			productReference = ED074397295C9D6300E8F96C /* Spacera.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		ED6888E02943DBEF00E20D21 /* Project object */ = {
+		ED07438F295C9D6300E8F96C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
-					ED6888E72943DBEF00E20D21 = {
+					ED074396295C9D6300E8F96C = {
 						CreatedOnToolsVersion = 14.1;
 					};
 				};
 			};
-			buildConfigurationList = ED6888E32943DBEF00E20D21 /* Build configuration list for PBXProject "Spacera" */;
+			buildConfigurationList = ED074392295C9D6300E8F96C /* Build configuration list for PBXProject "Spacera" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -134,47 +196,49 @@
 				en,
 				Base,
 			);
-			mainGroup = ED6888DF2943DBEF00E20D21;
-			productRefGroup = ED6888E92943DBEF00E20D21 /* Products */;
+			mainGroup = ED07438E295C9D6300E8F96C;
+			productRefGroup = ED074398295C9D6300E8F96C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				ED6888E72943DBEF00E20D21 /* Spacera */,
+				ED074396295C9D6300E8F96C /* Spacera */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		ED6888E62943DBEF00E20D21 /* Resources */ = {
+		ED074395295C9D6300E8F96C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED6888F82943DBF100E20D21 /* LaunchScreen.storyboard in Resources */,
-				ED6888F52943DBF100E20D21 /* Assets.xcassets in Resources */,
+				ED0743A7295C9D6400E8F96C /* LaunchScreen.storyboard in Resources */,
+				ED0743A4295C9D6400E8F96C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		ED6888E42943DBEF00E20D21 /* Sources */ = {
+		ED074393295C9D6300E8F96C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED6888F02943DBEF00E20D21 /* ViewController.swift in Sources */,
-				ED6888EC2943DBEF00E20D21 /* AppDelegate.swift in Sources */,
-				ED189C6E2943EE44008722EE /* LaunchesModels.swift in Sources */,
-				ED189C6C2943EB4C008722EE /* RocketsModels.swift in Sources */,
+				ED0743B4295CAFD900E8F96C /* Rocket.swift in Sources */,
+				ED07439F295C9D6300E8F96C /* RocketViewController.swift in Sources */,
+				ED0743BF295CC31D00E8F96C /* RocketPresenter.swift in Sources */,
+				ED0743BD295CB94400E8F96C /* Router.swift in Sources */,
+				ED07439B295C9D6300E8F96C /* AppDelegate.swift in Sources */,
+				ED0743BB295CB90B00E8F96C /* Assembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		ED6888F62943DBF100E20D21 /* LaunchScreen.storyboard */ = {
+		ED0743A5295C9D6400E8F96C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				ED6888F72943DBF100E20D21 /* Base */,
+				ED0743A6295C9D6400E8F96C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -182,7 +246,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		ED6888FA2943DBF100E20D21 /* Debug */ = {
+		ED0743A9295C9D6400E8F96C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -242,7 +306,7 @@
 			};
 			name = Debug;
 		};
-		ED6888FB2943DBF100E20D21 /* Release */ = {
+		ED0743AA295C9D6400E8F96C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -296,7 +360,7 @@
 			};
 			name = Release;
 		};
-		ED6888FD2943DBF100E20D21 /* Debug */ = {
+		ED0743AC295C9D6400E8F96C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -323,7 +387,7 @@
 			};
 			name = Debug;
 		};
-		ED6888FE2943DBF100E20D21 /* Release */ = {
+		ED0743AD295C9D6400E8F96C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -353,25 +417,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ED6888E32943DBEF00E20D21 /* Build configuration list for PBXProject "Spacera" */ = {
+		ED074392295C9D6300E8F96C /* Build configuration list for PBXProject "Spacera" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ED6888FA2943DBF100E20D21 /* Debug */,
-				ED6888FB2943DBF100E20D21 /* Release */,
+				ED0743A9295C9D6400E8F96C /* Debug */,
+				ED0743AA295C9D6400E8F96C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ED6888FC2943DBF100E20D21 /* Build configuration list for PBXNativeTarget "Spacera" */ = {
+		ED0743AB295C9D6400E8F96C /* Build configuration list for PBXNativeTarget "Spacera" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ED6888FD2943DBF100E20D21 /* Debug */,
-				ED6888FE2943DBF100E20D21 /* Release */,
+				ED0743AC295C9D6400E8F96C /* Debug */,
+				ED0743AD295C9D6400E8F96C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = ED6888E02943DBEF00E20D21 /* Project object */;
+	rootObject = ED07438F295C9D6300E8F96C /* Project object */;
 }

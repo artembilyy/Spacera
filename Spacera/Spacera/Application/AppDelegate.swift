@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Spacera
 //
-//  Created by Artem Bilyi on 09.12.2022.
+//  Created by Artem Bilyi on 28.12.2022.
 //
 
 import UIKit
@@ -10,14 +10,11 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    private let controller = ViewController()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let vc = AssemblyBuilder.createRocketModule()
         window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = vc
         window?.makeKeyAndVisible()
-        window?.backgroundColor = .white
-        let navigationController = UINavigationController(rootViewController: controller)
-        window?.rootViewController = navigationController
         return true
     }
 }
-
