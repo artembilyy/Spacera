@@ -1,24 +1,24 @@
 //
-//  RocketPresenter.swift
+//  LaunchPresenter.swift
 //  Spacera
 //
-//  Created by Artem Bilyi on 28.12.2022.
+//  Created by Artem Bilyi on 30.12.2022.
 //
 
 import Foundation
 
-protocol RocketViewProtocol: AnyObject {
+protocol LaunchViewProtocol: AnyObject {
     func success()
     func failure(error: Error)
 }
 
-protocol RocketViewPresenterProtocol: AnyObject {
-    init(view: RocketViewProtocol, networkService: NetworkServiceProtocol)
+protocol LaunchViewPresenterProtocol: AnyObject {
+    init(view: LaunchViewProtocol, networkService: NetworkServiceProtocol)
     func getRockets()
-    var rockets: [Rocket]? { get set }
+    var launches: [Launch]? { get set }
 }
 
-class RocketPresenter: RocketViewPresenterProtocol {
+class LaunchPresenter: RocketViewPresenterProtocol {
     var rockets: [Rocket]?
     
     weak var view: RocketViewProtocol?
@@ -44,3 +44,4 @@ class RocketPresenter: RocketViewPresenterProtocol {
         }
     }
 }
+

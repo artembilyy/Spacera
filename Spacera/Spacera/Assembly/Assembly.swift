@@ -14,9 +14,9 @@ protocol AssemblyBuilderProtocol {
 class AssemblyBuilder: AssemblyBuilderProtocol {
 
     static func createRocketModule() -> UIViewController {
-        let rockets: [Rocket] = []
+        let networkService = NetworkService()
         let view = RocketViewController()
-        let presenter = RocketPresenter(view: view, rockets: rockets)
+        let presenter = RocketPresenter(view: view, networkService: networkService)
         view.presenter = presenter
         return view
     }
