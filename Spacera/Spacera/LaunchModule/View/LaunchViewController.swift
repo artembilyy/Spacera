@@ -1,17 +1,15 @@
 //
-//  RocketViewController.swift
+//  LaunchViewController.swift
 //  Spacera
 //
-//  Created by Artem Bilyi on 28.12.2022.
+//  Created by Artem Bilyi on 30.12.2022.
 //
 
 import UIKit
 
-class RocketViewController: UIViewController {
+class LaunchViewController: UIViewController {
+    var presenter: LaunchViewPresenterProtocol!
     
-    var presenter: RocketViewPresenterProtocol!
-    var index: Int!
-
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: view.frame, style: .plain)
         return tableView
@@ -23,10 +21,11 @@ class RocketViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+
     }
 }
 
-extension RocketViewController: RocketViewProtocol {
+extension LaunchViewController: LaunchViewProtocol {
     func failure(error: Error) {
         print(error.localizedDescription)
     }
@@ -36,24 +35,22 @@ extension RocketViewController: RocketViewProtocol {
     }
 }
 
-extension RocketViewController: UITableViewDataSource {
+extension LaunchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.rockets?.count ?? 0
+        return presenter.launches?.count ?? 0
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let rocket = presenter.rockets?[indexPath.row]
+        let rocket = presenter.launches?[indexPath.row]
         cell.textLabel?.text = rocket?.name
         return cell
     }
-    
-    
 }
 
-extension RocketViewController: UITableViewDelegate {
+extension LaunchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let rocket = presenter.rockets?[indexPath.row]
-        presenter.showLaunches(rocketID: rocket?.id)
+        
+        
     }
 }
+

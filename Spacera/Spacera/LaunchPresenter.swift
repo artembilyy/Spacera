@@ -13,35 +13,45 @@ protocol LaunchViewProtocol: AnyObject {
 }
 
 protocol LaunchViewPresenterProtocol: AnyObject {
-    init(view: LaunchViewProtocol, networkService: NetworkServiceProtocol)
-    func getRockets()
     var launches: [Launch]? { get set }
+    init(view: LaunchViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol, rocketID: String?)
+    func getLaunches()
+    func tapBack()
 }
 
-class LaunchPresenter: RocketViewPresenterProtocol {
-    var rockets: [Rocket]?
-    
-    weak var view: RocketViewProtocol?
+class LaunchPresenter: LaunchViewPresenterProtocol {
+    var launches: [Launch]?
+    weak var view: LaunchViewProtocol?
+    var router: RouterProtocol?
+    let rocketID: String?
     let networkService: NetworkServiceProtocol!
-    required init(view: RocketViewProtocol, networkService: NetworkServiceProtocol) {
+    
+    required init(view: LaunchViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol, rocketID: String?) {
         self.view = view
         self.networkService = networkService
-        getRockets()
+        self.router = router
+        self.rocketID = rocketID
+        getLaunches()
     }
     
-    func getRockets() {
-        networkService.getRockets { [weak self] result in
+    func getLaunches() {
+        networkService.getLaunches { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
-                case .success(let rockets):
-                    self.rockets = rockets
+                case .success(let launches):
+                    self.launches = launches?.filter({ launch in
+                        self.rocketID == launch.rocket
+                    })
                     self.view?.success()
                 case .failure(let error):
                     self.view?.failure(error: error)
                 }
             }
         }
+    }
+    func tapBack() {
+//        router?.popToRoot()
     }
 }
 
