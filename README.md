@@ -2,7 +2,7 @@
 
 <img width="920" alt="SpaceraHeader" src="https://user-images.githubusercontent.com/110157916/210454843-5b074f0e-0b44-4897-b258-5c448c47b20e.png">
 
-🚀 **Spacera** - mobile app which give us possibilityч to check information about SpaceX rockets and their launches.
+🚀 **Spacera** - application created for show information about rockets and launches.
 ## Navigations of Contents
 * [Promo](#promo)
 * [Technologies Used](#technologies-used)
